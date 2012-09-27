@@ -10,7 +10,7 @@ namespace ResourceProvidR
             // POST /events
             config.Routes.MapHttpRoute(
                 name: "Events",
-                routeTemplate: "events",
+                routeTemplate: "{subscriptionId}/events",
                 defaults: new { controller = "Events", action = "HandleSubscriptionNotifications" }
             );
 
@@ -40,13 +40,12 @@ namespace ResourceProvidR
 
            // -------- Resource Management --------
 
-           // GET /subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceName}
-           // PUT /subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceName}
-           // DELETE subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceName}
+            // GET /subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}
+            // PUT /subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}
+            // DELETE subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}
            config.Routes.MapHttpRoute(
                name: "Resource-Management",
-               //routeTemplate: "subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}",
-               routeTemplate: "subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceName}",
+               routeTemplate: "subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}",
                defaults: new
                {
                    controller = "Resources"

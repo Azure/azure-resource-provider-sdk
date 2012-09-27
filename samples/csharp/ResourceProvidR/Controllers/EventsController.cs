@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Threading.Tasks;
+using System.Web.Http;
 using Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunication;
 
 namespace ResourceProvidR.Controllers
@@ -11,7 +12,6 @@ namespace ResourceProvidR.Controllers
         [HttpPost]
         public void HandleSubscriptionNotifications(EntityEvent entity)
         {
-            // TODO
         }
     }
 }

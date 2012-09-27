@@ -12,9 +12,9 @@ namespace ResourceProvidR.Controllers
         // GET /subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceName}
         //
         [HttpGet]
-        public ResourceOutput GetResource(string subscriptionId, string cloudServiceName, /*string resourceType,*/ string resourceName)
+        public ResourceOutput GetResource(string subscriptionId, string cloudServiceName, string resourceType, string resourceName)
         {
-            if (String.IsNullOrEmpty(cloudServiceName) /*|| String.IsNullOrEmpty(resourceType)*/ || String.IsNullOrEmpty(resourceName))
+            if (String.IsNullOrEmpty(cloudServiceName) || String.IsNullOrEmpty(resourceType) || String.IsNullOrEmpty(resourceName))
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
@@ -26,23 +26,23 @@ namespace ResourceProvidR.Controllers
         // PUT /subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceName}
         //
         [HttpPut]
-        public ResourceOutput ProvisionOrUpdateResource(string subscriptionId, string cloudServiceName, /*string resourceType,*/ string resourceName, ResourceInput resource)
+        public ResourceOutput ProvisionOrUpdateResource(string subscriptionId, string cloudServiceName, string resourceType, string resourceName, ResourceInput resource)
         {
-            if (String.IsNullOrEmpty(cloudServiceName) /*|| String.IsNullOrEmpty(resourceType)*/ || String.IsNullOrEmpty(resourceName) || (resource == null))
+            if (String.IsNullOrEmpty(cloudServiceName) || String.IsNullOrEmpty(resourceType) || String.IsNullOrEmpty(resourceName) || (resource == null))
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 
-            return DataModel.ProvisionOrUpdateResource(subscriptionId, cloudServiceName, null, /*resourceType,*/ resourceName, resource);
+            return DataModel.ProvisionOrUpdateResource(subscriptionId, cloudServiceName, resourceType, resourceName, resource);
         }
 
         //
         // DELETE /subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceName}
         //
         [HttpDelete]
-        public void DeleteResource(string subscriptionId, string cloudServiceName, /*string resourceType,*/ string resourceName)
+        public void DeleteResource(string subscriptionId, string cloudServiceName, string resourceType, string resourceName)
         {
-            if (String.IsNullOrEmpty(cloudServiceName) /*|| String.IsNullOrEmpty(resourceType)*/ || String.IsNullOrEmpty(resourceName))
+            if (String.IsNullOrEmpty(cloudServiceName) || String.IsNullOrEmpty(resourceType) || String.IsNullOrEmpty(resourceName))
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }

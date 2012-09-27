@@ -18,6 +18,84 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         public const string ConnectionPassword = "connectionPassword";
     }
 
+
+    /// <summary>
+    /// Type representing identifier of Entity under subscription.
+    /// </summary>
+    [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement")]
+    // [KnownType(typeof(DeploymentId))]
+    public class EntityId
+    {
+        [DataMember(EmitDefaultValue = false, IsRequired = true, Order = 0)]
+        public string Id { get; set; }
+
+        [DataMember(EmitDefaultValue = false, IsRequired = false, Order = 1)]
+        public DateTime Created { get; set; }
+    }
+
+    /// <summary>
+    /// State of entity.
+    /// </summary>
+    [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement")]
+    public enum EntityState
+    {
+        [EnumMember]
+        Deleted,
+
+        [EnumMember]
+        Enabled,
+
+        [EnumMember]
+        Disabled,
+
+        [EnumMember]
+        Migrated,
+
+        [EnumMember]
+        Updated,
+
+        [EnumMember]
+        Registered,
+
+        [EnumMember]
+        Unregistered
+    }
+
+    [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement")]
+    public class EntityEvent
+    {
+        [DataMember(EmitDefaultValue = false, IsRequired = true, Order = 0)]
+        public string EventId { get; set; }
+
+        [DataMember(EmitDefaultValue = false, Order = 1)]
+        public string ListenerId { get; set; }
+
+        [DataMember(EmitDefaultValue = false, Order = 2)]
+        public string EntityType { get; set; }
+
+        [DataMember(EmitDefaultValue = false, Order = 3)]
+        public EntityState EntityState { get; set; }
+
+        [DataMember(EmitDefaultValue = false, Order = 4)]
+        public EntityId EntityId { get; set; }
+
+        [DataMember(EmitDefaultValue = false, Order = 5)]
+        public string OperationId { get; set; }
+
+        [DataMember(EmitDefaultValue = false, Order = 6)]
+        public bool IsAsync { get; set; }
+
+        public EntityEvent CreateCopy(string listenerId)
+        {
+            EntityEvent copy = base.MemberwiseClone() as EntityEvent;
+            copy.ListenerId = listenerId;
+            return copy;
+        }
+    }
+
+
+
+
     /// <summary>
     /// The possible result from an operation.
     /// </summary>
@@ -123,7 +201,7 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         /// The incarnation ID of the resource.
         /// </summary>
         [DataMember]
-        public int IncarnationId { get; set; }
+        public int Etag { get; set; }
 
         /// <summary>
         /// The schema version of the intrinsic settings.
@@ -178,7 +256,7 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         /// The incarnation ID of the resource.
         /// </summary>
         [DataMember]
-        public int IncarnationId { get; set; }
+        public int Etag{ get; set; }
 
         /// <summary>
         /// The schema version of the intrinsic settings.
@@ -254,7 +332,7 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         /// The incarnation ID of this request.
         /// </summary>
         [DataMember(IsRequired = true)]
-        public int IncarnationId { get; set; }
+        public int Etag{ get; set; }
 
         /// <summary>
         /// The geo location of the cloud service.
@@ -343,26 +421,26 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         Paused,
     }
 
-    [DataContract(Namespace = "http://schemas.microsoft.com/windowsazure")]
-    public class EntityEvent : IExtensibleDataObject
-    {
-        [DataMember(EmitDefaultValue = false)]
-        public Guid EventId { get; set; }
+    //[DataContract(Namespace = "http://schemas.microsoft.com/windowsazure")]
+    //public class EntityEvent : IExtensibleDataObject
+    //{
+    //    [DataMember(EmitDefaultValue = false)]
+    //    public Guid EventId { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
-        public string EntityType { get; set; } // TODO: noty string
+    //    [DataMember(EmitDefaultValue = false)]
+    //    public string EntityType { get; set; } // TODO: noty string
 
-        [DataMember(EmitDefaultValue = false)]
-        public string EntityState { get; set; } // TODO: not really a string
+    //    [DataMember(EmitDefaultValue = false)]
+    //    public string EntityState { get; set; } // TODO: not really a string
 
-        [DataMember(EmitDefaultValue = false)]
-        public Guid OperationId { get; set; }
+    //    [DataMember(EmitDefaultValue = false)]
+    //    public Guid OperationId { get; set; }
 
-        [DataMember(EmitDefaultValue = false)]
-        public bool IsAsync { get; set; }
+    //    [DataMember(EmitDefaultValue = false)]
+    //    public bool IsAsync { get; set; }
 
-        public ExtensionDataObject ExtensionData { get; set; }
-    }
+    //    public ExtensionDataObject ExtensionData { get; set; }
+    //}
 
     /// <summary>
     /// Resource provider operations.

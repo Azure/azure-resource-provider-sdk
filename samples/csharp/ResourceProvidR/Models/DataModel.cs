@@ -71,7 +71,7 @@ namespace ResourceProvidR.Models
                 CloudServiceOutput cloudServiceOutput = new CloudServiceOutput()
                 {
                     GeoLocation = theMatchingCloudService.Resources.Count > 0 ? theMatchingCloudService.Resources[0].CloudServiceSettings.GeoLocation : String.Empty,
-                    IncarnationId = theMatchingCloudService.IncarnationId,
+                    Etag = theMatchingCloudService.IncarnationId,
                     Resources = new ResourceOutputCollection(theMatchingCloudService.Resources)
                 };
 
@@ -159,10 +159,10 @@ namespace ResourceProvidR.Models
                 if (theMatchingResource != null)
                 {
                     // We can be called to provision / update a resource several time - Ignore the request if we have a record of the resource with the same incarnation id
-                    if (theMatchingResource.IncarnationId != resource.IncarnationId)
+                    if (theMatchingResource.Etag != resource.Etag)
                     {
                         theMatchingResource.CloudServiceSettings = resource.CloudServiceSettings;
-                        theMatchingResource.IncarnationId = resource.IncarnationId;
+                        theMatchingResource.Etag = resource.Etag;
                         theMatchingResource.IntrinsicSettings = resource.IntrinsicSettings;
                         theMatchingResource.Name = resourceName;
                         theMatchingResource.OperationStatus = new OperationStatus()
@@ -184,7 +184,7 @@ namespace ResourceProvidR.Models
                     output = new ResourceOutput()
                     {
                         CloudServiceSettings = resource.CloudServiceSettings,
-                        IncarnationId = resource.IncarnationId,
+                        Etag = resource.Etag,
                         IntrinsicSettings = resource.IntrinsicSettings,
                         Name = resourceName,
                         OperationStatus = new OperationStatus()
