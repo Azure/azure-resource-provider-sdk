@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "ResourceProvidR Home";
+}
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/">ResourceProvidR</a></p>
+        </div>
+    </div>
+</header>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>ResourceProvidR management</h1>
+            </hgroup>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        <h1>@ViewBag.resourceName (@ViewBag.resourceDisplayName)</h1>
+        <form>
+            @if (@ViewBag.resourceDisplayName == "LightSaber")
+            {
+                <input type="button" value="Draw" />
+                <input type="button" value="Conceal" />
+            }
+            else {
+                if (@ViewBag.resourceDisplayName == "Red Shirt")
+                {
+                    <img src="~/Images/redshirt.png" />
+                    <input type="button" value="Wash" />
+                    <input type="button" value="Dry Clean" />
+                }
+                else
+                {
+                    <input type="button" value="Clear" />
+                }
+            }
+        </form>
+    </section>
+</div>

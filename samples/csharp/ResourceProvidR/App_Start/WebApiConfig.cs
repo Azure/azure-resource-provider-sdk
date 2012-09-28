@@ -55,15 +55,15 @@ namespace ResourceProvidR
            // -------- Single Sign On --------
 
            // GET subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}/GenerateSSOToken
-           //config.Routes.MapHttpRoute(
-           //    name: "Resource-Management-SingleSignOn",
-           //    routeTemplate: "subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}/GenerateSSOToken",
-           //    defaults: new
-           //    {
-           //        controller = "Resources",
-           //        action = "GenerateSSOToken"
-           //    }
-           //);
+           config.Routes.MapHttpRoute(
+               name: "Resource-Management-SingleSignOn",
+               routeTemplate: "subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}/SsoToken",
+               defaults: new
+               {
+                   controller = "Resources",
+                   action = "SsoToken"
+               }
+           );
         }
     }
 }

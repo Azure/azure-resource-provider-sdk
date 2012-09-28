@@ -174,6 +174,27 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
     }
 
     /// <summary>
+    /// Class with the details to generate a token for single-sign-on.
+    /// </summary>
+    [DataContract(Namespace = "http://schemas.microsoft.com/windowsazure")]
+    public class SsoToken : IExtensibleDataObject
+    {
+        /// <summary>
+        /// The token.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string Token { get; set; }
+
+        /// <summary>
+        /// Timestamp to indicate when the token was generated.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string TimeStamp { get; set; }
+
+        public ExtensionDataObject ExtensionData { get; set; }
+    }
+
+    /// <summary>
     /// Resource information, as sent to the resource provider for the resource-level operations.
     /// </summary>
     [DataContract(Name = "Resource", Namespace = "http://schemas.microsoft.com/windowsazure")]
