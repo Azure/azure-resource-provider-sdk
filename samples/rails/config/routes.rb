@@ -1,10 +1,18 @@
 Randomize::Application.routes.draw do
-  resources :accounts
-  resources :provider
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
-
+  resources :subscriptions do
+    #resources :cloudservices #do
+     #resources :resources
+    #end
+  end 
+  match '/:id/Events' => 'events#create', :via=>[:get, :post]
+  match '/:id/Events/list' => 'events#list'
+  match 'subscriptions/:subscription_id/cloudservices' => 'CloudServices#index' , :via => [:get]
+  match 'subscriptions/:subscription_id/cloudservices/:id' => 'CloudServices#show', :via => [:get]
+  match 'subscriptions/:subscription_id/cloudservices/:cloud_service_id/resources/:resource_type/:id' => 'resources#show' , :via => [:get]
+  match 'subscriptions/:subscription_id/cloudservices/:cloud_service_id/resources/:resource_type/:id' => 'resources#create_or_update' , :via => [:put]
+  match 'subscriptions/:subscription_id/cloudservices/:cloud_service_id/resources/:resource_type/:id' => 'resources#destroy' , :via => [:delete]
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
@@ -58,5 +66,4 @@ Randomize::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-  match 'subscriptions/:subid/cloudservices/:csid/resources/:type/:name' => 'provider#create'
 end
