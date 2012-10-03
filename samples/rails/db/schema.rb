@@ -11,22 +11,48 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904201838) do
+ActiveRecord::Schema.define(:version => 20120913172755) do
 
-  create_table "accounts", :force => true do |t|
+  create_table "cloud_services", :force => true do |t|
     t.string   "name"
-    t.integer  "age"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "subscription_id"
+    t.string   "geo_region"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
-  create_table "products", :force => true do |t|
+  create_table "events", :force => true do |t|
+    t.string   "subscription_id"
+    t.string   "entity_state"
+    t.string   "subscription_creation_date"
+    t.string   "operation_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "resources", :force => true do |t|
     t.string   "name"
-    t.string   "token"
-    t.string   "subscription"
-    t.string   "service"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "cloud_service_id"
+    t.string   "resource_type"
+    t.string   "incarnation_id"
+    t.string   "schema_version"
+    t.string   "plan"
+    t.string   "version"
+    t.text     "intrinsic_settings"
+    t.string   "promotion_code"
+    t.string   "connection_url"
+    t.string   "password"
+    t.string   "salt"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "subscription_id"
+    t.string   "created_date"
+    t.integer  "state"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

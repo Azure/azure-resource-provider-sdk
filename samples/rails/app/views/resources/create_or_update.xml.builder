@@ -8,7 +8,7 @@ xml.Resource "xmlns"=> "http://schemas.microsoft.com/windowsazure" do
   #end
   #plan is not expected back in the current sandbox build.
   #xml.Plan @basic_params[:Plan]
-  xml.Etag @basic_params[:Etag]
+  xml.ETag @basic_params[:ETag]
   xml.IntrinsicSettings do
     xml.Key "key"
     xml.Value "Value"

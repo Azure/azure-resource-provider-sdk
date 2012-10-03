@@ -17,7 +17,7 @@ class EventsController < ApplicationController
 			@event.save!
 			if (@event.entity_state == "Registered")
 				 logger.info("Registered event, create a subscription")
-				@subscription = Subscriptions.new
+				@subscription = Subscription.new
 				@subscription.state = 1 #SUBSCRIPTION_STATE_REGISTERED
 				@subscription.subscription_id = params[:id]
 				if (@basic_params[:EntityId])
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
 			  	@subscription.save!
 			else
 				logger.info("State change: update subscription")
-				@subscription = Subscriptions.find_by_subscription_id(params[:id])
+				@subscription = Subscription.find_by_subscription_id(params[:id])
 				if (@event.entity_state == "Disabled")
 					@Subscription.state = 2 #
 				elsif (@event.entity_state == "Deleted")

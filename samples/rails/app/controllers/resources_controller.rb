@@ -1,3 +1,9 @@
+
+require 'rubygems'
+require 'base64'
+require 'cgi'
+require 'hmac-sha1'
+
 class ResourcesController < ApplicationController
 	#/Subscriptions/:subscription_id/cloudservices/#cloud_service_id/resources/:id - PUT
 	def create_or_update
@@ -40,12 +46,8 @@ class ResourcesController < ApplicationController
 		@output_item["value"] = @resource.connection_url
 		@output_items << @output_item
 		@output_item = Hash.new
-		@output_item["key"] = "password"
+		@output_item["key"] = "key"
 		@output_item["value"] = @resource.password
-		@output_items << @output_item
-		@output_item = Hash.new
-		@output_item["key"] = "salt"
-		@output_item["value"] = @resource.salt
 		@output_items << @output_item
 		@basic_params[:OutputItems] = @output_items
 		@operation_status = Hash.new
@@ -61,9 +63,40 @@ class ResourcesController < ApplicationController
    		end
 	end
 
-	#'subscriptions/:subscription_id/cloudservices/:cloud_service_id/resources/:resource_type/:id'
+	# match 'subscriptions/:subscription_id/cloudservices/:cloud_service_id/resources/:resource_type/:id/SsoToken'=> via [:post]
+	def sso
+		# will be invokded when the user clicks the manage button in the portal.  This will create the token and pass it to Azure along
+		# with the timestamp.
+		@secret_key = "Change this key to some other value if you are using this sample"
+		@signature = "#{params[:subscription_id]}: #{params[:cloud_service_id]}:#{params[:id]}"
+		token = HMAC::SHA1.new(@secret_key)
+		token.update(@signature)
+		timestamp = DateTime.now
+	end
+
+	# match 'Sso' => 'resources#sso_view', via => [:get]
+	def sso_view
+		# used to show the single signed on view for a given resource. 
+		@show_data = false
+		# get the parameters and encrypt it using the same key. 
+		@signature = "#{params[:subid]}: #{params[:cloudservicename]}:#{params[:resourcename]}"
+		@secret_key = "Change this key to some other value if you are using this sample"
+		token_now = HMAC::SHA1.new(@secret_key)
+		token_now.update(@signature)
+		if (token_now == token)
+			logger.info("the tokens match, check for timestamp now")
+			timestamp_now = DateTime.now
+			if (timestamp_now - params[:timestamp]) < 60*10
+				logger.info "The time difference is less than 10 minutes, send back http request"
+				@show_data = true.
+   				end
+			end
+		end
+	end
+	#'subscriptions/:subscription_id/cloudservices/:cloud_service_id/resources/:resource_type/:id' 
 	def show
 		@subscription = Subscription.find(:first,"subscription_id =?", params[:subscription_id])
+
 		unless @subscription
 			# we have not get a register event on this, return with an error
 			render :nothing => true, :status => :not_found 
