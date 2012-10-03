@@ -23,33 +23,7 @@ namespace ResourceProvidR.Controllers
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 
-            //try
-            //{
-                return DataModel.GetResource(subscriptionId, cloudServiceName, resourceName);
-            //}
-            //catch(Exception)
-            //{
-            //    ResourceOutput output = new ResourceOutput()
-            //    {
-            //        CloudServiceSettings = new CloudServiceSettings() { GeoLocation = "" },
-            //        Etag = 1,
-            //        // IntrinsicSettings = resource.IntrinsicSettings,
-            //        Name = resourceName,
-            //        OperationStatus = new OperationStatus()
-            //        {
-            //            Error = new ErrorData() { HttpCode = 200, Message = "OK" },
-            //            Result = OperationResult.Succeeded
-            //        },
-            //        OutputItems = new OutputItemList(),
-            //        Plan = "",
-            //        SchemaVersion = "",
-            //        State = ResourceState.Started,
-            //        SubState = "",
-            //        Type = resourceType
-            //    };
-
-            //    return output;
-            //}
+            return DataModel.GetResource(subscriptionId, cloudServiceName, resourceName);
         }
 
         //

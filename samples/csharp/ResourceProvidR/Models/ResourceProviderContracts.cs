@@ -8,22 +8,9 @@ using System.Xml;
 namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunication
 {
     /// <summary>
-    /// Name of well known Output Values displayed in the Windows Azure Management Portal.
-    /// </summary>
-    public static class WellKnownOutputValues
-    {
-        public const string ConnectionServerName = "connectionServerName";
-        public const string ConnectionDatabaseName = "connectionDatabaseName";
-        public const string ConnectionUserName = "connectionUserName";
-        public const string ConnectionPassword = "connectionPassword";
-    }
-
-
-    /// <summary>
     /// Type representing identifier of Entity under subscription.
     /// </summary>
     [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement")]
-    // [KnownType(typeof(DeploymentId))]
     public class EntityId
     {
         [DataMember(EmitDefaultValue = false, IsRequired = true, Order = 0)]
@@ -93,9 +80,6 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         }
     }
 
-
-
-
     /// <summary>
     /// The possible result from an operation.
     /// </summary>
@@ -112,9 +96,6 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         Failed
     }
 
-    // Note that these classes should not require a specific order of data members.
-    // Any order should be accepted when deserializing the response from the resource provider.
-
     /// <summary>
     /// Settings of the cloud service that are sent in the resource-level operations.
     /// </summary>
@@ -122,12 +103,102 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
     public class CloudServiceSettings : IExtensibleDataObject
     {
         /// <summary>
-        /// The geo location of the cloud service.
+        /// The geo region of the cloud service.
         /// </summary>
         [DataMember]
-        public string GeoLocation { get; set; }
+        public string GeoRegion { get; set; }
+
+        /// <summary>
+        /// The user's email.
+        /// </summary>
+        [DataMember]
+        public string Email { get; set; }
 
         public ExtensionDataObject ExtensionData { get; set; }
+    }
+
+    /// <summary>
+    /// Usage of a certain meter.
+    /// For example, capacity (used/total), emails sent (sent/monthly limit), etc.
+    /// </summary>
+    [DataContract(Namespace = "http://schemas.microsoft.com/windowsazure")]
+    public class UsageMeter : IExtensibleDataObject
+    {
+        /// <summary>
+        /// The meter name.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The unit of this meter.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string Unit { get; set; }
+
+        /// <summary>
+        /// The included quantity.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string Included { get; set; }
+
+        /// <summary>
+        /// The used quantity.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string Used { get; set; }
+
+        public ExtensionDataObject ExtensionData { get; set; }
+    }
+
+    /// <summary>
+    /// List of usage meters, as returned by the resource provider.
+    /// </summary>
+    [CollectionDataContract(Name = "UsageMeters", Namespace = "http://schemas.microsoft.com/windowsazure")]
+    public class UsageMeterCollection : List<UsageMeter>
+    {
+        public UsageMeterCollection()
+        {
+        }
+
+        public UsageMeterCollection(IEnumerable<UsageMeter> meters)
+            : base(meters)
+        {
+        }
+    }
+
+    [DataContract(Namespace = "http://schemas.microsoft.com/windowsazure")]
+    public class OutputItem : IExtensibleDataObject
+    {
+        /// <summary>
+        /// The key of the output item.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string Key { get; set; }
+
+        /// <summary>
+        /// The value of the output item.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string Value { get; set; }
+
+        public ExtensionDataObject ExtensionData { get; set; }
+    }
+
+    /// <summary>
+    /// Class representing a list of key-value-pairs with the resource output.
+    /// </summary>
+    [CollectionDataContract(Name = "OutputItems", ItemName = "OutputItem", Namespace = "http://schemas.microsoft.com/windowsazure")]
+    public class OutputItemList : List<OutputItem>
+    {
+        public OutputItemList()
+        {
+        }
+
+        public OutputItemList(IEnumerable<OutputItem> outputs)
+            : base(outputs)
+        {
+        }
     }
 
     /// <summary>
@@ -174,27 +245,6 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
     }
 
     /// <summary>
-    /// Class with the details to generate a token for single-sign-on.
-    /// </summary>
-    [DataContract(Namespace = "http://schemas.microsoft.com/windowsazure")]
-    public class SsoToken : IExtensibleDataObject
-    {
-        /// <summary>
-        /// The token.
-        /// </summary>
-        [DataMember(IsRequired = true)]
-        public string Token { get; set; }
-
-        /// <summary>
-        /// Timestamp to indicate when the token was generated.
-        /// </summary>
-        [DataMember(IsRequired = true)]
-        public string TimeStamp { get; set; }
-
-        public ExtensionDataObject ExtensionData { get; set; }
-    }
-
-    /// <summary>
     /// Resource information, as sent to the resource provider for the resource-level operations.
     /// </summary>
     [DataContract(Name = "Resource", Namespace = "http://schemas.microsoft.com/windowsazure")]
@@ -219,10 +269,10 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         public string Plan { get; set; }
 
         /// <summary>
-        /// The incarnation ID of the resource.
+        /// The etag of the resource.
         /// </summary>
         [DataMember]
-        public int Etag { get; set; }
+        public int ETag { get; set; }
 
         /// <summary>
         /// The schema version of the intrinsic settings.
@@ -237,6 +287,12 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         [DataMember]
         public XmlNode[] IntrinsicSettings { get; set; }
 
+        /// <summary>
+        /// The resource promotion code.
+        /// </summary>
+        [DataMember]
+        public string PromotionCode { get; set; }
+
         public ExtensionDataObject ExtensionData { get; set; }
     }
 
@@ -249,6 +305,9 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         /// <summary>
         /// The cloud service settings.
         /// This field is only filled in by the resource-level APIs (PUT/DELETE resource), not by the cloud-service-level APIs.
+        /// 
+        /// This is here, despite of not being used in the code, since, we want RPs to return the output as the same as input, and 
+        /// we will have option to use it in the future.
         /// </summary>
         [DataMember]
         public CloudServiceSettings CloudServiceSettings { get; set; }
@@ -274,10 +333,10 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         public string Plan { get; set; }
 
         /// <summary>
-        /// The incarnation ID of the resource.
+        /// The etag of the resource.
         /// </summary>
         [DataMember]
-        public int Etag{ get; set; }
+        public int ETag { get; set; }
 
         /// <summary>
         /// The schema version of the intrinsic settings.
@@ -293,6 +352,13 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         public XmlNode[] IntrinsicSettings { get; set; }
 
         /// <summary>
+        /// The resource promotion code. The resource provider is not required to return this field.
+        /// The field is not returned to Portal nor used by RDFE. It is only defined here in case we decide to use it in the future.
+        /// </summary>
+        [DataMember]
+        public string PromotionCode { get; set; }
+
+        /// <summary>
         /// The output of of a resource, can be null.
         /// The values and schema of this field are defined by the resource provider.
         /// </summary>
@@ -303,13 +369,20 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         /// The state of the resource.
         /// </summary>
         [DataMember]
-        public ResourceState State { get; set; }
+        public string State { get; set; }
 
         /// <summary>
         /// The sub-state of the resource. The possible values to this field are defined by the resource provider.
         /// </summary>
         [DataMember]
         public string SubState { get; set; }
+
+        /// <summary>
+        /// The usage meters of the resource. The specific meters are defined by the resource provider.
+        /// This field is optional.
+        /// </summary>
+        [DataMember]
+        public UsageMeterCollection UsageMeters { get; set; }
 
         /// <summary>
         /// Status about an operation on this resource.
@@ -350,16 +423,13 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
     public class CloudServiceOutput : IExtensibleDataObject
     {
         /// <summary>
-        /// The incarnation ID of this request.
+        /// The geo region of the cloud service.
+        /// 
+        /// This is here, despite of not being used in the code, since, we want RPs to return the output as the same as input, and 
+        /// we will have option to use it in the future.
         /// </summary>
         [DataMember(IsRequired = true)]
-        public int Etag{ get; set; }
-
-        /// <summary>
-        /// The geo location of the cloud service.
-        /// </summary>
-        [DataMember(IsRequired = true)]
-        public string GeoLocation { get; set; }
+        public string GeoRegion { get; set; }
 
         /// <summary>
         /// The resources of the cloud service.
@@ -370,44 +440,25 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         public ExtensionDataObject ExtensionData { get; set; }
     }
 
-
-    [CollectionDataContract(Name = "CloudServices", Namespace = "http://schemas.microsoft.com/windowsazure")]
-    public class CloudServiceOutputCollection : List<CloudServiceOutput>
-    {
-        public CloudServiceOutputCollection()
-        {
-        }
-
-        public CloudServiceOutputCollection(IEnumerable<CloudServiceOutput> cloudServices)
-            : base(cloudServices)
-        {
-        }
-    }
-
+    /// <summary>
+    /// Class with the details to generate a token for single-sign-on.
+    /// </summary>
     [DataContract(Namespace = "http://schemas.microsoft.com/windowsazure")]
-    public class OutputItem : IExtensibleDataObject
+    public class SsoToken : IExtensibleDataObject
     {
+        /// <summary>
+        /// The token.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string Token { get; set; }
+
+        /// <summary>
+        /// Timestamp to indicate when the token was generated.
+        /// </summary>
+        [DataMember(IsRequired = true)]
+        public string TimeStamp { get; set; }
+
         public ExtensionDataObject ExtensionData { get; set; }
-
-        [DataMember(EmitDefaultValue = false)]
-        public string Key { get; set; }
-
-        [DataMember(EmitDefaultValue = false)]
-        public string Value { get; set; }
-    }
-
-
-    [CollectionDataContract(Name = "Output", ItemName = "OutputItem", Namespace = "http://schemas.microsoft.com/windowsazure")]
-    public class OutputItemList : List<OutputItem>
-    {
-        public OutputItemList()
-        {
-        }
-
-        public OutputItemList(IEnumerable<OutputItem> outputs)
-            : base(outputs)
-        {
-        }
     }
 
     /// <summary>
@@ -440,48 +491,5 @@ namespace Microsoft.WindowsAzure.CloudServiceManagement.ResourceProviderCommunic
         /// The resource is paused.
         /// </summary>
         Paused,
-    }
-
-    //[DataContract(Namespace = "http://schemas.microsoft.com/windowsazure")]
-    //public class EntityEvent : IExtensibleDataObject
-    //{
-    //    [DataMember(EmitDefaultValue = false)]
-    //    public Guid EventId { get; set; }
-
-    //    [DataMember(EmitDefaultValue = false)]
-    //    public string EntityType { get; set; } // TODO: noty string
-
-    //    [DataMember(EmitDefaultValue = false)]
-    //    public string EntityState { get; set; } // TODO: not really a string
-
-    //    [DataMember(EmitDefaultValue = false)]
-    //    public Guid OperationId { get; set; }
-
-    //    [DataMember(EmitDefaultValue = false)]
-    //    public bool IsAsync { get; set; }
-
-    //    public ExtensionDataObject ExtensionData { get; set; }
-    //}
-
-    /// <summary>
-    /// Resource provider operations.
-    /// </summary>
-    [ServiceContract]
-    public interface IResourceProvider
-    {
-        [OperationContract(AsyncPattern = true)]
-        [WebInvoke(Method = "PUT", UriTemplate = "/subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}")]
-        IAsyncResult BeginPutResource(string subscriptionId, string cloudServiceName, string resourceType, string resourceName, ResourceInput resourceInput, AsyncCallback callback, object state);
-        ResourceOutput EndPutResource(IAsyncResult result);
-
-        [OperationContract(AsyncPattern = true)]
-        [WebGet(UriTemplate = "/subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}")]
-        IAsyncResult BeginGetCloudServiceResources(string subscriptionId, string cloudServiceName, AsyncCallback callback, object state);
-        CloudServiceOutput EndGetCloudServiceResources(IAsyncResult result);
-
-        [OperationContract(AsyncPattern = true)]
-        [WebInvoke(Method = "DELETE", UriTemplate = "/subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}/resources/{resourceType}/{resourceName}")]
-        IAsyncResult BeginDeleteResource(string subscriptionId, string cloudServiceName, string resourceType, string resourceName, AsyncCallback callback, object state);
-        ResourceOutput EndDeleteResource(IAsyncResult result);
     }
 }

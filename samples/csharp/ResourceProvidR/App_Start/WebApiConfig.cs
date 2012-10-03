@@ -16,17 +16,6 @@ namespace ResourceProvidR
 
             // -------- Cloud Services Management --------
 
-            // GET /subscriptions/{subscriptionId}/cloudservices
-            config.Routes.MapHttpRoute(
-               name: "CloudService-Management-Subscription",
-               routeTemplate: "subscriptions/{subscriptionId}/cloudservices",
-               defaults: new
-               {
-                   controller = "CloudServices",
-                   action = "GetAllCloudServices"
-               }
-           );
-
             // Cloud Service level resource management
             // GET /subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}
             // DELETE /subscriptions/{subscriptionId}/cloudservices/{cloudServiceName}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -36,7 +37,7 @@ namespace ResourceProvidR.Models
 
     public static class DataModel
     {
-        // GLobal lock protecting all in-memory data structures against concurrent access
+        // Global lock protecting all in-memory data structures against concurrent access
         private static object theMassiveLock = new object();
 
         // Master data structure holding all known subscriptions, indexed by Id for quick access
@@ -44,12 +45,6 @@ namespace ResourceProvidR.Models
 
 
         //----------------------------- Cloud Service Management -----------------------------
-
-        public static CloudServiceOutputCollection GetAllCloudServicesForSubscription(string subscriptionId)
-        {
-            // Currently not being called so for now, just throw an exception
-            throw new NotImplementedException();
-        }
 
         public static CloudServiceOutput GetCloudServiceBySubscriptionIdAndName(string subscriptionId, string cloudServiceName)
         {
@@ -70,8 +65,7 @@ namespace ResourceProvidR.Models
 
                 CloudServiceOutput cloudServiceOutput = new CloudServiceOutput()
                 {
-                    GeoLocation = theMatchingCloudService.Resources.Count > 0 ? theMatchingCloudService.Resources[0].CloudServiceSettings.GeoLocation : String.Empty,
-                    Etag = theMatchingCloudService.IncarnationId,
+                    GeoRegion = theMatchingCloudService.Resources.Count > 0 ? theMatchingCloudService.Resources[0].CloudServiceSettings.GeoRegion : String.Empty,
                     Resources = new ResourceOutputCollection(theMatchingCloudService.Resources)
                 };
 
@@ -79,7 +73,7 @@ namespace ResourceProvidR.Models
             }
         }
 
-        public static void DeleteCloudService(string subscriptionId, string cloudServiceName)
+        public static CloudServiceOutput DeleteCloudService(string subscriptionId, string cloudServiceName)
         {
             lock (theMassiveLock)
             {
@@ -97,6 +91,12 @@ namespace ResourceProvidR.Models
                 }
 
                 subscription.CloudServices.Remove(theMatchingCloudService);
+
+                return new CloudServiceOutput()
+                {
+                    GeoRegion = theMatchingCloudService.GeoLocation,
+                    Resources = new ResourceOutputCollection(theMatchingCloudService.Resources)
+                };
             }
         }
 
@@ -159,10 +159,10 @@ namespace ResourceProvidR.Models
                 if (theMatchingResource != null)
                 {
                     // We can be called to provision / update a resource several time - Ignore the request if we have a record of the resource with the same incarnation id
-                    if (theMatchingResource.Etag != resource.Etag)
+                    if (theMatchingResource.ETag != resource.ETag)
                     {
                         theMatchingResource.CloudServiceSettings = resource.CloudServiceSettings;
-                        theMatchingResource.Etag = resource.Etag;
+                        theMatchingResource.ETag = resource.ETag;
                         theMatchingResource.IntrinsicSettings = resource.IntrinsicSettings;
                         theMatchingResource.Name = resourceName;
                         theMatchingResource.OperationStatus = new OperationStatus()
@@ -172,7 +172,7 @@ namespace ResourceProvidR.Models
                         };
                         theMatchingResource.Plan = resource.Plan;
                         theMatchingResource.SchemaVersion = resource.SchemaVersion;
-                        theMatchingResource.State = ResourceState.Started;
+                        theMatchingResource.State = ResourceState.Started.ToString();
                         theMatchingResource.SubState = "";
                         theMatchingResource.Type = resource.Type;
                     }
@@ -184,7 +184,7 @@ namespace ResourceProvidR.Models
                     output = new ResourceOutput()
                     {
                         CloudServiceSettings = resource.CloudServiceSettings,
-                        Etag = resource.Etag,
+                        ETag = resource.ETag,
                         IntrinsicSettings = resource.IntrinsicSettings,
                         Name = resourceName,
                         OperationStatus = new OperationStatus()
@@ -195,7 +195,7 @@ namespace ResourceProvidR.Models
                         OutputItems = GenerateOutputItems(),
                         Plan = resource.Plan,
                         SchemaVersion = resource.SchemaVersion,
-                        State = ResourceState.Started,
+                        State = ResourceState.Started.ToString(),
                         SubState = "",
                         Type = resource.Type
                     };
@@ -241,15 +241,9 @@ namespace ResourceProvidR.Models
         {
             List<OutputItem> outputItems = new List<OutputItem>();
 
-            // Add Well Known output values
-            outputItems.Add(new OutputItem() { Key = WellKnownOutputValues.ConnectionServerName, Value = "db1234567.contoso.com" });
-            outputItems.Add(new OutputItem() { Key = WellKnownOutputValues.ConnectionDatabaseName, Value = "asxr210i" });
-            outputItems.Add(new OutputItem() { Key = WellKnownOutputValues.ConnectionUserName, Value = "user-1" });
-            outputItems.Add(new OutputItem() { Key = WellKnownOutputValues.ConnectionPassword, Value = "a_pa$s_word" });
-
             // Add some additional output values
             outputItems.Add(new OutputItem() { Key="ProvidR-Output-1", Value = DateTime.Now.ToShortDateString() });
-            outputItems.Add(new OutputItem() { Key="ProvidR-Output-2", Value = Environment.MachineName });
+            outputItems.Add(new OutputItem() { Key="ProvidR-Output-2", Value = Environment.MachineName }); // this is secret
 
             return new OutputItemList(outputItems);
         }
