@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'base64'
 require 'cgi'
-require 'hmac-sha1'
+#require 'hmac-sha1'
 
 class ResourcesController < ApplicationController
 	#/Subscriptions/:subscription_id/cloudservices/#cloud_service_id/resources/:id - PUT
@@ -68,10 +68,14 @@ class ResourcesController < ApplicationController
 		# will be invokded when the user clicks the manage button in the portal.  This will create the token and pass it to Azure along
 		# with the timestamp.
 		@secret_key = "Change this key to some other value if you are using this sample"
-		@signature = "#{params[:subscription_id]}: #{params[:cloud_service_id]}:#{params[:id]}"
-		token = HMAC::SHA1.new(@secret_key)
-		token.update(@signature)
-		timestamp = DateTime.now
+		@signature = "#{params[:subscription_id]}:#{params[:cloud_service_id]}:#{params[:id]}"
+		@token = Digest::SHA1.hexdigest(@signature) #HMAC::SHA1.new(@secret_key)
+		#token.update(@signature)
+		@timestamp = DateTime.now
+		respond_to do |format|
+			format.html {render :template => "resources/sso.xml.builder", :layout => false}
+			format.xml
+   		end
 	end
 
 	# match 'Sso' => 'resources#sso_view', via => [:get]
@@ -79,18 +83,19 @@ class ResourcesController < ApplicationController
 		# used to show the single signed on view for a given resource. 
 		@show_data = false
 		# get the parameters and encrypt it using the same key. 
-		@signature = "#{params[:subid]}: #{params[:cloudservicename]}:#{params[:resourcename]}"
+		@signature = "#{params[:subid]}:#{params[:cloudservicename]}:#{params[:resourcename]}"
 		@secret_key = "Change this key to some other value if you are using this sample"
-		token_now = HMAC::SHA1.new(@secret_key)
-		token_now.update(@signature)
-		if (token_now == token)
-			logger.info("the tokens match, check for timestamp now")
-			timestamp_now = DateTime.now
-			if (timestamp_now - params[:timestamp]) < 60*10
+		@token_now = Digest::SHA1.hexdigest(@signature) #HMAC::SHA1.new(@secret_key)
+		#token_now.update(@signature)
+		if (@token_now == params[:token])
+			@timestamp_now = DateTime.now
+			logger.info("the tokens match, check for timestamp match the time now is #{@timestamp_now}")
+			if ((@timestamp_now - params[:timestamp].to_datetime)/1.minute < 10)
 				logger.info "The time difference is less than 10 minutes, send back http request"
-				@show_data = true.
-   				end
+				@show_data = true
 			end
+		else
+			logger.info "Oops token do not match"
 		end
 	end
 	#'subscriptions/:subscription_id/cloudservices/:cloud_service_id/resources/:resource_type/:id' 

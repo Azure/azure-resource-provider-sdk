@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 	def create
 		# This is called when any subscription messages are sent 
+		logger.info "incoming request is : #{request.raw_post}"
 		@basic_params = params[:EntityEvent]
 		@event = Event.find_by_operation_id(@basic_params[:OperationId])
 		logger.info("Create call for events: with params: #{@basic_params}")
