@@ -1,0 +1,18 @@
+<ResourceManifest>
+	<Test>
+		<ResourceProviderEndpoint>http://somethingtest.cloudapp.net</ResourceProviderEndpoint>
+		<ResourceProviderSsoEndpoint>http://somethingtest.cloudapp.net/sso</ResourceProviderSsoEndpoint>
+	</Test>
+	<Prod>
+		<ResourceProviderEndpoint>http://somethingreal.cloudapp.net</ResourceProviderEndpoint>
+		<ResourceProviderSsoEndpoint>http://somethingreal.cloudapp.net/sso</ResourceProviderSsoEndpoint>
+	</Prod>
+	<OutputKeys>
+		<OutputKey>
+			<Name>key</Name>
+		</OutputKey>
+		<OutputKey>
+			<Name>password</Name>
+		</OutputKey>
+	</OutputKeys>
+</ResourceManifest>
