@@ -1,7 +1,7 @@
 <ResourceManifest>
 	<Test>
-		<ResourceProviderEndpoint>http://somethingtest.cloudapp.net</ResourceProviderEndpoint>
-		<ResourceProviderSsoEndpoint>http://somethingtest.cloudapp.net/sso</ResourceProviderSsoEndpoint>
+		<ResourceProviderEndpoint>http://localhost:5000</ResourceProviderEndpoint>
+		<ResourceProviderSsoEndpoint>http://localhost:5000/sso</ResourceProviderSsoEndpoint>
 	</Test>
 	<Prod>
 		<ResourceProviderEndpoint>http://somethingreal.cloudapp.net</ResourceProviderEndpoint>

@@ -1,10 +1,11 @@
 from xmlbuilder import XMLBuilder
 from datetime import datetime
 import uuid
+import utility
 
 def xml_for_subscription_event(subscription_id, event_type, resource_provider_namespace="cloudkeys", etag=None):
 	if not etag:
-		etag = str(uuid.uuid1())
+		etag = utility.generate_etag()
 
 	headers = [('Content-Type', 'application/xml')]
 	x = XMLBuilder('EntityEvent', xmlns='http://schemas.microsoft.com/windowsazure')
