@@ -7,7 +7,7 @@ Where do I start?
 There are two big pieces to onboarding to the Store. First, we work with you to evaluate if your service is a good fit for the Store:
 
 1. Explore the [Windows Azure Store](http://www.windowsazure.com/en-us/store/overview/) and the types of offers available in it.
-2. If you think your offering should be available in the Store, [tell us why](mailto:wastorepartner@microsoft.com) and we will get back to you shortly.
+2. If you think your offering should be available in the Store, [tell us why](mailto:wastorepartners@microsoft.com) and we will get back to you shortly.
 
 If your service is approved for the Store, we begin technical integration:
 
