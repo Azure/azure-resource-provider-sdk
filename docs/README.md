@@ -26,7 +26,7 @@ API Documentation
 Coming Soon
 ---
 * Resource API
-  * Create
+  * [Create](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md)
   * Get
   * Delete
   * Single sign-on (SSO)

@@ -4,11 +4,14 @@ When a user purchases your offering, Windows Azure will start sending your RP *s
 
 **It is important that you response appropriately to each subscription lifecycle event to prevent your service from going out of sync with Windows Azure**
 
+
+Request
+--
 URL: `https://<base_uri>/<cloud_service_name>/resources/<resource_type>/<resource_name>`
 
 Method: `POST`
 
-Request:
+Sample:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -38,7 +41,6 @@ Request:
 </EntityEvent>
 ```
 
-* XML header `<?xml version="1.0" encoding="utf-8"?>` is included
 * `EventId` is the ID of the subscription. **This field is deprecated and should not be used**.
 * `EntityType` will always be _Subscription_. **This field can be ignored**.
 * `EntityId/Id` is the ID of the subscription. It is a GUID, and should be stored by your service. Note that this is the Subscription ID and should be recorded by your service.
@@ -51,3 +53,7 @@ Request:
 * `Properties` is a property bag that Windows Azure passes to the RP. Only two properties are supported today:
   * `EMail` is the e-mail address of the logged-in user.
   * `OptIn` indicates whether the user has agreed to give you additional permissions about sending them marketing material. Your RP can always send transactional e-mails e.g. about service or account issues to the e-mail address given in the `EMail` field.
+
+Response
+---
+If the event is processed successfully, your RP should return a `200` or `201` HTTP status code.
