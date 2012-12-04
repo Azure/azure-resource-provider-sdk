@@ -4,7 +4,7 @@ A Resource Provider (RP, for short) is simply an HTTPS RESTful API contract you 
 
 This figure gives a simplified view of how a user interacts directly with Windows Azure through the Management Portal, PowerShell scripts or *NIX command-line tools. Windows Azure, in turn, communicates with your RP to manage the user's service.
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/images/arch-overview.png)
+![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/arch-overview.png)
 
 
 Windows Azure Concepts
