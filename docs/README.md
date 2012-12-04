@@ -21,6 +21,7 @@ API Documentation
 * [Concepts](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/concepts.md)
 * [API Overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-overview.md)
 * [Subscription Events API](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-subscription.md)
+* [Tips and Tricks](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md)
 
 Coming Soon
 ---
@@ -29,7 +30,6 @@ Coming Soon
   * Get
   * Delete
   * Single sign-on (SSO)
-* Tips and tricks
 
 Got feedback?
 ---
