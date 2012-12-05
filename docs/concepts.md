@@ -4,7 +4,7 @@ A Resource Provider (RP, for short) is simply an HTTPS RESTful API contract you 
 
 This figure gives a simplified view of how a user interacts directly with Windows Azure through the Management Portal, PowerShell scripts or *NIX command-line tools. Windows Azure, in turn, communicates with your RP to manage the user's service.
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/arch-overview.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-overview.png)
 
 
 Windows Azure Concepts
@@ -23,7 +23,7 @@ This is a conceptual view of a user's resources:
 * Subscription A has two resources, named _Resource 1_ and _Resource 2_.
 * Subscription A has one resource, named _Resource 1_. 
 
-![resources](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/images/arch-resources.png)
+![resources](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-resources.png)
 
 Resource Provider Concepts
 ---
@@ -33,7 +33,7 @@ Resource Provider Concepts
 
 Tying it together, this is a conceptual view of the user's resources:
 
-![rp](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/images/arch-cloud-services.png)
+![rp](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-cloud-services.png)
 
 * There are two Subscriptions, _Subscription A_ and _Subscription B_.
 * Subscription A has two CloudServices, named _CloudService X_ and _CloudService Y_.
@@ -41,4 +41,4 @@ Tying it together, this is a conceptual view of the user's resources:
    * _CloudService Y_ has a single Resource, named _Resource 2_. This Resource is provided by a Resource Provider named 'clouditrace' which exposes a single resource of type 'monitoring'. Note that the combination of Subscription ID, Cloud Service ID and Resource Name must be unique.
 * Subscription B has a single CloudService, named _Cloud Service X_ with a single Resource, named _Resource 1_.
 
-![together](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/images/arch-together.png)
+![together](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-together.png)
