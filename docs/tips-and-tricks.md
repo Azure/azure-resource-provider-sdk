@@ -6,7 +6,7 @@ Tags need to be alphabetically sorted
 The order of tags in your XML response matters: **all tags must always be alphabetically ordered, from A-Z**. For example, this response to GET on a Resource will fail:
 
 ```xml
-<Resource xmlns=""http://schemas.microsoft.com/windowsazure">
+<Resource xmlns="http://schemas.microsoft.com/windowsazure">
 	<ETag>decac2dc-879a-455a-9f00-30559ab06d3c</ETag>
 	</IntrinsicSettings>
 	<Plan>free_clouditrace</Plan>

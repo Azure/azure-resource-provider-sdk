@@ -28,7 +28,6 @@ API Documentation
   * [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-sso.md)
 * [Tips and Tricks](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md)
 
-
 Got feedback?
 ---
 This SDK is a work in progress. If you have feedback, questions or comments, please drop us a line at <wastorepartners@microsoft.com>.

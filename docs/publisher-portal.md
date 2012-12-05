@@ -15,29 +15,29 @@ When you login for the first time, you will be required to provide information a
 
 * **Tax Profile Type ** If you are a business, choose _Company_. Otherwise, choose _Individual_.
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-10.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-10.png)
 
 Step 2: Create an offering
 ---
 You are ready to create your first offering. Click the _Publish_ tab:
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-09.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-09.png)
 
 and click _Add App Service_:
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-08.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-08.png)
 
 Paste in your [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md):
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-07.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-07.png)
 
 Click _Contacts_. Information you enter on this page will be shown to users in various places to help them get support:
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-06.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-06.png)
 
 Click _Details_, and provide details about your offering:
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-05.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-05.png)
 
 * **Resource Type Display Name** is the name of the offering as it will appear to users in our catalog. For example, it could be "Clouditrace" or "ContosoDB".
 * **Short Description** is a brief description of your offering. It cannot exceed **500 characters**.
@@ -45,14 +45,14 @@ Click _Details_, and provide details about your offering:
 * **Resource Type** is your RP's `ResourceType` and is passed to you in [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md) requests in the `Resource/Type` node.
 * **Links** You should add as many links in the Links section as possible. We require that you link to an API reference, a quick-start guide, and sample code.
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-04.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-04.png)
 
 * **Regions** If you service is deployed in a Windows Azure datacenter, you are required to specify what datacenters are available. Otherwise, leave this field blank.
 * **Logos** You are required to provide three logos, 45x45, 100x100 and 215x215. Please refer to the [brand guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/brand-guide.md) for logo requirements.
 
 Click _Plans_ to specify free and paid plans for your offering:
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-03.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-03.png)
 
 * **Name** is the display name of your offering e.g. Free, Nano, Micro, Mega. Free plans are required to be called Free.
 * **Unique Identifier** is the ID of the plan. It will be passed to you in the [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md) and [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md) requests in the `Resource/Type` node.
@@ -60,14 +60,14 @@ Click _Plans_ to specify free and paid plans for your offering:
 * **Retail Price** is the price of your offering in USD. Regardless of what country your offering is available in, you always specify the price in [USD](http://en.wikipedia.org/wiki/United_States_dollar). Windows Azure will automatically price the offering in the local currency if it's available.
 * **Markets** are the countries and regions your offering is available. We recommend choosing _All markets_ to make your service available wherever Windows Azure is available.
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-02.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-02.png)
 
 * **Terms of Use** are required. **You cannot enter a URL for Terms of Use**. Please provide plain-text terms without any markup. A privacy URL is also required.
 
 Step 3: Submit your offering
 ---
 
-![overview](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/raw/master/docs/images/publishing-portal-01.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-01.png)
 
 Click _Status/Review_ and if your offering passes validation checks, click _Submit_.
 
