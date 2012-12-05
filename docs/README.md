@@ -26,7 +26,7 @@ API Documentation
   * [Show](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-get.md)
   * [Delete](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-delete.md)
   * [Upgrade](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md)
-  * [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-delete.md)
+  * [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-sso.md)
 * [Tips and Tricks](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md)
 
 
