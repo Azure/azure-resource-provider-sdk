@@ -18,6 +18,8 @@ You should expect two headers. The `content-type` header will be set to `applica
 
 Making responses
 ---
+Your RP should respond in less than 20 seconds to requests, otherwise Windows Azure will consider the operation timed out.
+
 Responses adhere to standard HTTP conventions. For simplicity, HTTP codes `200` and `201` are considered equivalent. `403` is used to indicated unauthorized access. `409`, codes in the `5xx` range and timeouts are considered errors, and Windows Azure will retry with the same ETag.
 
 Where a response body is required, you are expected to return XML. JSON is not currently supported, but is being considered for future revs of the API.

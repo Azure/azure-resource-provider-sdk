@@ -6,7 +6,7 @@ Once a Subscription has received a `Registered` event, any user with Service Adm
 
 Request
 ---
-URL: `https://<base_uri>/<cloud_service_name>/resources/<resource_type>/<resource_name>`
+URL: `https://<base_uri>/subscriptions/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
 
 Method: `PUT`
 
@@ -22,14 +22,6 @@ Sample:
 	<PromotionCode/>
 	<SchemaVersion>1.0</SchemaVersion>
 	<Type>monitoring</Type>
-	<UsageMeters>
-		<UsageMeter>
-			<Name>Servers</Name>
-			<Included>5</Included>
-			<Used>1</Included>
-			<Unit>generic</Included>
-		</UsageMeter>	
-	</UsageMeters>
 </Resource>
 ```
 
@@ -72,6 +64,14 @@ If the Resource was successfully provisioned, return a `200` or `201` HTTP statu
 	<Plan>free</Plan>
 	<State>Started</State>
 	<SubState>Waiting for your API calls</SubState>
+	<UsageMeters>
+		<UsageMeter>
+			<Name>Servers</Name>
+			<Included>5</Included>
+			<Used>1</Included>
+			<Unit>generic</Included>
+		</UsageMeter>	
+	</UsageMeters>	
 </Resource>
 ```
 * `CloudServiceSettings/GeoRegion` is a **required** field. It should contain the geo-region your service is deployed in. If your service is not deployed in a Windows Azure geo-region, just return the value of the geo-region Windows Azure provisioned your Resource with.

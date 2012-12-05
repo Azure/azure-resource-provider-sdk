@@ -5,7 +5,7 @@ Tags need to be alphabetically sorted
 ---
 The order of tags in your XML response matters: **all tags must always be alphabetically ordered, from A-Z**. For example, this response to GET on a Resource will fail:
 
-```
+```xml
 <Resource xmlns=""http://schemas.microsoft.com/windowsazure">
 	<ETag>decac2dc-879a-455a-9f00-30559ab06d3c</ETag>
 	</IntrinsicSettings>
@@ -19,7 +19,7 @@ The order of tags in your XML response matters: **all tags must always be alphab
 ```
 Can you see why? It's because the `CloudServiceSettings` node is not in the correct alphabetical order. This response will succeed:
 
-```
+```xml
 <Resource xmlns="http://schemas.microsoft.com/windowsazure">
 	<CloudServiceSettings>
 		<GeoRegion>West US</GeoRegion>
@@ -50,6 +50,10 @@ The response XML must contain a namespace: `http://schemas.microsoft.com/windows
 Your RP gets a modified Subscription ID
 ---
 Your Resource Provider does not receive the actual ID of the Subscription as it is shown in the [Account Portal](https://account.windowsazure.com). For privacy reasons, Windows Azure sends you a mapped Subscription ID which does not show up in any Microsoft portal. You may run into this while debugging your RP in production.
+
+There is a limit on the number of Resources that can be created
+---
+Windows Azure only allows a user to create 5 Resources of a particular ResourceType under a subscription.
 
 Dates and times are in ISO-8601 format
 ---

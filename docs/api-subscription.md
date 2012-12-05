@@ -7,7 +7,7 @@ When a user purchases your offering, Windows Azure will start sending your RP *s
 
 Request
 --
-URL: `https://<base_uri>/<cloud_service_name>/resources/<resource_type>/<resource_name>`
+URL: `https://<base_uri>/subscriptions/<subscription_id>/Events`
 
 Method: `POST`
 
