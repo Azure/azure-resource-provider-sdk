@@ -11,10 +11,9 @@ There are two big pieces to onboarding to the Store. First, we work with you to 
 
 If your service is approved for the Store, we begin technical integration:
 
-1. Write your Resource Provider.
-2. Register your Resource Provider and offering details in the [Publisher Portal](http://publish.marketplace.windowsazure.com)
-3. Enable your Resource Provider in a staging environment.
-4. We will enable your offering in production once it passes our tests.
+1. Write your Resource Provider. Follow the [API documentation](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/concepts.md) to do this.
+2. Register your Resource Provider and offering details in the [Publisher Portal](http://publish.marketplace.windowsazure.com). Read the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to do this.
+3. We will test your RP in staging, and enable it in production once it passes our tests.
 
 API Documentation
 ---
