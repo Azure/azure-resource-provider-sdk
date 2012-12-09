@@ -1,4 +1,3 @@
-from xmlbuilder import XMLBuilder
 from datetime import datetime
 from xml.etree.ElementTree import ElementTree, XML, fromstring, Element
 from urlparse import urlparse
@@ -86,92 +85,123 @@ def check_tags_alpha_ordered(e):
 	for child in children:
 		check_tags_alpha_ordered(child)
 
-def parse_manifest(f):
-	errors = []
-	warnings = []
-	manifest_config = {'test': {}, 'prod': {}, 'output_keys':[]}
-	manifest_content = f.read()
-	t = get_subtree_from_xml_string(manifest_content)
+def parse_manifest(manifest_path):
+	with open(manifest_path) as f:
+		manifest_content = f.read()
+		errors = []
+		warnings = []
+		manifest_config = {'test': {}, 'prod': {}, 'output_keys':[]}
+		t = get_subtree_from_xml_string(manifest_content)
 
-	test_base_uri_xpath = "./Test/ResourceProviderEndpoint"
-	test_sso_uri_xpath = "./Test/ResourceProviderSsoEndpoint"
-	prod_base_uri_xpath = "./Prod/ResourceProviderEndpoint"
-	prod_sso_uri_xpath = "./Prod/ResourceProviderSsoEndpoint"
+		test_base_uri_xpath = "./Test/ResourceProviderEndpoint"
+		test_sso_uri_xpath = "./Test/ResourceProviderSsoEndpoint"
+		prod_base_uri_xpath = "./Prod/ResourceProviderEndpoint"
+		prod_sso_uri_xpath = "./Prod/ResourceProviderSsoEndpoint"
 
-	if node_exists(t, test_base_uri_xpath):
-		manifest_config['test']['base'] = get_node_value(t, test_base_uri_xpath)
-		if not is_https(manifest_config['test']['base']):
-			warnings.append("Base URI for Test environment is not HTTPS")
+		if node_exists(t, test_base_uri_xpath):
+			manifest_config['test']['base'] = get_node_value(t, test_base_uri_xpath)
+			if not is_https(manifest_config['test']['base']):
+				warnings.append("Base URI for Test environment is not HTTPS")
 
-	else:
-		errors.append("Base URI for Test environment is not defined in manifest.")
+		else:
+			errors.append("Base URI for Test environment is not defined in manifest.")
 
-	if node_exists(t, test_sso_uri_xpath):
-		manifest_config['test']['sso'] = get_node_value(t, test_sso_uri_xpath)
-		if not is_https(manifest_config['test']['sso']):
-			warnings.append("SSO URI for Test environment is not HTTPS")
-	else:
-		errors.append("SSO URI for Test environment is not defined in manifest.")
+		if node_exists(t, test_sso_uri_xpath):
+			manifest_config['test']['sso'] = get_node_value(t, test_sso_uri_xpath)
+			if not is_https(manifest_config['test']['sso']):
+				warnings.append("SSO URI for Test environment is not HTTPS")
+		else:
+			errors.append("SSO URI for Test environment is not defined in manifest.")
 
-	if node_exists(t, prod_base_uri_xpath):
-		manifest_config['prod']['base'] = get_node_value(t, prod_base_uri_xpath)
-		if not is_https(manifest_config['prod']['base']):
-			warnings.append("Base URI for Prod environment is not HTTPS")
-	else:
-		errors.append("Base URI for Prod environment is not defined in manifest.")
+		if node_exists(t, prod_base_uri_xpath):
+			manifest_config['prod']['base'] = get_node_value(t, prod_base_uri_xpath)
+			if not is_https(manifest_config['prod']['base']):
+				warnings.append("Base URI for Prod environment is not HTTPS")
+		else:
+			errors.append("Base URI for Prod environment is not defined in manifest.")
 
-	if node_exists(t, prod_sso_uri_xpath):
-		manifest_config['prod']['sso'] = get_node_value(t, prod_sso_uri_xpath)
-		if not is_https(manifest_config['prod']['sso']):
-			warnings.append("SSO URI for Prod environment is not HTTPS")
-	else:
-		errors.append("SSO URI for Prod environment is not defined in manifest.")
+		if node_exists(t, prod_sso_uri_xpath):
+			manifest_config['prod']['sso'] = get_node_value(t, prod_sso_uri_xpath)
+			if not is_https(manifest_config['prod']['sso']):
+				warnings.append("SSO URI for Prod environment is not HTTPS")
+		else:
+			errors.append("SSO URI for Prod environment is not defined in manifest.")
 
-	output_keys = get_nodes(t, ".//OutputKey/Name")
-	if len(output_keys) == 0:
-		warnings.append("OutputKeys are not defined in the manifest. If your Resource Provider exposes Output Items, please define them in the manifest.")
+		output_keys = get_nodes(t, ".//OutputKey/Name")
+		if len(output_keys) == 0:
+			warnings.append("OutputKeys are not defined in the manifest. If your Resource Provider exposes Output Items, please define them in the manifest.")
 
-	return errors, warnings, manifest_config
+		return errors, warnings, manifest_config
 
 def xml_for_subscription_event(subscription_id, resource_provider, resource_type, event_type, etag=None):
 	if not etag:
 		etag = str(uuid.uuid1())
 
-	x = XMLBuilder('EntityEvent', xmlns='http://schemas.microsoft.com/windowsazure')
-	x.EventId(subscription_id)
-	x.ListenerId(resource_provider)
-	x.EntityType("Subscription")
-	x.EntityState(event_type)
-	with x.EntityId:
-		x.Id(subscription_id)
-		x.Created(str(datetime.now()))
-	x.IsAsync("false")
-	x.OperationId(etag)
-	with x.Properties:
-		with x.EntityProperty:
-			x.PropertyName("ResourceType")
-			x.PropertyValue(resource_type)
-		with x.EntityProperty:
-			x.PropertyName("EMail")
-			x.PropertyValue("someone@foo.com")		
-		with x.EntityProperty:
-			x.PropertyName("OptIn")
-			x.PropertyValue("False")	
+	template = """
+<EntityEvent xmlns='http://schemas.microsoft.com/windowsazure'>
+	<EventId>%(subscription_id)s</EventId>
+	<ListenerId>%(resource_provider)s</ListenerId>
+	<EntityType>Subscription</EntityType>
+	<EntityState>%(event_type)s</EntityState>
+	<EntityId>
+		<Id>%(subscription_id)s</Id>
+		<Created>%(time_created)s</Created>
+	</EntityId>
+	<IsAsync>False</IsAsync>
+	<OperationId>%(etag)s</OperationId>
+	<Properties>
+		<EntityProperty>
+			<PropertyName>ResourceType</PropertyName>
+			<PropertyValue>%(resource_type)s</PropertyValue>
+		</EntityProperty>
+		<EntityProperty>
+			<PropertyName>EMail</PropertyName>
+			<PropertyValue>someone@contoso.com</PropertyValue>
+		</EntityProperty>
+		<EntityProperty>
+			<PropertyName>OptIn</PropertyName>
+			<PropertyValue>False</PropertyValue>
+		</EntityProperty>
+	</Properties>
+</EntityEvent>
+	"""
 
-	return str(x)
+	values = {
+		'subscription_id': subscription_id,
+		'resource_provider': resource_provider,
+		'event_type': event_type,
+		'time_created': str(datetime.now()),
+		'etag': etag,
+		'resource_type': resource_type
+	}
+	return template % values
 
 def xml_for_create_resource(plan, resource_type, region="West US", promotion_code="", etag=None):
 	if not etag:
 		etag = str(uuid.uuid1())
 
-	x = XMLBuilder('Resource', xmlns='http://schemas.microsoft.com/windowsazure')
-	with x.CloudServiceSettings:
-		x.GeoRegion(region)
-	x.ETag(etag)
-	x.IntrinsicSettings()
-	x.PromotionCode(promotion_code)
-	x.Plan(plan)
-	x.SchemaVersion("1.0")
-	x.Type(resource_type)
-	x.Version("1.0")
-	return str(x)
+
+	template = """
+<Resource xmlns='http://schemas.microsoft.com/windowsazure'>
+	<CloudServiceSettings>
+		<GeoRegion>%(region)s</GeoRegion>
+	</CloudServiceSettings>
+	<ETag>%(etag)s</ETag>
+	<IntrinsicSettings/>
+	<PromotionCode>%(promotion_code)s</PromotionCode>
+	<Plan>%(plan)s</Plan>
+	<SchemaVersion>1.0</SchemaVersion>
+	<Type>%(resource_type)s</Type>
+	<Version>1.0</Version>
+</Resource>
+	"""
+
+	values = {
+		'region': region,
+		'etag': etag,
+		'promotion_code': promotion_code,
+		'plan': plan,
+		'resource_type': resource_type
+	}
+
+	return template % values

@@ -5,14 +5,15 @@ import iso8601
 from datetime import datetime, timedelta
 from client import Client
 from utility import Printer, generate_etag
-from xmlutil import pretty_tag, get_subtree_from_element, get_subtree_from_xml_string, get_namespace, get_root_tag, node_exists, get_node_value, get_nodes, xml_for_subscription_event, xml_for_create_resource
+from xmlutil import parse_manifest, pretty_tag, get_subtree_from_element, get_subtree_from_xml_string, get_namespace, get_root_tag, node_exists, get_node_value, get_nodes, xml_for_subscription_event, xml_for_create_resource
 
 class Validator(object):
 	def __init__(self,config):
 		self.config = config
+		errors, warnings, manifest_config = parse_manifest(self.config['manifest_path'])
+		config['manifest'] = manifest_config
+		env = self.config['env']		
 
-		env = self.config['env']
-		
 		self.client = Client(
 			config['manifest'][env]['base'],
 			config['manifest'][env]['sso']
@@ -130,7 +131,8 @@ class Validator(object):
 			Printer.error("Root node does not have expected tag %s" % root_node_expected_tag)
 			return
 
-		resource_names = [lambda t: t.text, get_nodes(t, ".//{0}Resource/{0}Name")]
+		resource_names = map(lambda t: t.text, get_nodes(t, ".//{0}Resource/{0}Name"))
+		
 		if self.config['resource_name'] not in resource_names:
 			Printer.error("Resource named '%s' not returned by endpoint" % self.config['resource_name'])
 
@@ -163,6 +165,8 @@ class Validator(object):
 
 		t = get_subtree_from_xml_string(response)
 		self._validate_resource_response(etag, t)
+		Printer.info("Checking if new plan is %s" % self.config['upgrade_plan'])
+		self._check_node_value(t, './{0}Plan', self.config['upgrade_plan'])
 
 	def sso(self):
 		Printer.start_test("SSO with valid timestamp and token")
@@ -279,7 +283,7 @@ class Validator(object):
 					self.config["resource_name"]),
 				'PUT',
 				xml_for_create_resource(
-					plan=self.config['plan'],
+					plan=self.config['purchase_plan'],
 					resource_type=self.config['resource_type'],
 					promotion_code=self.config['promo_code'],
 					etag=etag
@@ -294,24 +298,6 @@ class Validator(object):
 
 		t = get_subtree_from_xml_string(response)
 		self._validate_resource_response(etag, t)
-
-		print ("""
-
-Additional tests:
-
-Show Resource:
-./dukaan.py --env %s --manifest %s show --subscription-name %s --cloud-service-name %s --resource-type %s --resource-name %s
-
- """
-			  % (
-			 	self.config['env'],
-			 	self.config['manifest_file'].name,
-			 	self.config['subscription_id'],
-			 	self.config['cloud_service_name'],
-			 	self.config['resource_type'],
-			 	self.config['resource_name']
-
-			 	))
 
 	def delete(self):
 		etag = generate_etag()
@@ -334,7 +320,11 @@ Show Resource:
 			return
 
 	def manifest(self):
-		pass
+		errors, warnings, manifest_config = parse_manifest(self.config['manifest_path'])
+		if errors or warnings:
+			Printer.start_test('Checking manifest')
+		for error in errors:
+			Printer.error("Manifest: %s" % error)
 
-	def all(self):
-		pass
+		for warning in warnings:
+			Printer.warn("Manifest: %s" % warning)

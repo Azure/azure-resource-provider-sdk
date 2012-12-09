@@ -3,7 +3,6 @@ import urlparse
 import sys
 import xmlutil
 from utility import Printer, die
-from xml.dom import minidom
 
 class Client:
 	def __init__(self, base_uri, sso_uri):
