@@ -21,7 +21,7 @@ Initialization
 Dukaan stores frequently-used settings in a configuration file, which makes commands shorter by providing sensible defaults. To setup or change values in the configuration file, run this command:
 
 
-```
+```bash
 dukaan init
 ``` 
 
@@ -38,7 +38,7 @@ The Manifest
 ---
 Dukaan uses the [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md) to determine what endpoints to connect to. For local testing, a manifest like this will suffice (note that the `Test` environment points to the local development web server over HTTP):
 
-```
+```xml
 <ResourceManifest>
 	<Test>
 		<ResourceProviderEndpoint>http://localhost:5000</ResourceProviderEndpoint>
@@ -66,7 +66,7 @@ Testing the manifest
 ---
 The first test you should probably run is to test the manifest:
 
-```
+```bash
 dukaan manifest
 ```
 
@@ -83,7 +83,7 @@ Testing Create Resource
 ---
 To test [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md), run this command:
 
-```
+```bash
 dukaan create
 ```
 
@@ -113,7 +113,7 @@ Testing Show Resource
 ---
 To test [Show Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-get.md), run this command:
 
-```
+```bash
 dukaan get
 ```
 
@@ -130,7 +130,7 @@ Testing Upgrade Resource
 ---
 To test [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md), run this command:
 
-```
+```bash
 dukaan upgrade
 ```
 
@@ -157,14 +157,14 @@ Testing SSO
 ---
 To test [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/sso.md), run this command:
 
-```
+```bash
 dukaan sso
 ```
 
 Dukaan will test SSO with a valid timestamp, and with an invalid timestamp. Your code must past both tests, otherwise you will see errors:
 
 ```
-SO with valid timestamp and token
+SSO with valid timestamp and token
 
     [INFO] POST on http://localhost:5000/subscriptions/my_subscription/cloudservices/Azure-Stores-MOES3Y8O4S5PKQ5OI4TK1VB7U6ZON95KZXV0YUA0ZGWCADRO4NS4-Northwest-US/resources/monitoring/my_resource/SsoToken
     [INFO] Server returned HTTP status code 200
