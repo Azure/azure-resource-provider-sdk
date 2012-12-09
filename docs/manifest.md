@@ -6,11 +6,11 @@ While registering your Resource Provider and its offering on the [Publishing Por
 <ResourceManifest>
 	<Test>
 		<ResourceProviderEndpoint>https://staging.contoso.com</ResourceProviderEndpoint>
-		<ResourceProviderSsoEndpoint>http://staging.contoso.com/sso</ResourceProviderSsoEndpoint>
+		<ResourceProviderSsoEndpoint>https://staging.contoso.com/sso</ResourceProviderSsoEndpoint>
 	</Test>
 	<Prod>
-		<ResourceProviderEndpoint>http://production.contoso.com</ResourceProviderEndpoint>
-		<ResourceProviderSsoEndpoint>http://production.contoso.com/sso</ResourceProviderSsoEndpoint>
+		<ResourceProviderEndpoint>https://production.contoso.com</ResourceProviderEndpoint>
+		<ResourceProviderSsoEndpoint>https://production.contoso.com/sso</ResourceProviderSsoEndpoint>
 	</Prod>
 	<OutputKeys>
 		<OutputKey>
