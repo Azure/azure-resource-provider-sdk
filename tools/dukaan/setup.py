@@ -1,10 +1,12 @@
+import dukaan
+
 try:
 	from setuptools import setup
 except ImportError:
 	from distutils.core import setup
 
 setup(name='dukaan',
-	version='0.1.2',
+	version=dukaan.__version__,
 	description='Local testing tool for Windows Azure Store resource providers',
 	long_description=open('README.txt').read(),
 	license='LICENSE.txt',
