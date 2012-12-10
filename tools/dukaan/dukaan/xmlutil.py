@@ -35,7 +35,7 @@ def pretty_tag(e):
 	if matches:
 		return matches[0][1]
 	else:
-		return e.etag
+		return e.tag
 
 def get_subtree_from_element(e):	
 	return ElementTree(e)

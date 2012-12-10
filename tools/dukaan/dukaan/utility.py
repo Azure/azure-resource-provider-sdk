@@ -5,6 +5,14 @@ import uuid
 import random
 import string
 
+def get_input(prompt, validator):
+	while True:
+		value = raw_input(prompt)
+		if validator(value):
+			return value
+		else:
+			print "Value is not correct"
+
 def die(message=None):
 	sys.exit(message) if message else sys.exit(0)
 

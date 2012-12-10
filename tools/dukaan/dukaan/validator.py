@@ -2,15 +2,15 @@ import re
 import string
 import urllib
 import iso8601
+import xmlutil
 from datetime import datetime, timedelta
 from client import Client
 from utility import Printer, generate_etag
-from xmlutil import parse_manifest, pretty_tag, get_subtree_from_element, get_subtree_from_xml_string, get_namespace, get_root_tag, node_exists, get_node_value, get_nodes, xml_for_subscription_event, xml_for_create_resource
 
 class Validator(object):
 	def __init__(self,config):
 		self.config = config
-		errors, warnings, manifest_config = parse_manifest(self.config['manifest_path'])
+		errors, warnings, manifest_config = xmlutil.parse_manifest(self.config['manifest_path'])
 		config['manifest'] = manifest_config
 		env = self.config['env']		
 
@@ -21,7 +21,7 @@ class Validator(object):
 
 	def _check_node_exists(self, t, xpath, behavior="error"):
 		try:
-			node_exists(t, xpath)
+			xmlutil.node_exists(t, xpath)
 		except NodeNotFoundException:
 			msg = "XPath %s was not found in the response" % xpath
 			if behavior == "error":
@@ -31,7 +31,7 @@ class Validator(object):
 
 	def _check_node_value(self, t, xpath, expected):
 		try:
-			actual = get_node_value(t, xpath)
+			actual = xmlutil.get_node_value(t, xpath)
 			if actual != expected:
 				Printer.error("Node at XPath %s has actual value %s, expected value %s" % (xpath, actual, expected))
 
@@ -39,10 +39,10 @@ class Validator(object):
 			Printer.error("Node at XPath %s was not found in the response" % xpath)
 
 	def _validate_resource_response(self, etag, t):
-
-		root_node_expected_tag = '{0}Resource'.format(get_namespace(t))
+		root_node_expected_tag = xmlutil.get_root_tag(t)
 		Printer.info("Checking if root node's tag is %s" % root_node_expected_tag)
-		root_node_actual_tag = get_root_tag(t)
+		root_node_actual_tag = xmlutil.get_root_tag(t)
+
 		if (root_node_expected_tag != root_node_actual_tag):
 			Printer.error("Root node does not have expected tag %s" % root_node_expected_tag)
 
@@ -60,17 +60,17 @@ class Validator(object):
 		
 		Printer.info("Checking if OutputItems are present")
 		if self._check_node_exists(t, './{0}OutputItems', behavior='warn'):
-			output_items = t.findall('.//{0}OutputItem'.format(get_namespace(t)))
+			output_items = t.findall('.//{0}OutputItem'.format(xmlutil.get_namespace(t)))
 			for output_item in output_items:
-				output_item_tree = get_subtree_from_element(output_item)
+				output_item_tree = xmlutil.get_subtree_from_element(output_item)
 				self._check_node_exists(output_item_tree, './{0}Key')
 				self._check_node_exists(output_item_tree, './{0}Value')
 
 		Printer.info("Checking if UsageMeters are present")
 		if self._check_node_exists(t, './{0}UsageMeters', behavior='warn'):
-			usage_meters = get_nodes('.//{0}UsageMeter')
+			usage_meters = xmlutil.get_nodes('.//{0}UsageMeter')
 			for usage_meter in usage_meters:
-				usage_meter_tree = get_subtree_from_element(usage_meter)
+				usage_meter_tree = xmlutil.get_subtree_from_element(usage_meter)
 				self._check_node_exists(usage_meter_tree, './{0}Included')
 				self._check_node_exists(usage_meter_tree, './{0}Name')
 				self._check_node_exists(usage_meter_tree, './{0}Unit', behavior='warn')
@@ -102,7 +102,7 @@ class Validator(object):
 			Printer.error("Get resource failed with HTTP status code %s" % status)
 			return
 
-		t = get_subtree_from_xml_string(response)
+		t = xmlutil.get_subtree_from_xml_string(response)
 		self._validate_resource_response(None, t)
 
 	def get_cloud_service(self):
@@ -124,14 +124,14 @@ class Validator(object):
 			Printer.error("Get CloudService failed with HTTP status code %s" % status)
 			return
 
-		t = get_subtree_from_xml_string(response)
-		root_node_expected_tag = '{0}CloudService'.format(get_namespace(t))
-		root_node_actual_tag = get_root_tag(t)
+		t = xmlutil.get_subtree_from_xml_string(response)
+		root_node_expected_tag = '{0}CloudService'.format(xmlutil.get_namespace(t))
+		root_node_actual_tag = xmlutil.get_root_tag(t)
 		if (root_node_expected_tag != root_node_actual_tag):
 			Printer.error("Root node does not have expected tag %s" % root_node_expected_tag)
 			return
 
-		resource_names = map(lambda t: t.text, get_nodes(t, ".//{0}Resource/{0}Name"))
+		resource_names = map(lambda t: t.text, xmlutil.get_nodes(t, ".//{0}Resource/{0}Name"))
 		
 		if self.config['resource_name'] not in resource_names:
 			Printer.error("Resource named '%s' not returned by endpoint" % self.config['resource_name'])
@@ -148,7 +148,7 @@ class Validator(object):
 					self.config["resource_type"],
 					self.config["resource_name"]),
 				'PUT',
-				xml_for_create_resource(
+				xmlutil.xml_for_create_resource(
 					plan=self.config['upgrade_plan'],
 					resource_type=self.config['resource_type'],
 					promotion_code=self.config['promo_code'],
@@ -163,7 +163,7 @@ class Validator(object):
 			Printer.error("Upgrade Resource failed with HTTP status code %s" % status)
 			return
 
-		t = get_subtree_from_xml_string(response)
+		t = xmlutil.get_subtree_from_xml_string(response)
 		self._validate_resource_response(etag, t)
 		Printer.info("Checking if new plan is %s" % self.config['upgrade_plan'])
 		self._check_node_value(t, './{0}Plan', self.config['upgrade_plan'])
@@ -189,14 +189,14 @@ class Validator(object):
 			Printer.error("SSO token request failed with HTTP status code %s" % status)
 			return
 
-		t = get_subtree_from_xml_string(response)
+		t = xmlutil.get_subtree_from_xml_string(response)
 		self._check_node_exists(t, "./{0}SsoToken/TimeStamp")
 		self._check_node_exists(t, "./{0}SsoToken/Token")
 
 		fragment = urllib.urlencode(
 				{
-					"token": get_node_value(t, "./{0}Token"),
-					"timestamp": get_node_value(t, "./{0}TimeStamp")
+					"token": xmlutil.get_node_value(t, "./{0}Token"),
+					"timestamp": xmlutil.get_node_value(t, "./{0}TimeStamp")
 				}
 			)
 
@@ -222,12 +222,12 @@ class Validator(object):
 
 
 		Printer.start_test("SSO with expired timestamp")
-		given_timestamp = iso8601.parse_date(get_node_value(t, "./{0}TimeStamp"))
+		given_timestamp = iso8601.parse_date(xmlutil.get_node_value(t, "./{0}TimeStamp"))
 		expired_timestamp = given_timestamp + timedelta(seconds=60*10)
 		
 		fragment = urllib.urlencode(
 				{
-					"token": get_node_value(t, "./{0}Token"),
+					"token": xmlutil.get_node_value(t, "./{0}Token"),
 					"timestamp": str(expired_timestamp)
 				}
 			)
@@ -259,7 +259,7 @@ class Validator(object):
 		(status, response) = self.client.perform_request(
 				"/subscriptions/%s/Events" % self.config['subscription_id'],
 				'POST',
-				xml_for_subscription_event(
+				xmlutil.xml_for_subscription_event(
 					self.config["subscription_id"],
 					self.config["resource_provider_namespace"],
 					self.config["resource_type"],
@@ -282,7 +282,7 @@ class Validator(object):
 					self.config["resource_type"],
 					self.config["resource_name"]),
 				'PUT',
-				xml_for_create_resource(
+				xmlutil.xml_for_create_resource(
 					plan=self.config['purchase_plan'],
 					resource_type=self.config['resource_type'],
 					promotion_code=self.config['promo_code'],
@@ -296,7 +296,7 @@ class Validator(object):
 		else:
 			Printer.error("Resource creation event failed with HTTP status code %s" % status)
 
-		t = get_subtree_from_xml_string(response)
+		t = xmlutil.get_subtree_from_xml_string(response)
 		self._validate_resource_response(etag, t)
 
 	def delete(self):
@@ -320,7 +320,7 @@ class Validator(object):
 			return
 
 	def manifest(self):
-		errors, warnings, manifest_config = parse_manifest(self.config['manifest_path'])
+		errors, warnings, manifest_config = xmlutil.parse_manifest(self.config['manifest_path'])
 		if errors or warnings:
 			Printer.start_test('Checking manifest')
 		for error in errors:

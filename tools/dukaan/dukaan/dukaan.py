@@ -4,6 +4,7 @@ import utility
 import argparse
 import xmlutil
 import json
+import string
 from clint import resources
 from utility import Printer
 from validator import Validator
@@ -14,7 +15,7 @@ config = {
 	'promo_code': ""
 }
 
-def main():	
+def main():
 	# read config from per-user file
 	read_config()
 
@@ -24,16 +25,45 @@ def main():
 	if config['command'] == 'init':
 		create_config()
 	else:
+		validate_config()
 		run_checks()
 
+"""
+Check if the config dictionary contains all the valid inputs needed to run a command
+"""
+def validate_config():
+	required = {
+		'create': ['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name', 'purchase_plan'],
+		'show':	['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name'],
+		'delete': ['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name'],
+		'upgrade': ['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name', 'upgrade_plan'],
+		'sso': ['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name'],
+		'manifest': []
+	}
+
+	missing = map(
+					lambda x: x.replace("_", "-"),
+					["--" + k for k in required[config['command']] if k not in config]
+		)
+	if missing:
+		Printer.error("The following flags are required for this command: %s" % string.join(missing, ', '))
+		utility.die()
+
+"""
+Prompts user for config values and Writes them to a per-user configuration file.
+On Mac OS X, this is in /Users/JohnDoe/Library/Application Support/Dukaan/config.ini
+"""
 def create_config():
+	def IsNotEmpty(s):
+		return s != ""
+
 	resources.init("Microsoft", "Dukaan")
-	resource_provider_namespace = raw_input("Resource Provider namespace [e.g. contoso]: ")
-	resource_type = raw_input("Resource Type [e.g. monitoring]: ")
-	subscription_id = raw_input("Subscription ID [e.g. my_subscription]: ")
-	resource_name = raw_input("Resource Name [e.g. my_resource]: ")
-	purchase_plan = raw_input("Base Plan Name [e.g. free]: ")
-	upgrade_plan = raw_input("Upgrade Plan Name [e.g. gold]: ")
+	resource_provider_namespace = utility.get_input("Resource Provider namespace [e.g. contoso]: ", IsNotEmpty)
+	resource_type = utility.get_input("Resource Type [e.g. monitoring]: ", IsNotEmpty)
+	subscription_id = utility.get_input("Subscription ID [e.g. my_subscription]: ", IsNotEmpty)
+	resource_name = utility.get_input("Resource Name [e.g. my_resource]: ", IsNotEmpty)
+	purchase_plan = utility.get_input("Base Plan Name [e.g. free]: ", IsNotEmpty)
+	upgrade_plan = utility.get_input("Upgrade Plan Name [e.g. gold]: ", IsNotEmpty)
 
 	config['resource_provider_namespace'] = resource_provider_namespace
 	config['resource_type'] = resource_type
@@ -44,14 +74,22 @@ def create_config():
 
 	resources.user.write('config.ini', json.dumps(config))
 
+"""
+Returns configuration values from per-user configuration file
+"""
 def read_config():
 	resources.init("Microsoft", "Dukaan")
 	contents = resources.user.read('config.ini')
-	d = json.loads(contents)
-	
-	for k in d:
-		config[k] = d[k]
+	if contents:
+		d = json.loads(contents)	
+		for k in d:
+			config[k] = d[k]
+	else:
+		Printer.info("Configuration is empty. Run 'dukaan init' to save common settings to configuration file.")
 
+"""
+Parse optional arguments from command line. Optional arguments override values in the per-user configuration file.
+"""
 def parse_arguments():
 	parser = argparse.ArgumentParser()
 	parser.add_argument("command", help="Command to run", choices=["init", "create", "show", "upgrade", "delete", "sso", "manifest"])
@@ -71,7 +109,7 @@ def parse_arguments():
 	for optional in optionals:
 		attribute_value = getattr(parse_result, optional)
 		if attribute_value is not None:
-			config[optional] = attribute_value	
+			config[optional] = attribute_value
 
 def run_checks():
 	if 'manifest_path' in config:

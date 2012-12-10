@@ -4,6 +4,10 @@ import sys
 import xmlutil
 from utility import Printer, die
 
+"""
+Client is factored into its own class so we can swap out the HTTP request library in the future, if needed. For now,
+we use Kenneth Reitz's excellent requests package
+"""
 class Client:
 	def __init__(self, base_uri, sso_uri):
 		self.base_uri = base_uri
@@ -14,10 +18,8 @@ class Client:
 						}
 
 	def perform_request(self, uri, method, body, uri_type='base', validate_xml=True, timeout=20.0):
-		if uri_type=='base':
-			full_url = urlparse.urljoin(self.base_uri,uri)
-		else:
-			full_url = urlparse.urljoin(self.sso_uri,uri)
+		full_url = urlparse.urljoin(self.base_uri,uri) if uri_type == 'base' else urlparse.urljoin(self.sso_uri,uri)
+
 		dispatch = { 
 			'GET':		requests.get,
 			'PUT': 		requests.put,
