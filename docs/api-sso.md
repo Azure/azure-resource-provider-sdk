@@ -5,13 +5,13 @@ The [Management Portal](https://manage.microsoft.com) allows a user to select a 
 This functionality comes from your RP's implementation of a simple SSO protocol:
 
 1. Windows Azure does a `POST` on `https:// <sso_url>/ subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>/SsoToken`.
-2. Your RP takes the above parameters and concatenates them with a **secret that only you know**, and performs a [SHA1 hash](http://en.wikipedia.org/wiki/SHA-1) of the concatenated string. In Python:
+2. Your RP takes the above parameters and concatenates them with a **secret that only you know**, and performs a [SHA-256 hash](http://en.wikipedia.org/wiki/SHA-2) of the concatenated string. In Python:
 
 ```python
 	import hashlib
 	secret = 'a_long_cryptic_secret_only_you_know'
 	signature = "%s:%s:%s:%s:%s" % (subscription_id, cloud_service_name, resource_type, resource_name, secret)
-	token = hashlib.sha1(signature)
+	token = hashlib.sha256(signature)
 ```
 
 and returns the following XML:
@@ -24,7 +24,7 @@ and returns the following XML:
 ```
 
 * `TimeStamp` is the current server datetime in [ISO-8601](http://en.wikipedia.org/wiki/ISO_8601) format in the server's own timezone.
-* `Token` is the SHA1 hash of the string `<subscription_id>:<cloud_service_name>:<resource_name>`
+* `Token` is the SHA-256 hash of the string `<subscription_id>:<cloud_service_name>:<resource_name>`
 
 3. The [Management Portal](https://manage.windowsazure.com) redirects the user to a URL to the SSO URL defined in the [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md) with a few parameters:
 
@@ -49,7 +49,7 @@ def sso_view():
 	secret = 'a_long_cryptic_secret_only_you_know'
 
 	signature = "%s:%s:%s:%s:%s" % (subscription_id, cloud_service_name, resource_type, resource_name, secret)
-	token_now = str(hashlib.sha1(signature).hexdigest())
+	token_now = str(hashlib.sha256(signature).hexdigest())
 	if (token_now == request.args.get("token")):
 		app.logger.debug("Tokens match, checking timestamp")
 		timestamp_now = datetime.now()
