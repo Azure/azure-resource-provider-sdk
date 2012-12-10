@@ -15,6 +15,11 @@ If your service is approved for the Store, we begin technical integration:
 2. Register your Resource Provider and offering details in the [Publisher Portal](http://publish.marketplace.windowsazure.com). Read the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to do this.
 3. We will test your RP in staging, and enable it in production once it passes our tests.
 
+This is important …
+---
+We are actively improving the Resource Provider API. Please make sure you read these  [important tips and gotchas](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md) before you start implementing your own RP.
+
+
 API Documentation
 ---
 * [Concepts](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/concepts.md)
@@ -26,7 +31,6 @@ API Documentation
   * [Delete](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-delete.md)
   * [Upgrade](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md)
   * [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-sso.md)
-* [Tips and Tricks](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md)
 
 Got feedback?
 ---
