@@ -5,11 +5,12 @@ The [Management Portal](https://manage.microsoft.com) allows a user to select a 
 This functionality comes from your RP's implementation of a simple SSO protocol:
 
 1. Windows Azure does a `POST` on `https:// <sso_url>/ subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>/SsoToken`.
-2. Your RP takes the above parameters, and performs a [SHA1 hash](http://en.wikipedia.org/wiki/SHA-1) of the concatenated string. In Python:
+2. Your RP takes the above parameters and concatenates them with a **secret that only you know**, and performs a [SHA1 hash](http://en.wikipedia.org/wiki/SHA-1) of the concatenated string. In Python:
 
 ```python
 	import hashlib
-	signature = "%s:%s:%s" % (subscription_id, cloud_service_name, resource_name)
+	secret = 'a_long_cryptic_secret_only_you_know'
+	signature = "%s:%s:%s:%s:%s" % (subscription_id, cloud_service_name, resource_type, resource_name, secret)
 	token = hashlib.sha1(signature)
 ```
 
@@ -29,7 +30,7 @@ and returns the following XML:
 
 `https://<sso_url>?token=<token> &subid=<subscription_id>&cloudservicename=<cloud_service_name>&resourcetype=<resource_type>&resourcename=<resource_name>`
 
-4. Your RP generates the token again using the provided Subscription name, CloudService name and Resource name. If the token matches, and if the timestamp is within a 10 minute period, the RP sets a cookie and logs the user in. Otherwise, the RP returns a `403` error.
+4. Your RP generates the token again. If the token matches, and if the timestamp is within a 10 minute period, the RP sets a cookie and logs the user in. Otherwise, the RP returns a `403` error.
 
 Sample code in Python with the Flask framework:
 
@@ -42,9 +43,12 @@ def sso_view():
 	subscription_id = request.args.get("subid")
 	cloud_service_name = request.args.get("cloudservicename")
 	resource_name = request.args.get("resourcename")
+	resource_type = request.args.get(resourcetype)
 	timestamp = request.args.get("timestamp")
+	
+	secret = 'a_long_cryptic_secret_only_you_know'
 
-	signature = "%s:%s:%s" % (subscription_id, cloud_service_name, resource_name)
+	signature = "%s:%s:%s:%s:%s" % (subscription_id, cloud_service_name, resource_type, resource_name, secret)
 	token_now = str(hashlib.sha1(signature).hexdigest())
 	if (token_now == request.args.get("token")):
 		app.logger.debug("Tokens match, checking timestamp")
