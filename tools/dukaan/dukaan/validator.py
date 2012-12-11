@@ -178,8 +178,7 @@ class Validator(object):
 						self.config["resource_name"]
 					),
 				"POST",
-				None,
-				uri_type="sso"
+				None
 			)
 
 		if status in [200, 201]:
@@ -201,7 +200,7 @@ class Validator(object):
 			)
 
 		(status, response) = self.client.perform_request(
-				"sso?subid=%s&cloudservicename=%s&resourcetype=%s&resourcename=%s&%s" % (
+				"?subid=%s&cloudservicename=%s&resourcetype=%s&resourcename=%s&%s" % (
 			 		self.config["subscription_id"], 
 			 		self.config["cloud_service_name"],
 			  		self.config["resource_type"],

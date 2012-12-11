@@ -14,13 +14,22 @@ def is_https(url):
 	return (urlparse(url)).scheme == 'https'
 
 """
-Adds trailing slash to URL. Needed for urlparse.urljoin to work per spec
+Adds trailing slash to URL. Needed for urlparse.urljoin to work per spec.
 """
 def slashify(url):
 	if (url[-1] == '/'):
 		return url
 	else:
 		return url + '/'
+
+"""
+Removes trailing slash from URL. Needed for urlparse.urljoin to work per spec.
+"""
+def unslashify(url):
+	if (url[-1] == '/'):
+		return url[0:-1]
+	else:
+		return url
 
 """
 Gets an ElementTree subtree from the first node matching the XPath
@@ -116,7 +125,7 @@ def parse_manifest(manifest_path):
 			errors.append("Base URI for Test environment is not defined in manifest.")
 
 		if node_exists(t, test_sso_uri_xpath):
-			manifest_config['test']['sso'] = slashify(get_node_value(t, test_sso_uri_xpath))
+			manifest_config['test']['sso'] = unslashify(get_node_value(t, test_sso_uri_xpath))
 			if not is_https(manifest_config['test']['sso']):
 				warnings.append("SSO URI for Test environment is not HTTPS")
 		else:
@@ -130,7 +139,7 @@ def parse_manifest(manifest_path):
 			errors.append("Base URI for Prod environment is not defined in manifest.")
 
 		if node_exists(t, prod_sso_uri_xpath):
-			manifest_config['prod']['sso'] = slashify(get_node_value(t, prod_sso_uri_xpath))
+			manifest_config['prod']['sso'] = unslashify(get_node_value(t, prod_sso_uri_xpath))
 			if not is_https(manifest_config['prod']['sso']):
 				warnings.append("SSO URI for Prod environment is not HTTPS")
 		else:
