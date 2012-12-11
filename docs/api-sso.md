@@ -4,7 +4,7 @@ The [Management Portal](https://manage.microsoft.com) allows a user to select a 
 
 This functionality comes from your RP's implementation of a simple SSO protocol:
 
-1. Windows Azure does a `POST` on `https:// <sso_url>/ subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>/SsoToken`.
+1. Windows Azure does a `POST` on `https://<base_url>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>/SsoToken`.
 2. Your RP takes the above parameters and concatenates them with a **secret that only you know**, and performs a [SHA-256 hash](http://en.wikipedia.org/wiki/SHA-2) of the concatenated string. In Python:
 
 ```python
