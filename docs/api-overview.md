@@ -34,9 +34,6 @@ Authentication
 ---
 The RP API is one-way i.e. Windows Azure can call your service, but your service cannot call Windows Azure. All calls are made over HTTPS.
 
-You are responsible for verifying the caller's certificate thumbprint. Only accept calls from certificates that have these thumbprints:
+You are responsible for verifying the caller's certificate thumbprint. **Only accept calls from certificates that have the correct public key**.
 
-Staging: `a9 be 06 e8 88 13 39 d7 b6 9f 84 21 f5 13 04 43 1b ed 0e e7`
-
-Production: `coming soon`
-
+Production certificate in _.cer_ format is located [here](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreProduction.cer).
