@@ -142,7 +142,7 @@ class Validator(object):
 
 		# CHECK: Plan upgrade succeeds
 		(status, response) = self.client.perform_request(
-				"/subscriptions/%s/cloudservices/%s/resources/%s/%s" % (
+				"subscriptions/%s/cloudservices/%s/resources/%s/%s" % (
 					self.config["subscription_id"],
 					self.config["cloud_service_name"],
 					self.config["resource_type"],
@@ -201,7 +201,7 @@ class Validator(object):
 			)
 
 		(status, response) = self.client.perform_request(
-				"/sso?subid=%s&cloudservicename=%s&resourcetype=%s&resourcename=%s&%s" % (
+				"sso?subid=%s&cloudservicename=%s&resourcetype=%s&resourcename=%s&%s" % (
 			 		self.config["subscription_id"], 
 			 		self.config["cloud_service_name"],
 			  		self.config["resource_type"],
@@ -233,7 +233,7 @@ class Validator(object):
 			)
 
 		(status, response) = self.client.perform_request(
-				"/sso?subid=%s&cloudservicename=%s&resourcetype=%s&resourcename=%s&%s" % (
+				"sso?subid=%s&cloudservicename=%s&resourcetype=%s&resourcename=%s&%s" % (
 			 		self.config["subscription_id"], 
 			 		self.config["cloud_service_name"],
 			  		self.config["resource_type"],
@@ -257,7 +257,7 @@ class Validator(object):
 		etag = generate_etag()
 		Printer.start_test("Create resource")
 		(status, response) = self.client.perform_request(
-				"/subscriptions/%s/Events" % self.config['subscription_id'],
+				"subscriptions/%s/Events" % self.config['subscription_id'],
 				'POST',
 				xmlutil.xml_for_subscription_event(
 					self.config["subscription_id"],
@@ -276,7 +276,7 @@ class Validator(object):
 		
 		# CHECK: Resource creation succeeds
 		(status, response) = self.client.perform_request(
-				"/subscriptions/%s/cloudservices/%s/resources/%s/%s" % (
+				"subscriptions/%s/cloudservices/%s/resources/%s/%s" % (
 					self.config["subscription_id"],			
 					self.config["cloud_service_name"],
 					self.config["resource_type"],
@@ -304,7 +304,7 @@ class Validator(object):
 		Printer.start_test("Delete Resource")
 
 		(status, response) = self.client.perform_request(
-				"/subscriptions/%s/cloudservices/%s/resources/%s/%s" % (
+				"subscriptions/%s/cloudservices/%s/resources/%s/%s" % (
 					self.config["subscription_id"],
 					self.config["cloud_service_name"],
 					self.config["resource_type"],

@@ -14,6 +14,15 @@ def is_https(url):
 	return (urlparse(url)).scheme == 'https'
 
 """
+Adds trailing slash to URL. Needed for urlparse.urljoin to work per spec
+"""
+def slashify(url):
+	if (url[-1] == '/'):
+		return url
+	else:
+		return url + '/'
+
+"""
 Gets an ElementTree subtree from the first node matching the XPath
 """
 def get_subtree(t, xpath):
@@ -99,7 +108,7 @@ def parse_manifest(manifest_path):
 		prod_sso_uri_xpath = "./Prod/ResourceProviderSsoEndpoint"
 
 		if node_exists(t, test_base_uri_xpath):
-			manifest_config['test']['base'] = get_node_value(t, test_base_uri_xpath)
+			manifest_config['test']['base'] = slashify(get_node_value(t, test_base_uri_xpath))
 			if not is_https(manifest_config['test']['base']):
 				warnings.append("Base URI for Test environment is not HTTPS")
 
@@ -107,21 +116,21 @@ def parse_manifest(manifest_path):
 			errors.append("Base URI for Test environment is not defined in manifest.")
 
 		if node_exists(t, test_sso_uri_xpath):
-			manifest_config['test']['sso'] = get_node_value(t, test_sso_uri_xpath)
+			manifest_config['test']['sso'] = slashify(get_node_value(t, test_sso_uri_xpath))
 			if not is_https(manifest_config['test']['sso']):
 				warnings.append("SSO URI for Test environment is not HTTPS")
 		else:
 			errors.append("SSO URI for Test environment is not defined in manifest.")
 
 		if node_exists(t, prod_base_uri_xpath):
-			manifest_config['prod']['base'] = get_node_value(t, prod_base_uri_xpath)
+			manifest_config['prod']['base'] = slashify(get_node_value(t, prod_base_uri_xpath))
 			if not is_https(manifest_config['prod']['base']):
 				warnings.append("Base URI for Prod environment is not HTTPS")
 		else:
 			errors.append("Base URI for Prod environment is not defined in manifest.")
 
 		if node_exists(t, prod_sso_uri_xpath):
-			manifest_config['prod']['sso'] = get_node_value(t, prod_sso_uri_xpath)
+			manifest_config['prod']['sso'] = slashify(get_node_value(t, prod_sso_uri_xpath))
 			if not is_https(manifest_config['prod']['sso']):
 				warnings.append("SSO URI for Prod environment is not HTTPS")
 		else:
