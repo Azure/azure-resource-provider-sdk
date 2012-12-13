@@ -105,4 +105,4 @@ If the Resource was successfully provisioned, return a `200` or `201` HTTP statu
   * `Name` is the name of the `UsageMeter` as it should be displayed to the user e.g. `Storage` or `Connections`
   * `Used` is the amount of the resource used e.g. 20 or 5.25. **This value must be parseable as a double**.
   * `Included` is the amount of the resource included in the plan e.g. 500 or 10.00. **This value must be parseable as a double**.
-  * `Unit` is the unit that will be displayed in the Management Portal. Possible values are   `bytes`, `hours` or `generic`. Use `generic` if you have a `UsageMeter` that does not map to storage space or time.
+  * `Unit` is the unit that will be displayed in the Management Portal. Possible values are `bytes`, `hours` or `generic`. Be aware that these values have to be lower case. Use `generic` if you have a `UsageMeter` that does not map to storage space or time.
