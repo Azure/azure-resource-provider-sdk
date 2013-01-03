@@ -33,10 +33,10 @@ The response to a `GET` on a CloudService should be like this:
 			<Type>monitoring</Type>
 			<UsageMeters>
 				<UsageMeter>
-					<Name>Servers</Name>
 					<Included>5</Included>
-					<Used>1</Included>
+					<Name>Servers</Name>
 					<Unit>generic</Included>
+					<Used>1</Included>
 				</UsageMeter>	
 			</UsageMeters>
 		</Resource>
@@ -52,10 +52,10 @@ The response to a `GET` on a CloudService should be like this:
 				<Type>monitoring</Type>
 				<UsageMeters>
 					<UsageMeter>
-						<Name>Servers</Name>
 						<Included>10</Included>
-						<Used>2</Included>
+						<Name>Servers</Name>
 						<Unit>generic</Included>
+						<Used>2</Included>
 				</UsageMeter>	
 			</UsageMeters>
 		</Resource>
