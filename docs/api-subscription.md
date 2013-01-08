@@ -44,7 +44,7 @@ Sample:
 * `EventId` is the ID of the subscription. **This field is deprecated and should not be used**.
 * `EntityType` will always be _Subscription_. **This field can be ignored**.
 * `EntityId/Id` is the ID of the subscription. It is a GUID, and should be stored by your service. Note that this is the Subscription ID and should be recorded by your service.
-* `EntityId/EntityEvent` is the actual event. It can take four values: `Registered`, `Disabled`, `Enabled`, `Deleted`.
+* `EntityEvent/EntityState` is the actual event. It can take four values: `Registered`, `Disabled`, `Enabled`, `Deleted`.
   * `Registered` This tells the RP that the user intends to create a resource under this subscription.
   * `Disabled` The user's Windows Azure subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
   * `Enabled` The user's Windows Azure subscription has been enabled, because it is current on payments. Your RP should restore access to data.
