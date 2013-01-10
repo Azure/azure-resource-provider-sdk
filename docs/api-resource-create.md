@@ -6,7 +6,7 @@ Once a Subscription has received a `Registered` event, any user with Service Adm
 
 Request
 ---
-URL: `https://<base_uri>/subscriptions/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
+URL: `https://<base_uri>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
 
 Method: `PUT`
 
