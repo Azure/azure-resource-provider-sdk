@@ -20,6 +20,7 @@ The response to a `GET` on a CloudService should be like this:
 
 ```xml
 <CloudService xmlns="http://schemas.microsoft.com/windowsazure">
+	<GeoRegion>usnorth</GeoRegion>
 	<Resources>
 		<Resource>
 			<ETag>100-100-10203-302012</ETag>
