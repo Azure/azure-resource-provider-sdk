@@ -64,4 +64,7 @@ The response to a `GET` on a CloudService should be like this:
 </CloudService>
 ```
 
-The data under the `<Resource>` node should be as it is described in [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md), with an important exception: **OutputItems should not be returned since Windows Azure has already cached them.**
+The data under the `<Resource>` node should be as it is described in [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md), with two important exceptions: 
+
+* You don't need to include `CloudService` node under each `Resource`
+* **OutputItems should not be returned since Windows Azure has already cached them.**
