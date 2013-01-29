@@ -113,7 +113,12 @@ class Validator(object):
 				usage_meter_tree = xmlutil.get_subtree_from_element(usage_meter)
 				self._check_node_exists(usage_meter_tree, './{0}Included')
 				self._check_node_exists(usage_meter_tree, './{0}Name')
-				self._check_node_exists(usage_meter_tree, './{0}Unit', behavior='warn')
+				if self._check_node_exists(usage_meter_tree, './{0}Unit', behavior='warn'):
+					meter_name = self._get_node_value(usage_meter_tree, './{0}Unit')
+					allowed_meter_names = ['bytes', 'hours', 'generic']
+					if meter_name not in allowed_meter_names:
+						Printer.error("Usage Meter '%s' is not one of allowed values: %s" % (meter_name, string.join(allowed_meter_names, ', ')))
+
 				self._check_node_exists(usage_meter_tree, './{0}Used')
 
 		Printer.info("Checking if Plan is present")
