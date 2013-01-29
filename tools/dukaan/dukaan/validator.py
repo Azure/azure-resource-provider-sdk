@@ -22,12 +22,14 @@ class Validator(object):
 	def _check_node_exists(self, t, xpath, behavior="error"):
 		try:
 			xmlutil.node_exists(t, xpath)
+			return True
 		except NodeNotFoundException:
 			msg = "XPath %s was not found in the response" % xpath
 			if behavior == "error":
 				Printer.error(msg)
 			else:
 				Printer.warn(msg)
+			return False
 
 	def _check_node_value(self, t, xpath, expected):
 		try:
@@ -38,6 +40,12 @@ class Validator(object):
 		except NodeNotFoundException:
 			Printer.error("Node at XPath %s was not found in the response" % xpath)
 
+	def _get_node_value(self, t, xpath):
+		try:
+			return xmlutil.get_node_value(t, xpath)
+		except NodeNotFoundException:
+			return None
+
 	def _validate_resource_response(self, etag, t):
 		root_node_expected_tag = xmlutil.get_root_tag(t)
 		Printer.info("Checking if root node's tag is %s" % root_node_expected_tag)
@@ -45,6 +53,15 @@ class Validator(object):
 
 		if (root_node_expected_tag != root_node_actual_tag):
 			Printer.error("Root node does not have expected tag %s" % root_node_expected_tag)
+
+		Printer.info("Checking if xmlns is correct")
+		xmlns_actual = xmlutil.get_xmlns(t)
+		xmlns_expected = "http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement"
+		if not xmlns_actual:
+			Printer.error("Missing xmlns tag")
+
+		if xmlns_actual != xmlns_expected:
+			Printer.error("xmlns in response body is not correct. Expected: %s, Actual: %s" % (xmlns_expected, xmlns_actual))
 
 		Printer.info("Checking if CloudServiceSettings are present")
 		self._check_node_exists(t, './{0}CloudServiceSettings')
@@ -59,16 +76,39 @@ class Validator(object):
 		self._check_node_value(t, './{0}OperationStatus/{0}Result', "Succeeded")
 		
 		Printer.info("Checking if OutputItems are present")
+		
+		# warn if OutputItems are not returned
 		if self._check_node_exists(t, './{0}OutputItems', behavior='warn'):
 			output_items = t.findall('.//{0}OutputItem'.format(xmlutil.get_namespace(t)))
+
+			# check that no. of OutputItems are turned is equal to no. of OutputItems defined in manifest
+			if len(output_items) != len(self.config['manifest']['output_keys']):
+				Printer.error(
+					"Your response contains a different number of OutputItems (%s) than is defined in the manifest (%s)." % 
+					(
+						len(output_items),
+						len(self.config['manifest']['output_keys'])
+					)
+				)
+
 			for output_item in output_items:
 				output_item_tree = xmlutil.get_subtree_from_element(output_item)
-				self._check_node_exists(output_item_tree, './{0}Key')
+
+				# warn if Key node is not present
+				if self._check_node_exists(output_item_tree, './{0}Key'):
+					output_item_key = self._get_node_value(output_item_tree, './{0}Key')
+					Printer.info("Checking if OutputItem '%s' is present in manifest and cased properly" % output_item_key)
+
+					# warn if OutputItem is not defined in manifest
+					if output_item_key not in self.config['manifest']['output_keys']:
+						Printer.error("OutputItem '%s' not found in manifest. Make sure it is cased properly in your response and defined in the manifest" % output_item_key)
+
+				# warn if Value node is not present
 				self._check_node_exists(output_item_tree, './{0}Value')
 
 		Printer.info("Checking if UsageMeters are present")
 		if self._check_node_exists(t, './{0}UsageMeters', behavior='warn'):
-			usage_meters = xmlutil.get_nodes('.//{0}UsageMeter')
+			usage_meters = xmlutil.get_nodes(t, './/{0}UsageMeter')
 			for usage_meter in usage_meters:
 				usage_meter_tree = xmlutil.get_subtree_from_element(usage_meter)
 				self._check_node_exists(usage_meter_tree, './{0}Included')
@@ -81,6 +121,9 @@ class Validator(object):
 
 		Printer.info("Checking if State is 'Started'")
 		self._check_node_value(t, './{0}State', "Started")
+
+		Printer.info("Checking if Type is '%s'" % self.config["resource_type"])
+		self._check_node_value(t, './{0}Type', self.config["resource_type"])
 
 	def get_resource(self):
 		Printer.start_test("Get Resource")

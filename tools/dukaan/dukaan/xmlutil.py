@@ -79,6 +79,14 @@ def get_root_tag(t):
 		raise RootNodeNotFoundException()
 	return root.tag
 
+def get_xmlns(t):	
+	el = t.getroot()
+	if el.tag[0] == "{":
+		xmlns, _, _ = el.tag[1:].partition("}")
+	else:
+		xmlns = None
+	return xmlns
+
 def get_root_element(t):
 	root = t.getroot()
 	if root is None:
@@ -156,7 +164,7 @@ def xml_for_subscription_event(subscription_id, resource_provider, resource_type
 		etag = str(uuid.uuid1())
 
 	template = """
-<EntityEvent xmlns='http://schemas.microsoft.com/windowsazure'>
+<EntityEvent xmlns='http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement'>
 	<EventId>%(subscription_id)s</EventId>
 	<ListenerId>%(resource_provider)s</ListenerId>
 	<EntityType>Subscription</EntityType>
@@ -200,7 +208,7 @@ def xml_for_create_resource(plan, resource_type, region="West US", promotion_cod
 
 
 	template = """
-<Resource xmlns='http://schemas.microsoft.com/windowsazure'>
+<Resource xmlns='http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement'>
 	<CloudServiceSettings>
 		<GeoRegion>%(region)s</GeoRegion>
 	</CloudServiceSettings>
