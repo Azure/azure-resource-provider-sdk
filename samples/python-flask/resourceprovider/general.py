@@ -27,6 +27,8 @@ from decorators import log_request_body
 mod = Blueprint('general', __name__)
 app.debug = True
 
+sso_secret = 'some_massive_secret'
+
 # GET https:// <registered-resource-provider-endpoint>/ subscriptions/{subscriptionId}/cloudservices/{cloud-service-name}/
 @app.route('/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>', methods=['GET'])
 @log_request_body
@@ -49,7 +51,7 @@ def get_cloudservice(subscription_id, cloud_service_name):
 @app.route("/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>/SsoToken", methods=['POST'])
 @log_request_body
 def sso_token(subscription_id, cloud_service_name, resource_type, resource_name):
-	signature = "%s:%s:%s" % (subscription_id, cloud_service_name, resource_name)
+	signature = "%s:%s:%s:%s" % (subscription_id, cloud_service_name, resource_name, sso_secret)
 	token = hashlib.sha1(signature)
 	timestamp = str(datetime.now())
 
@@ -72,7 +74,7 @@ def sso_view():
 	for key,value in request.args.items():
 		app.logger.debug("%s/%s" % (key,value))
 
-	signature = "%s:%s:%s" % (subscription_id, cloud_service_name, resource_name)
+	signature = "%s:%s:%s:%s" % (subscription_id, cloud_service_name, resource_name, sso_secret)
 	token_now = str(hashlib.sha1(signature).hexdigest())
 	if (token_now == request.args.get("token")):
 		app.logger.debug("Tokens match, checking timestamp")
