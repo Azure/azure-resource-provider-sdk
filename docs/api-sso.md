@@ -24,7 +24,7 @@ and returns the following XML:
 ```
 
 * `TimeStamp` is the current server datetime in [ISO-8601](http://en.wikipedia.org/wiki/ISO_8601) format in the server's own timezone.
-* `Token` is the SHA-256 hash of the string `<subscription_id>:<cloud_service_name>:<resource_name>`
+* `Token` is the SHA-256 hash of the string `<subscription_id>:<cloud_service_name>:<resource_name>:<secret>`
 
 3. The [Management Portal](https://manage.windowsazure.com) redirects the user to a URL to the SSO URL defined in the [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md) with a few parameters:
 
