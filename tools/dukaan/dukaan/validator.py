@@ -140,7 +140,8 @@ class Validator(object):
 					self.config["resource_type"],
 					self.config["resource_name"]),
 				"GET",
-				None
+				None,
+				validate_xml=True
 			)
 		
 		if status in [200, 201]:
@@ -162,7 +163,8 @@ class Validator(object):
 					self.config["cloud_service_name"]
 					),
 				"GET",
-				None
+				None,
+				validate_xml=True
 			)
 		
 		if status in [200, 201]:
@@ -201,7 +203,8 @@ class Validator(object):
 					resource_type=self.config['resource_type'],
 					promotion_code=self.config['promo_code'],
 					etag=etag
-				)
+				),
+				validate_xml=True
 			)
 
 		if status in [200, 201]:
@@ -226,7 +229,8 @@ class Validator(object):
 						self.config["resource_name"]
 					),
 				"POST",
-				None
+				None,
+				validate_xml=True
 			)
 
 		if status in [200, 201]:
