@@ -7,8 +7,7 @@ This SDK contains documentation and samples for building a Resource Provider for
 
 - [API reference](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs)
 - Code samples in several languages:
-  - [C#](https://github.com/MetricsHub/AzureStoreRP)    
-  - [Ruby-on-Rails](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/samples/rails)
+  - [C#](https://github.com/MetricsHub/AzureStoreRP)
   - [Python Flask](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/samples/python-flask)
 
 

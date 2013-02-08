@@ -1,0 +1,1 @@
+C# sample can be found on the [MetricsHub repository](https://github.com/MetricsHub/AzureStoreRP) 
