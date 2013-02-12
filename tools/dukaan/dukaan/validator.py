@@ -56,7 +56,7 @@ class Validator(object):
 
 		Printer.info("Checking if xmlns is correct")
 		xmlns_actual = xmlutil.get_xmlns(t)
-		xmlns_expected = "http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement"
+		xmlns_expected = "http://schemas.microsoft.com/windowsazure"
 		if not xmlns_actual:
 			Printer.error("Missing xmlns tag")
 
