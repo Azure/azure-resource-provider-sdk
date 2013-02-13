@@ -76,7 +76,7 @@ If the Resource was successfully provisioned, return a `200` or `201` HTTP statu
 ```
 * `CloudServiceSettings/GeoRegion` is a **required** field. It should contain the geo-region your service is deployed in. If your service is not deployed in a Windows Azure geo-region, just return the value of the geo-region Windows Azure provisioned your Resource with.
 * `ETag` is described in [Change Management using ETags](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/etags.md).
-* `Name` is a **required** field. It isthe name of the Resource, as provided by the user.
+* `Name` is a **required** field. It is the name of the Resource, as provided by the user.
 * `OperationStatus/Result` is a **required** field, indicating the result of the create operation. It can take two values, `Succeeded` or `Failed`. If a failure happens, you can return additional information:
 
 ```xml

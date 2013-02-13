@@ -27,6 +27,6 @@ The first two sections of the manifest, `Test` and `Prod` describe how Windows A
 
 `ResourceProviderEndpoint` is the HTTPS endpoint where Windows Azure will send Subscription lifecycle events, and Resource create, get, delete, upgrade requests. 
 
-`ResourceProviderSsoEndpoint` is where Windows Azure will send users who are logging into your management dashboard using the [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/sso.md) mechanism. **Both of these fields are required**.
+`ResourceProviderSsoEndpoint` is where Windows Azure will send users who are logging into your management dashboard using the [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-sso.md) mechanism. **Both of these fields are required**.
 
 `OutputKeys` are described in detail in [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md). They must be defined here, since Windows Azure will cache returned values. **OutputKeys are optional but if you do not have OutputKeys, leave an empty <OutputKeys/> node.**

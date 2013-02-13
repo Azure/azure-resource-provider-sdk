@@ -28,7 +28,7 @@ and returns the following XML:
 
 3. The [Management Portal](https://manage.windowsazure.com) redirects the user to a URL to the SSO URL defined in the [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md) with a few parameters:
 
-`https://<sso_url>?token=<token> &subid=<subscription_id>&cloudservicename=<cloud_service_name>&resourcetype=<resource_type>&resourcename=<resource_name>`
+`https://<sso_url>?token=<token>&subid=<subscription_id>&cloudservicename=<cloud_service_name>&resourcetype=<resource_type>&resourcename=<resource_name>`
 
 4. Your RP generates the token again. If the token matches, and if the timestamp is within a 10 minute period, the RP sets a cookie and logs the user in. Otherwise, the RP returns a `403` error.
 
