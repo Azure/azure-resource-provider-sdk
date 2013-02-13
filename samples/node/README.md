@@ -1,0 +1,1 @@
+Node.js sample can be found on the [Auth0 repository](https://github.com/auth0/node-azure-store). They also have a Node [passport strategy](https://github.com/auth0/passport-azure-store)
