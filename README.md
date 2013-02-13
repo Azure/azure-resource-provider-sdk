@@ -9,6 +9,7 @@ This SDK contains documentation and samples for building a Resource Provider for
 - Code samples in several languages:
   - [C#](https://github.com/MetricsHub/AzureStoreRP)
   - [Python Flask](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/samples/python-flask)
+  - [Node.js](https://github.com/auth0/node-azure-store)
 
 
 >Please note that this is a pre-release SDK and subject to change. Contact [wastorepartners@microsoft.com](mailto:wastorepartners@microsoft.com) for support. 
