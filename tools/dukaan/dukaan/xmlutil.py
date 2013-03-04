@@ -173,7 +173,7 @@ def xml_for_subscription_event(subscription_id, resource_provider, resource_type
 		<Id>%(subscription_id)s</Id>
 		<Created>%(time_created)s</Created>
 	</EntityId>
-	<IsAsync>False</IsAsync>
+	<IsAsync>false</IsAsync>
 	<OperationId>%(etag)s</OperationId>
 	<Properties>
 		<EntityProperty>
@@ -186,7 +186,7 @@ def xml_for_subscription_event(subscription_id, resource_provider, resource_type
 		</EntityProperty>
 		<EntityProperty>
 			<PropertyName>OptIn</PropertyName>
-			<PropertyValue>False</PropertyValue>
+			<PropertyValue>false</PropertyValue>
 		</EntityProperty>
 	</Properties>
 </EntityEvent>
