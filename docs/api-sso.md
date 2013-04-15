@@ -32,7 +32,7 @@ and returns the following XML:
 
 4. Your RP generates the token again. If the token matches, and if the timestamp is within a 10 minute period, the RP sets a cookie and logs the user in. Otherwise, the RP returns a `403` error.
 
-Sample code in Python with the Flask framework:
+Sample code in Python with the Flask framework: 
 
 
 ```python
