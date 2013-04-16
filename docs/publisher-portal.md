@@ -39,8 +39,8 @@ Click _Details_, and provide details about your offering:
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-05.png)
 
-* **Resource Type Display Name** is the name of the offering as it will appear to users in our catalog. For example, it could be "Clouditrace" or "ContosoDB".
-* **Short Description** is a brief description of your offering. It cannot exceed **500 characters**.
+* **Resource Type Display Name** is the name of the offering as it will appear to users in our catalog. For example, it could be "Clouditrace" or "ContosoDB". It cannot exceed **35 characters**.
+* **Short Description** is a brief description of your offering. It cannot exceed **200 characters**.
 * **Long Description** is a long description of your offering. It is **not currently used**.
 * **Resource Type** is your RP's `ResourceType` and is passed to you in [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md) requests in the `Resource/Type` node.
 * **Links** You should add as many links in the Links section as possible. We require that you link to an API reference, a quick-start guide, and sample code.
@@ -54,7 +54,9 @@ Click _Plans_ to specify free and paid plans for your offering:
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publishing-portal-03.png)
 
-* **Name** is the display name of your offering e.g. Free, Nano, Micro, Mega. Free plans are required to be called Free.
+**Notes:** Free trial plans are not currently supported. **Free plans must be always free.**
+
+* **Name** is the display name of your offering e.g. Free, Nano, Micro, Mega. Free plans are required to be called Free. Please try to keep the plan name consise.
 * **Unique Identifier** is the ID of the plan. It will be passed to you in the [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md) and [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md) requests in the `Resource/Type` node.
 * **Description** is a brief description of the plan. We recommend keeping this field brief, no more than three plain-text sentences.
 * **Retail Price** is the price of your offering in USD. Regardless of what country your offering is available in, you always specify the price in [USD](http://en.wikipedia.org/wiki/United_States_dollar). Windows Azure will automatically price the offering in the local currency if it's available.
