@@ -39,6 +39,7 @@ You are responsible for verifying the caller's certificate thumbprint. **Only ac
 Below are the certificates used by Windows Azure to call into your RP (.cer files).
 
 * [Production environment](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreProduction.cer)
+* [Stage environment](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreStage.cer)
 * [Test environment](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreTest.cer)
 
 
