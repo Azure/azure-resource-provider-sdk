@@ -196,7 +196,7 @@ def xml_for_subscription_event(subscription_id, resource_provider, resource_type
 		'subscription_id': subscription_id,
 		'resource_provider': resource_provider,
 		'event_type': event_type,
-		'time_created': str(datetime.now()),
+		'time_created': str(datetime.now().isoformat()),
 		'etag': etag,
 		'resource_type': resource_type
 	}
