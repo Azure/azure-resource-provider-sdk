@@ -56,7 +56,7 @@ Click _Plans_ to specify free and paid plans for your offering:
 
 **Notes:** Free trial plans are not currently supported. **Free plans must be always free.**
 
-* **Name** is the display name of your offering e.g. Free, Nano, Micro, Mega. Free plans are required to be called Free. Please try to keep the plan name consise.
+* **Name** is the display name of your offering e.g. Free, Nano, Micro, Mega. Free plans are required to be called Free. **Plan names should not exceed 50 characters.**
 * **Unique Identifier** is the ID of the plan. It will be passed to you in the [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md) and [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md) requests in the `Resource/Type` node.
 * **Description** is a brief description of the plan. We recommend keeping this field brief, no more than three plain-text sentences.
 * **Retail Price** is the price of your offering in USD. Regardless of what country your offering is available in, you always specify the price in [USD](http://en.wikipedia.org/wiki/United_States_dollar). Windows Azure will automatically price the offering in the local currency if it's available.
