@@ -21,7 +21,7 @@ This is a conceptual view of a user's resources:
 
 * There are two Subscriptions, _Subscription A_ and _Subscription B_.
 * Subscription A has two resources, named _Resource 1_ and _Resource 2_.
-* Subscription A has one resource, named _Resource 1_. 
+* Subscription B has one resource, named _Resource 1_. 
 
 ![resources](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-resources.png)
 

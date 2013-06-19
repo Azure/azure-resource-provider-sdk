@@ -11,7 +11,7 @@ Step 1: Provide company information
 ---
 When you login for the first time, you will be required to provide information about your company. There are two imortant items to pay attention to:
 
-* **Company Identifier / Resource Provider Namespace**: Pay particular attention to this value. This is a unique identifier of your company, and it is also used when [Windows Azure Management API](http://msdn.microsoft.com/en-us/library/windowsazure/ee460799.aspx) users call your Resource Provider directly. You should use a concise string representing your company. For example, if your company is called Contoso and sells a monitoring service, you hsould enter "contoso" and not "monitoring" because the later is too specific.
+* **Company Identifier / Resource Provider Namespace**: Pay particular attention to this value. This is a unique identifier of your company, and it is also used when [Windows Azure Management API](http://msdn.microsoft.com/en-us/library/windowsazure/ee460799.aspx) users call your Resource Provider directly. You should use a concise string representing your company. For example, if your company is called Contoso and sells a monitoring service, you should enter "contoso" and not "monitoring" because the later is too specific.
 
 * **Tax Profile Type ** If you are a business, choose _Company_. Otherwise, choose _Individual_.
 
