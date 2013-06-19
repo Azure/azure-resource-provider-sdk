@@ -2,7 +2,7 @@ Subscription API
 ===
 When a user purchases your offering, Windows Azure will start sending your RP *subscription lifecycle events* about the subscription the resource was created in. For example, if a user purchases Clouditrace on the "3-month Free Trial" subscription, the Clouditrace RP will start receiving subscription lifecycle events about this particular subscription. For example, if the user fails to pay their bill, your RP will be notified so your service can take appropriate action.
 
-**It is important that you response appropriately to each subscription lifecycle event to prevent your service from going out of sync with Windows Azure**
+**It is important that you respond appropriately to each subscription lifecycle event to prevent your service from going out of sync with Windows Azure**
 
 
 Request
