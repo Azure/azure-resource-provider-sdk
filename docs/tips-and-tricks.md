@@ -53,7 +53,7 @@ Your Resource Provider does not receive the actual ID of the Subscription as it 
 
 There is a limit on the number of Resources that can be created
 ---
-Windows Azure only allows a user to create 5 Resources of a particular ResourceType under a subscription.
+Windows Azure allows a user to create 25 Resources of a particular ResourceType under a subscription.
 
 Dates and times are in ISO-8601 format
 ---
