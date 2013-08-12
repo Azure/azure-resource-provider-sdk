@@ -23,7 +23,7 @@ The response to a `GET` on a CloudService should be like this:
 	<GeoRegion>West US</GeoRegion>
 	<Resources>
 		<Resource>
-			<ETag>100-100-10203-302012</ETag>
+			<ETag>A71D8BD1-9D4A-48A9-9591-DEA26651BE24</ETag>
 			<Name>helloworld</Name>
 			<OperationStatus>
 				<Result>Succeeded</Result>
@@ -36,27 +36,27 @@ The response to a `GET` on a CloudService should be like this:
 				<UsageMeter>
 					<Included>5</Included>
 					<Name>Servers</Name>
-					<Unit>generic</Included>
-					<Used>1</Included>
+					<Unit>generic</Unit>
+					<Used>1</Used>
 				</UsageMeter>	
 			</UsageMeters>
 		</Resource>
-			<Resource>
-				<ETag>520-100-10203-302012</ETag>
-				<Name>myresource</Name>
-				<OperationStatus>
-					<Result>Succeeded</Result>
-				</OperationStatus>
-				<Plan>silver</Plan>
-				<State>Started</State>
-				<SubState>Waiting for your calls</SubState>
-				<Type>monitoring</Type>
-				<UsageMeters>
-					<UsageMeter>
-						<Included>10</Included>
-						<Name>Servers</Name>
-						<Unit>generic</Included>
-						<Used>2</Included>
+		<Resource>
+			<ETag>526FF5B9-16D3-4272-82EB-D92DD498940F</ETag>
+			<Name>myresource</Name>
+			<OperationStatus>
+				<Result>Succeeded</Result>
+			</OperationStatus>
+			<Plan>silver</Plan>
+			<State>Started</State>
+			<SubState>Waiting for your calls</SubState>
+			<Type>monitoring</Type>
+			<UsageMeters>
+				<UsageMeter>
+					<Included>10</Included>
+					<Name>Servers</Name>
+					<Unit>generic</Unit>
+					<Used>2</Used>
 				</UsageMeter>	
 			</UsageMeters>
 		</Resource>
