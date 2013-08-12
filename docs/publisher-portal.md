@@ -41,7 +41,7 @@ Click _Details_, and provide details about your offering:
 
 * **Resource Type Display Name** is the name of the offering as it will appear to users in our catalog. For example, it could be "Clouditrace" or "ContosoDB". It cannot exceed **35 characters**.
 * **Short Description** is a brief description of your offering. It cannot exceed **200 characters**.
-* **Long Description** is a long description of your offering. It is **not currently used**.
+* **Long Description** Please make it the same as short description for now.
 * **Resource Type** is your RP's `ResourceType` and is passed to you in [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md) requests in the `Resource/Type` node.
 * **Links** You should add as many links in the Links section as possible. We require that you link to an API reference, a quick-start guide, and sample code.
 
