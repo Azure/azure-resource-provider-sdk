@@ -8,7 +8,7 @@ The Resource Provider (RP) API is:
 
 Handling requests
 ---
-You should expect requests on two endpoints defined in your offer's [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md). You will receive resource lifecycle requests such as create, delete, update etc. on the *base URL* `https://www.clouditrace.com/azurestore`. Single sign-on requests will come on the *SSO URL* defined in the manifest, e.g. `https://www.clouditrace.com/azurestore/sso`.
+You should expect requests on two endpoints defined in your offer's [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md). You will receive resource lifecycle requests such as create, delete, update etc. on the *base URL* `https://<base_uri>/azurestore`. Single sign-on requests will come on the *SSO URL* defined in the manifest, e.g. `https://<base_uri>/azurestore/sso`.
 
 Requests will be made in XML. JSON is not currently supported, but is being considered for future revs of the API.
 
@@ -34,7 +34,7 @@ Authentication
 ---
 The RP API is one-way i.e. Windows Azure can call your service, but your service cannot call Windows Azure. All calls are made over HTTPS.
 
-You are responsible for verifying the caller's certificate thumbprint. **Only acce*pt calls from certificates that have the correct public key**.
+You are responsible for verifying the caller's certificate thumbprint. **Only accept calls from certificates that have the correct public key**.
 
 Below are the certificates used by Windows Azure to call into your RP (.cer files).
 

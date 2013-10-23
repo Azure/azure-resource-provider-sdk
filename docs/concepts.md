@@ -1,6 +1,6 @@
 Concepts
 ===
-A Resource Provider (RP, for short) is simply an HTTPS RESTful API contract you will implement so a trusted Windows Azure endpoint can provision, delete, and manage services on a user's behalf. Windows Azure uses the response to render a show a set of simple management operations in our Management Portal.
+A Resource Provider (RP, for short) is simply an HTTPS RESTful API contract you will implement so a trusted Windows Azure endpoint can provision, delete, and manage services on a user's behalf. Windows Azure uses the response to render and show a set of simple management operations in our Management Portal.
 
 This figure gives a simplified view of how a user interacts directly with Windows Azure through the Management Portal, PowerShell scripts or *NIX command-line tools. Windows Azure, in turn, communicates with your RP to manage the user's service.
 
@@ -21,7 +21,7 @@ This is a conceptual view of a user's resources:
 
 * There are two Subscriptions, _Subscription A_ and _Subscription B_.
 * Subscription A has two resources, named _Resource 1_ and _Resource 2_.
-* Subscription A has one resource, named _Resource 1_. 
+* Subscription B has one resource, named _Resource 1_. 
 
 ![resources](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-resources.png)
 
