@@ -4,7 +4,7 @@ If your service offers multiple plans or tiers (e.g. Free, Silver, Gold), users 
 
 Request
 ---
-URL: `https://<base_uri>/subscriptions/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
+URL: `https://<base_uri>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
 
 Method: `POST`
 
