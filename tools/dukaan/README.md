@@ -114,7 +114,7 @@ Testing Show Resource
 To test [Show Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-get.md), run this command:
 
 ```bash
-dukaan get
+dukaan show
 ```
 
 If everything goes well, you should see this output with `INFO` and `PASS` line items only:
