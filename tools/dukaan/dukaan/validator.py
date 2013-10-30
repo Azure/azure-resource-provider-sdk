@@ -75,16 +75,16 @@ class Validator(object):
 		Printer.info("Checking if OperationStatus/Result is 'Succeeded'")
 		self._check_node_value(t, './{0}OperationStatus/{0}Result', "Succeeded")
 		
-		Printer.info("Checking if OutputItems are present")
+		Printer.info("Checking if OutputKeys are present")
 		
-		# warn if OutputItems are not returned
-		if self._check_node_exists(t, './{0}OutputItems', behavior='warn'):
-			output_items = t.findall('.//{0}OutputItem'.format(xmlutil.get_namespace(t)))
+		# warn if OutputKeys are not returned
+		if self._check_node_exists(t, './{0}OutputKeys', behavior='warn'):
+			output_items = t.findall('.//{0}OutputKey'.format(xmlutil.get_namespace(t)))
 
-			# check that no. of OutputItems are turned is equal to no. of OutputItems defined in manifest
+			# check that no. of OutputKeys are turned is equal to no. of OutputKeys defined in manifest
 			if len(output_items) != len(self.config['manifest']['output_keys']):
 				Printer.error(
-					"Your response contains a different number of OutputItems (%s) than is defined in the manifest (%s)." % 
+					"Your response contains a different number of OutputKeys (%s) than is defined in the manifest (%s)." % 
 					(
 						len(output_items),
 						len(self.config['manifest']['output_keys'])
@@ -97,11 +97,11 @@ class Validator(object):
 				# warn if Key node is not present
 				if self._check_node_exists(output_item_tree, './{0}Key'):
 					output_item_key = self._get_node_value(output_item_tree, './{0}Key')
-					Printer.info("Checking if OutputItem '%s' is present in manifest and cased properly" % output_item_key)
+					Printer.info("Checking if OutputKey '%s' is present in manifest and cased properly" % output_item_key)
 
-					# warn if OutputItem is not defined in manifest
+					# warn if OutputKey is not defined in manifest
 					if output_item_key not in self.config['manifest']['output_keys']:
-						Printer.error("OutputItem '%s' not found in manifest. Make sure it is cased properly in your response and defined in the manifest" % output_item_key)
+						Printer.error("OutputKey '%s' not found in manifest. Make sure it is cased properly in your response and defined in the manifest" % output_item_key)
 
 				# warn if Value node is not present
 				self._check_node_exists(output_item_tree, './{0}Value')
