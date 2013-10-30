@@ -13,6 +13,7 @@ class Client:
 		self.base_uri = base_uri
 		self.sso_uri = sso_uri
 		self.headers =	{
+							'accept':       'application/xml',
 							'content-type': 'application/xml',
 							'x-ms-version': '2012-03-01'
 						}
