@@ -156,6 +156,8 @@ def parse_manifest(manifest_path):
 		output_items = get_nodes(t, ".//OutputItem/Name")
 		if len(output_items) == 0:
 			warnings.append("OutputItems are not defined in the manifest. If your Resource Provider exposes Output Items, please define them in the manifest.")
+		else:
+			manifest_config['output_items'] = [n.text for n in output_items]
 
 		return errors, warnings, manifest_config
 
