@@ -81,13 +81,13 @@ class Validator(object):
 		if self._check_node_exists(t, './{0}OutputItems', behavior='warn'):
 			output_items = t.findall('.//{0}OutputItem'.format(xmlutil.get_namespace(t)))
 
-			# check that no. of OutputKeys are turned is equal to no. of OutputKeys defined in manifest
-			if len(output_items) != len(self.config['manifest']['output_keys']):
+			# check that no. of OutputItems are turned is equal to no. of OutputItems defined in manifest
+			if len(output_items) != len(self.config['manifest']['output_items']):
 				Printer.error(
 					"Your response contains a different number of OutputItems (%s) than is defined in the manifest (%s)." % 
 					(
 						len(output_items),
-						len(self.config['manifest']['output_keys'])
+						len(self.config['manifest']['output_items'])
 					)
 				)
 
@@ -100,7 +100,7 @@ class Validator(object):
 					Printer.info("Checking if OutputItem '%s' is present in manifest and cased properly" % output_item_key)
 
 					# warn if OutputItem is not defined in manifest
-					if output_item_key not in self.config['manifest']['output_keys']:
+					if output_item_key not in self.config['manifest']['output_items']:
 						Printer.error("OutputItem '%s' not found in manifest. Make sure it is cased properly in your response and defined in the manifest" % output_item_key)
 
 				# warn if Value node is not present

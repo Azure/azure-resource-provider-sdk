@@ -116,7 +116,7 @@ def parse_manifest(manifest_path):
 		manifest_content = f.read()
 		errors = []
 		warnings = []
-		manifest_config = {'test': {}, 'prod': {}, 'output_keys':[]}
+		manifest_config = {'test': {}, 'prod': {}, 'output_items':[]}
 		t = get_subtree_from_xml_string(manifest_content)
 
 		test_base_uri_xpath = "./Test/ResourceProviderEndpoint"
@@ -153,9 +153,11 @@ def parse_manifest(manifest_path):
 		else:
 			errors.append("SSO URI for Prod environment is not defined in manifest.")
 
-		output_keys = get_nodes(t, ".//OutputKey/Name")
-		if len(output_keys) == 0:
-			warnings.append("OutputKeys are not defined in the manifest. If your Resource Provider exposes Output Items, please define them in the manifest.")
+		output_items = get_nodes(t, ".//OutputItem/Name")
+		if len(output_items) == 0:
+			warnings.append("OutputItems are not defined in the manifest. If your Resource Provider exposes Output Items, please define them in the manifest.")
+		else:
+			manifest_config['output_items'] = [n.text for n in output_items]
 
 		return errors, warnings, manifest_config
 
