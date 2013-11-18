@@ -40,7 +40,7 @@ Step 4: Add one or more plans in your offer
 ---
 _Plans_ are the different price and feature tiers within an _Offer_.  To create a _Plan_, select the _App Services_ tab, select an _Offer_, and select _Plans_ in the top nav.  Then select _Add Plan_ at the bottom to launch _Add a New Plan_ dialog.  Use the tool tips to learn more about configuring _Plans_.
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-add-plan.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-add-plan.PNG)
 
 **Notes on Plans:** 
 
