@@ -12,17 +12,17 @@ Log into the [Publisher Portal](http://publish.windowsazure.com) with your Micro
 
 When you login for the first time, you will be required to set a _Publisher Namespace_.  This is a unique identifier for your company, and it is also used when [Windows Azure Management API](http://msdn.microsoft.com/en-us/library/windowsazure/ee460799.aspx) users call your Resource Provider directly. You should use a concise string representing your company. For example, if your company is called Clouditrace and sells a monitoring service, you should enter "clouditrace" and not "monitoring" because the later is too specific.
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-namespace.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-namespace.PNG)
 
 Step 2: Submit your seller application
 ---
 After signing up in the Publishing Portal, click on the _Publishers_ tab.  Your Publisher Namespace will be displayed along with a status of "Needs attention".  
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-seller-dashboard.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-seller-dashboard.PNG)
 
 Click the pop-out icon to launch the Seller Dashboard.  All Azure Store partners are **required** to submit an application in order to be approved to offer products and services in the Azure Store.  The Seller Dashboard is where you fill in your company details, submit an application to become a seller in Microsoft marketplaces and manage your payout information.  We strongly encourage partners to start this process early in order to prevent delays in onboarding. 
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/seller-dashboard-site.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/seller-dashboard-site.PNG)
 
 For help with the Microsoft Seller Dashboard please see this [FAQ](http://msdn.microsoft.com/en-us/library/jj552463.aspx).
 
@@ -30,11 +30,11 @@ Step 3: Create your offer
 ---
 Now that you have created a Publisher account and submitted your Seller application, you are ready to create your first _Offer_.  An _Offer_ is product or service listing in the Azure Store.  Within the Publisher Portal, click _New_ at the bottom, then _App Service_, _Azure Store_ and _Quick Create_.  Enter the Title of your offer and then click _Create New Azure Store Offer_.
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-create-offer.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-create-offer.PNG)
 
 Once you new _Offer_ is created you will be shown the dashboard for your _Offer_, along with details on next steps.
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-offer-next-steps.png)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-offer-next-steps.PNG)
 
 Step 4: Add one or more plans in your offer
 ---
