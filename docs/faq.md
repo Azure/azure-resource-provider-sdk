@@ -1,6 +1,6 @@
 # FAQ
-* [How do I update my Add-on logos displayed on the Windows Azure website?][]
-* [How do I upgrade to the new Publisher Portal?][]
+* [How do I update my Add-on logos displayed on the Windows Azure website?]()
+* [How do I upgrade to the new Publisher Portal?]()
 
 
 ## How do I update my Add-on logos displayed on the Windows Azure website?
