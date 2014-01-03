@@ -12,7 +12,7 @@ As of December 2013 we support higher resolution Add-on logos on Azure Store pag
 5. Select “English” or other language where relevant
 6. Upload your new logos
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-marketing-details.PNG)
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-marketing-details.png)
 
 How do I upgrade to the new Publishing Portal?
 ---
