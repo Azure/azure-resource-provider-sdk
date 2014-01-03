@@ -1,4 +1,4 @@
-# FAQ
+# FAQ for Deploying Add-ons in the Azure Store
 * [How do I update my Add-on logos displayed on the Windows Azure website?](#how-do-i-update-my-add-on-logos-displayed-on-the-windows-azure-website)
 * [How do I upgrade to the new Publisher Portal?](#how-do-i-upgrade-to-the-new-publisher-portal)
 
