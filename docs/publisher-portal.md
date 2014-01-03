@@ -1,6 +1,6 @@
 Publisher Portal Guide
 ===
-The [Publisher Portal](http://publish.windowsazure.com) in a web site where you can create and manage your offering. Using the Publishing Portal you will:
+The [Publisher Portal](http://publish.windowsazure.com) in a web site where you can create and manage your offering. Using the Publisher Portal you will:
 
 1. Tell us about your company, e.g. who do we contact for customer support, and where do we send electronic payments.
 2. Create your offering, including registering your Resource Provider.
@@ -16,7 +16,7 @@ When you login for the first time, you will be required to set a _Publisher Name
 
 Step 2: Submit your seller application
 ---
-After signing up in the Publishing Portal, click on the _Publishers_ tab.  Your Publisher Namespace will be displayed along with a status of "Needs attention".  
+After signing up in the Publisher Portal, click on the _Publishers_ tab.  Your Publisher Namespace will be displayed along with a status of "Needs attention".  
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-seller-dashboard.PNG)
 
