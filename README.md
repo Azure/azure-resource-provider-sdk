@@ -28,8 +28,7 @@ Included in this repo you will find:
 
 - [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) 
 
-
-## Technical Documentation and Samples ## 
+##Technical Documentation and Samples## 
 
 **Please note:** the Windows Azure Store is currently in Preview and we are currently working on a new .NET SDK that will make it easy to quickly standup a Resource Provider for your Add-on.  We expect to release this new SDK before our Build conference in April.
 
