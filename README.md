@@ -2,6 +2,9 @@
 
 If you are looking for technical information and guides on how to integrate products and services with the [Windows Azure Store](http://www.windowsazure.com/en-us/store/overview/), you have come to the right place.  
 
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/azure-store1.png)  ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/azure-store2.png)
+
+
 Included in this repo you will find:
 - [Technical Documentation and Samples](https://github.com/WindowsAzure/azure-resource-provider-sdk/blob/master/README.md#technical-documentation-and-samples) for building a Resource Provider (web service) for the Windows Azure Store.
 - An [Onboarding Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/blob/master/README.md#onboarding-guide) to walk you through all the steps required to get an Add-on into the Windows Azure Store; from creating your Seller Account with Microsoft, to releasing our Add-on into Production.
