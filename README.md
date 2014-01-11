@@ -9,6 +9,9 @@ Included in this repo you will find:
 - An [Onboarding Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/blob/master/README.md#onboarding-guide) to walk you through all the steps required to get an Add-on into the Windows Azure Store; from creating your Seller Account with Microsoft, to releasing our Add-on into Production.
 - An [FAQ](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/faq.md) to help answer your questions.
 
+**Please note:** the Windows Azure Store is currently in Preview and this is a pre-release SDK and constantly evolving based on customer feedback.
+
+
 ## Onboarding Guide
 
 **Step 1: Submit Microsoft Seller Application.**  You must be an approved seller in order to publish and Add-on in the Windows Azure Store and receive payout.  Note that if you have already released an app you may already be an approved seller.  You only need one approved seller account to sell apps and services in Microsoft Marketplaces.  Read the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to learn how to start the Seller Application process.
@@ -38,4 +41,3 @@ Included in this repo you will find:
   - [Node.js](https://github.com/auth0/node-azure-store)
 
 
-**Please note:** the Windows Azure Store is currently in Preview and this is a pre-release SDK and subject to change.
