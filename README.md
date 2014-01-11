@@ -1,6 +1,6 @@
 # Windows Azure Store SDK
 
-If you are looking for technical information and guides on how to integrate products and services with the [Windows Azure Store](http://www.windowsazure.com/en-us/store/overview/), you have come to the right place.  
+If you are looking for technical information and guides on how to integrate products and services with the [Windows Azure Store](http://www.windowsazure.com/en-us/store/overview/), you have come to the right place.  This SDK describes how to write a web service that allows users to purchase your offering from the Windows Azure Store and manage it from the Windows Azure Management Portal.
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/azure-store1.png)  
 
@@ -16,7 +16,7 @@ Included in this repo you will find:
 
 **Step 1: Submit Microsoft Seller Application.**  You must be an approved seller in order to publish and Add-on in the Windows Azure Store and receive payout.  Note that if you have already released an app you may already be an approved seller.  You only need one approved seller account to sell apps and services in Microsoft Marketplaces.  Read the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to learn how to start the Seller Application process.
 
-**Step 2: Create yYour Publisher Portal Account and Define Your Add-on.**  The Publisher Portal is how you will manage the details of your Add-on, including marketing copy, pricing and endpoints for your Resource Provider.  Read the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to get started.
+**Step 2: Create Your Publisher Portal Account and Configure Your Add-on.**  The Publisher Portal is how you will manage the details of your Add-on, including marketing copy, pricing and endpoints for your Resource Provider.  Read the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to get started.
 
 **Step 3: Build and Test Your Resource Provider.**  A Resource Provider is the web service that will communicate with the Azure Store platform in order to support your Add-on.
 
