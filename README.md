@@ -1,10 +1,10 @@
 # Windows Azure Store SDK
 
-If you are looking for technical information and guides on how to integrate products and services with the [Windows Azure Store](http://www.windowsazure.com/en-us/store/overview/), you have come to the right place.  This SDK describes how to write a web service that allows users to purchase your offering from the Windows Azure Store and manage it from the Windows Azure Management Portal.
+This SDK is intended for a technical audience (developers or PMs) and provides all the information needed to launch a product or service inside the [Windows Azure Store](http://www.windowsazure.com/en-us/store/overview/).  
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/azure-store1.png)  
 
-Included in this repo you will find:
+This SDK includes:
 - [Technical Documentation and Samples](https://github.com/WindowsAzure/azure-resource-provider-sdk/blob/master/README.md#technical-documentation-and-samples) for building a Resource Provider (web service) for the Windows Azure Store.
 - An [Onboarding Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/blob/master/README.md#onboarding-guide) to walk you through all the steps required to get an Add-on into the Windows Azure Store; from creating your Seller Account with Microsoft, to releasing our Add-on into Production.
 - An [FAQ](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/faq.md) to help answer your questions.
@@ -13,6 +13,10 @@ Included in this repo you will find:
 
 
 ## Onboarding Guide
+
+**GET STARTED HERE**
+
+The following steps outline the entire cycle of developing, launching and maintaining an Add-on in the Windows Azure Store.  These steps represent a mix of technical/development and project management work.
 
 **Step 1: Submit Microsoft Seller Application.**  You must be an approved seller in order to publish and Add-on in the Windows Azure Store and receive payout.  Note that if you have already released an app you may already be an approved seller.  You only need one approved seller account to sell apps and services in Microsoft Marketplaces.  Read the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to learn how to start the Seller Application process.
 
