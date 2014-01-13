@@ -7,6 +7,12 @@ The [Publisher Portal](http://publish.windowsazure.com) is the tool you will use
 
 You will use the Publisher Portal to perform each of following tasks below.  These tasks are ordered in the sequence you will perform them.
 
+- [Provide Your Company Information](#provide-company-information)
+- [Submit Your Seller Application](#submit-your-seller-application)
+- [Define Your Add-on](#define-your-add-on)
+- [Publish Your Add-on To Preview](#publish-your-add-on-to-preview)
+- [Publish Your Add-on To Production](#publish-your-add-on-to-production)
+
 ##Provide Company Information
 
 Log into the [Publisher Portal](http://publish.windowsazure.com) with your Microsoft account.  If you do not have one you will be directed to create one [here](http://go.microsoft.com/fwlink/p/?LinkID=238657).
