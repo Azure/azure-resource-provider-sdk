@@ -54,6 +54,6 @@ Once you have filled out all the information for you Add-on in the Publisher Por
 
 
 ##Publish Your Add-on To Production
-Once you have tested your Add-on in the test environment, resolved all issues and are ready for your Add-on to be availble in the live Windows Azure Store, you will Publish to Production.  Select your Add-on in the Publisher Portal and go to the _Publish_ section and select _Preview_ at the bottom.  This will publish your Add-on to our staging environment for further testing.  For access to the Windows Azure Store test enviroment, contact the Microsoft PM helping you onboard into the Windows Azure Store.
+Once you have tested your Add-on in the test environment, resolved all issues and are ready for your Add-on to be availble in the live Windows Azure Store, you will Publish to Production.  Select your Add-on in the Publisher Portal and go to the _Publish_ section and select _Publish_ at the bottom.  **This action does not automatically publish your Add-on to the live Store**, but rather it puts your Add-on into a queue to be approved for release in the live Store.  After you select the _Publish_ action, notify your Microsoft PM that your Add-on is published and waiting approval.  Approvals take 1-2 days.
 
 
