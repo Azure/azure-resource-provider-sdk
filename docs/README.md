@@ -1,10 +1,15 @@
 # Resource Provider API Guide
 
-A _Resource Provider_ (RP) is a web service that allows users to purchase an Add-on from the Windows Azure Store and manage it from within the Windows Azure Management Portal.  Each Add-on in the Windows Azure Store needs a Resource Provider that communicates with the Windows Azure platform in order to support the various workflows involved in supporting an Add-on in the Store.
+A _Resource Provider_ (RP) is the web service that allows users to purchase an Add-on from the Windows Azure Store and then manage it from within the Windows Azure Management Portal.  Each Add-on in the Windows Azure Store needs an RP to communicate with the Windows Azure platform in order to support the various workflows involved in supporting an Add-on in the Store.
+
+An RP needs to support the following workflows:
+- [Subscription Lifecycle Events](#subscription-lifecycle-events)
+- [Resource Actions](#resource-actions)
+- [Single Sign-On](#single-sign-on)
 
 ***Please Note:*** the Windows Azure Store is currently in Preview and we are actively improving the Resource Provider API based on feedback. Please make sure you read these  [important tips and gotchas](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md) before you start implementing your own RP.
 
-Read [Concepts](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/concepts.md) to understand the definitions and concept mappings for the Windows Azure platform and Resource Provider API.
+To better understand this documentation, please read [Windows Azure Platform Concepts](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/concepts.md) to understand the definitions and concept mappings for the Windows Azure platform and Resource Provider API.
 
 ##Resource Provider API Documentation
 
@@ -16,8 +21,8 @@ The Resource Provider (RP) API is:
 
 ###Handling Requests
 You should expect Requests on two endpoints defined in the Publisher Portal:
--_Provisioning Endpoint_ - handles Requests from Windows Azure to in response to user subscription and provisioning events on your Add-on.  e.g. `https://<your_domain>/azurestore`.
--_Single Sign On_ - handles SSO workflow. e.g. `https://<your_domain>/azurestore/sso`.
+-_Provisioning Endpoint_ - handles Requests from Windows Azure in response to [Subscription Lifecycle Events](#subscription-lifecycle-events) and [Resource Actions](#resource-actions) on your Add-on.  e.g. `https://<your_domain>/azurestore`.
+-_Single Sign On_ - handles [Single Sign-On](#single-sign-on) workflow. e.g. `https://<your_domain>/azurestore/sso`.
 
 You should expect two headers. The `content-type` header will be set to `application/xml`. The `x-ms-version` header will be set to `2012-03-01` or later.
 
@@ -47,18 +52,19 @@ Below are the certificates used by Windows Azure to call your RP (.cer files).
 - [Stage environment](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreStage.cer)
 - [Test environment](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreTest.cer)
 
-
 ###Subscription Lifecycle Events
 
 When a user purchases a specific _Service Plan_ with our Add-on, Windows Azure will start sending your RP _subscription lifecycle events_ for the resource created. For example, if a user purchases the Add-on Clouditrace on the "Bronze" _Service Plan_, the Clouditrace RP will start receiving _subscription lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action. 
 
+***NOTE:*** the term _subscription_ refers a user's Windows Azure Subscription.
+
 An RP will need to handle four _subscription lifecycle events_, identified by the 'EntityState' field in the Request from Windows Azure:
-- `Registered` The user intends to subscribe to the Add-on.
+- `Registered` The user intends to purchase a _Service Plan_ under this subscription.
 - `Disabled` The user's Add-on subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
 - `Enabled` The user's Add-on subscription has been enabled, because it is current on payments. Your RP should restore access to data.
 - `Deleted` The user's Add-on subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
 
-***NOTE:***The Resource Provider API uses the term _subscription_ to mean the recurring purchase of an Add-on's _Service Plan_, and should not be confused with Windows Azure subscriptions. 
+***NOTE:*** the term _subscription_ refers a user's Windows Azure Subscription.
 
 ####Request
 
@@ -113,7 +119,7 @@ Sample:
 
 If the event is processed successfully, your RP should return a `200` or `201` HTTP status code.
 
-###Actions on Resources 
+###Resource Actions
 
 An RP will need to handle four different Requests that correspond to basic actions that a user performs on an Add-on resource from within the Windows Azure Management Portal: 
 
@@ -123,7 +129,7 @@ An RP will need to handle four different Requests that correspond to basic actio
 - [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
 
 
-###Single Sign-on (SSO)
+###Single Sign-On (SSO)
 
 In addition to supporting _resource lifecycle events_, your Add-on will need to support [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-sso.md). The Windows Azure Management Portal allows a user to select a previously-purchased Resource, and click the _Manage_ button. This signs the user into a service management dashboard hosted by the Add-on provider, without requiring the user to enter a username and password.
 
