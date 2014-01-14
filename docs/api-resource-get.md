@@ -1,9 +1,7 @@
-Resource: Get Resources under a CloudService
-===
+#Resource Operation: Get Resources
 Once a Resource has been provisioned, Windows Azure will call your endpoint to retrieve information about it. Typically, this will happen when a user goes to the [Management Portal](https://manage.windowsazure.com) and clicks on the Resource to view its details.
 
-Request
----
+##Request
 In order to get details on a Resource, Windows Azure will do a `GET` on the parent CloudService.
 
 URL:
@@ -12,8 +10,7 @@ URL:
 
 Method: `GET`
 
-Response
----
+##Response
 If the Resource or CloudService exists, your RP should return a `200` or `201` HTTP status code. Otherwise, return a `404`.
 
 The response to a `GET` on a CloudService should be like this:
@@ -69,12 +66,12 @@ The data under the `<Resource>` node should be as it is described in [Create Res
 * You don't need to include `CloudService` node under each `Resource`
 * **OutputItems should not be returned since Windows Azure has already cached them.**
 
-Resource: Get a single Resource
-===
+
+#Resource Operation: Get Resource
+
 Windows Azure will call this endpoint to retrieve information about a single resource. Typically, this will happen when a user goes to the [Management Portal](https://manage.windowsazure.com) and clicks on the Resource to view its details.
 
-Request
----
+##Request
 In order to get details on a Resource, Windows Azure will do a `GET` for that particular resource.
 
 URL:
@@ -83,8 +80,7 @@ URL:
 
 Method: `GET`
 
-Response
----
+##Response
 If the Resource exists, your RP should return a `200` or `201` HTTP status code. Otherwise, return a `404`.
 
 The response to a `GET` on a Resource should be like this:

@@ -1,6 +1,6 @@
 # Windows Azure Store SDK
 
-**[LOOKING FOR API DOCS?](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs)**
+Looking for the [API Documentation](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs)?
 
 This SDK is intended for a technical audience (developers or PMs) and provides all the information needed to launch a product or service inside the [Windows Azure Store](http://www.windowsazure.com/en-us/store/overview/).  
 

@@ -26,7 +26,7 @@ You should expect Requests on two endpoints defined in the Publisher Portal:
 
 You should expect two headers. The `content-type` header will be set to `application/xml`. The `x-ms-version` header will be set to `2012-03-01` or later.
 
-[ETags](http://en.wikipedia.org/wiki/HTTP_ETag) in request and response bodies allow Windows Azure to cache your results. Windows Azure ETags are [GUIDs](http://en.wikipedia.org/wiki/Globally_unique_identifier). You are expected to keep track of ETags since Windows Azure will retry failed operations with the same ETag.
+You are expected to keep track of ETags since Windows Azure will retry failed operations with the same ETag.  ETags in Request and Response bodies allows Windows Azure to cache your results. Read more about [Change Management using ETags](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/etags.md).
 
 ###Making Responses
 Your RP should respond in less than 20 seconds to requests, otherwise Windows Azure will consider the operation timed out.
@@ -62,7 +62,7 @@ An RP will need to handle four _subscription lifecycle events_, identified by th
 - `Enabled` The user's Windows Azure subscription has been enabled, because it is current on payments. Your RP should restore access to data.
 - `Deleted` The user's Windows Azure subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
 
-####Request
+####Subscription Operation Request
 
 URL: `<provisioning_endpoint>/subscriptions/<subscription_id>/Events`
 
@@ -111,7 +111,7 @@ Sample:
   - `EMail` is the e-mail address of the logged-in user.
   - `OptIn` indicates whether the user has agreed to give you additional permissions about sending them marketing material. Your RP can always send transactional e-mails e.g. about service or account issues to the e-mail address given in the `EMail` field.
 
-####Response
+####Subscription Operation Response
 
 If the event is processed successfully, your RP should return a `200` or `201` HTTP status code.
 
