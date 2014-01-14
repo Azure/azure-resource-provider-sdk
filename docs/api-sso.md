@@ -1,10 +1,10 @@
-Single Sign-on (SSO)
-===
+#Single Sign-On (SSO) Operations
+
 The [Management Portal](https://manage.microsoft.com) allows a user to select a previously-purchased Resource, and click the _Manage_ button. This signs the user into your service management dashboard, without requiring them to enter a username and password.
 
 This functionality comes from your RP's implementation of a simple SSO protocol:
 
-1) Windows Azure does a `POST` on 
+1) Azure does a `POST` on 
 ```
 	https://<base_url>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/
 		resources/<resource_type>/<resource_name>/SsoToken

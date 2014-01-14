@@ -1,9 +1,9 @@
 # FAQ for Deploying Add-ons in the Azure Store
 
-- [How do I update my Add-on logos displayed on the Windows Azure website?](#how-do-i-update-my-add-on-logos-displayed-on-the-windows-azure-website)
+- [How do I update my Add-on logos displayed on the Azure website?](#how-do-i-update-my-add-on-logos-displayed-on-the-azure-website)
 - [How do I upgrade to the new Publisher Portal?](#how-do-i-upgrade-to-the-new-publisher-portal)
 
-## How do I update my Add-on logos displayed on the Windows Azure website? 
+## How do I update my Add-on logos displayed on the Azure website? 
 As of December 2013 we support higher resolution Add-on logos on Azure Store pages.  To update your Add-on logos you will need to log into the [Publisher Portal](http://publish.windowsazure.com).  If you are not using the new Publisher Portal you will need to upgrade by following the steps in "How do I upgrade to the new Publisher Portal?".
 
 1. Log into the [Publisher Portal](http://publish.windowsazure.com).

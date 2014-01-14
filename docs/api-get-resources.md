@@ -1,8 +1,8 @@
 #Resource Operation: Get Resources
-Once a Resource has been provisioned, Windows Azure will call your endpoint to retrieve information about it. Typically, this will happen when a user goes to the [Management Portal](https://manage.windowsazure.com) and clicks on the Resource to view its details.
+Once a Resource has been provisioned, Azure will call your endpoint to retrieve information about it. Typically, this will happen when a user goes to the [Management Portal](https://manage.windowsazure.com) and clicks on the Resource to view its details.
 
 ##Request
-In order to get details on a Resource, Windows Azure will do a `GET` on the parent CloudService.
+In order to get details on a Resource, Azure will do a `GET` on the parent CloudService.
 
 URL:
 
@@ -64,4 +64,4 @@ The response to a `GET` on a CloudService should be like this:
 The data under the `<Resource>` node should be as it is described in [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md), with two important exceptions: 
 
 - You don't need to include `CloudService` node under each `Resource`
-- **OutputItems should not be returned since Windows Azure has already cached them.**
+- **OutputItems should not be returned since Azure has already cached them.**

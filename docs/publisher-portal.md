@@ -17,7 +17,7 @@ You will use the Publisher Portal to perform each of following tasks below.  The
 
 Log into the [Publisher Portal](http://publish.windowsazure.com) with your Microsoft account.  If you do not have one you will be directed to create one [here](http://go.microsoft.com/fwlink/p/?LinkID=238657).
 
-When you login for the first time, you will be required to set a _Publisher Namespace_.  This is a unique identifier for your company, and it is also used when [Windows Azure Management API](http://msdn.microsoft.com/en-us/library/windowsazure/ee460799.aspx) users call your Resource Provider directly. You should use a concise string representing your company. For example, if your company is called Clouditrace and sells a monitoring service, you should enter "clouditrace" and not "monitoring" because the later is too specific.
+When you login for the first time, you will be required to set a _Publisher Namespace_.  This is a unique identifier for your company, and it is also used when [Azure Management API](http://msdn.microsoft.com/en-us/library/windowsazure/ee460799.aspx) users call your Resource Provider directly. You should use a concise string representing your company. For example, if your company is called Clouditrace and sells a monitoring service, you should enter "clouditrace" and not "monitoring" because the later is too specific.
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-namespace.PNG)
 
@@ -54,12 +54,12 @@ _Service Plans_ are the different price and feature tiers within an _Add-on_.  T
 * **Plan Identifier** is the display name of your Add-on e.g. Free, Nano, Micro, Mega. Free plans are required to be called Free. **Plan names should not exceed 50 characters.**
 
 ##Publish Your Add-on To Preview
-Once you have filled out all the information for you Add-on in the Publisher Portal AND developed your Resource Provider, you can Publish your Add-on to Preview in order to test the functionality of your Add-on in a test version of the Windows Azure Store. Select your Add-on in the Publisher Portal and go to the _Publish_ section and select _Preview_ at the bottom.  This will publish your Add-on to our staging environment for further testing.  For access to the Windows Azure Store test enviroment, contact the Microsoft PM helping you onboard into the Windows Azure Store.
+Once you have filled out all the information for you Add-on in the Publisher Portal AND developed your Resource Provider, you can Publish your Add-on to Preview in order to test the functionality of your Add-on in a test version of the Azure Store. Select your Add-on in the Publisher Portal and go to the _Publish_ section and select _Preview_ at the bottom.  This will publish your Add-on to our staging environment for further testing.  For access to the Azure Store test enviroment, contact the Microsoft PM helping you onboard into the Azure Store.
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-publish.png)
 
 
 ##Publish Your Add-on To Production
-Once you have tested your Add-on in the test environment, resolved all issues and are ready for your Add-on to be availble in the live Windows Azure Store, you will Publish to Production.  Select your Add-on in the Publisher Portal and go to the _Publish_ section and select _Publish_ at the bottom.  **This action does not automatically publish your Add-on to the live Store**, but rather it puts your Add-on into a queue to be approved for release in the live Store.  After you select the _Publish_ action, notify your Microsoft PM that your Add-on is published and waiting approval.  Approvals take 1-2 days.
+Once you have tested your Add-on in the test environment, resolved all issues and are ready for your Add-on to be availble in the live Azure Store, you will Publish to Production.  Select your Add-on in the Publisher Portal and go to the _Publish_ section and select _Publish_ at the bottom.  **This action does not automatically publish your Add-on to the live Store**, but rather it puts your Add-on into a queue to be approved for release in the live Store.  After you select the _Publish_ action, notify your Microsoft PM that your Add-on is published and waiting approval.  Approvals take 1-2 days.
 
 

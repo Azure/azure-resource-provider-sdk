@@ -1,9 +1,9 @@
 #Resource Operation: Get Resource
 
-Windows Azure will call this endpoint to retrieve information about a single resource. Typically, this will happen when a user goes to the [Management Portal](https://manage.windowsazure.com) and clicks on the Resource to view its details.
+Azure will call this endpoint to retrieve information about a single resource. Typically, this will happen when a user goes to the [Management Portal](https://manage.windowsazure.com) and clicks on the Resource to view its details.
 
 ##Request
-In order to get details on a Resource, Windows Azure will do a `GET` for that particular resource.
+In order to get details on a Resource, Azure will do a `GET` for that particular resource.
 
 URL:
 
