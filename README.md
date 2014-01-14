@@ -30,7 +30,7 @@ The following steps outline the entire cycle of developing, launching and mainta
 
 **Step 5: Publish Your Add-on to Production.** Once your Add-on is tested and working in Preview, you will use the Publishing Portal to publish your Add-on to production.  This will initiate a final review process by Microsoft Store admins.  When your Add-on is approved it will be released to the live Windows Azure Store.
 
-**Step 6: Schedule Co-marketing for Your Add-on.** Use some Windows Azure marketing muscle to grow awareness of your Add-on.  Read here (coming soon) about co-marketing opportunities.  This step can be done at anytime.
+**Step 6: Schedule Co-marketing for Your Add-on.** Use some Windows Azure marketing muscle to grow awareness and success of your Add-on.  Read here (coming soon) about co-marketing opportunities.  This step can be done at anytime.
 
 **Step 7: Fine-tune Your Add-on.**  Unless you got it completely right the first time, you will want to use the Publisher Portal to adjust pricing and tiers, descriptions and make some promo codes.  Read here (coming soon) about how to make changes to your Add-on.  This step can be done at anytime.
 

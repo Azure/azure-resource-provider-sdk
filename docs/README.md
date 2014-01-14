@@ -117,12 +117,13 @@ If the event is processed successfully, your RP should return a `200` or `201` H
 
 ###Resource Operations
 
-An RP will need to handle four different Requests that correspond to basic actions that a user performs on an Add-on resource from within the Windows Azure Management Portal: 
+An RP will need to handle five different Requests that correspond to basic actions that a user performs on an Add-on resource from within the Windows Azure Management Portal: 
 
-- [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md). This happens when a user purchases your Add-on from the Windows Azure Store. This is a `PUT` on a Resource.
-- [Get Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-get.md). This happens when a user views details about a purchased Resource. This happens as a `GET` on the Resource's parent CloudService.
-- [Delete Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-delete.md). This happens when a user deletes a previously-purchased Resource. This happens as a `DELETE` on a Resource or its parent CloudService.
-- [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
+- [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-create-resource.md). This happens when a user purchases your Add-on from the Windows Azure Store. This is a `PUT` on a Resource.
+- [Get Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-get-resource.md). This happens when a user views details about a specific purchased Resource. This happens as a `GET` on the Resource.
+- [Get Resources](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-get-resources.md). This happens when a user views details about purchased Resources for a CloudService. This happens as a `GET` on the Resource's parent CloudService.
+- [Delete Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-delete-resource.md). This happens when a user deletes a previously-purchased Resource. This happens as a `DELETE` on a Resource or its parent CloudService.
+- [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-upgrade-resource.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
 
 ###Single Sign-On (SSO)
 
