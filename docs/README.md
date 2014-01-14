@@ -1,6 +1,6 @@
 # Resource Provider API Guide
 
-A _Resource Provider_ (RP) is a web service that allows users to purchase an Add-on from the Windows Azure Store and manage it from within the Windows Azure Management Portal.  Each Add-on in the Windows Azure Store has it's own Resource Provider that communicates with the Windows Azure platform, in order to support the various workflows involved in supporting an Add-on in the Store.
+A _Resource Provider_ (RP) is a web service that allows users to purchase an Add-on from the Windows Azure Store and manage it from within the Windows Azure Management Portal.  Each Add-on in the Windows Azure Store needs a Resource Provider that communicates with the Windows Azure platform in order to support the various workflows involved in supporting an Add-on in the Store.
 
 ***Please Note:*** the Windows Azure Store is currently in Preview and we are actively improving the Resource Provider API based on feedback. Please make sure you read these  [important tips and gotchas](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md) before you start implementing your own RP.
 
@@ -15,9 +15,9 @@ The Resource Provider (RP) API is:
 - Authentication is through X.509 certificates.
 
 ###Handling Requests
-You should expect requests on two endpoints defined in the Publisher Portal. You will receive resource lifecycle requests such as create, delete, update etc. on the *base URL* `https://<base_uri>/azurestore`. Single sign-on requests will come on the *SSO URL* `https://<base_uri>/azurestore/sso`.
-
-Requests will be made in XML. JSON is not currently supported, but is being considered for future versions of the API.
+You should expect Requests on two endpoints defined in the Publisher Portal:
+-_Provisioning Endpoint_ - handles Requests from Windows Azure to in response to user subscription and provisioning events on your Add-on.  e.g. `https://<your_domain>/azurestore`.
+-_Single Sign On_ - handles SSO workflow. e.g. `https://<your_domain>/azurestore/sso`.
 
 You should expect two headers. The `content-type` header will be set to `application/xml`. The `x-ms-version` header will be set to `2012-03-01` or later.
 
@@ -52,18 +52,17 @@ Below are the certificates used by Windows Azure to call your RP (.cer files).
 
 When a user purchases a specific _Service Plan_ with our Add-on, Windows Azure will start sending your RP _subscription lifecycle events_ for the resource created. For example, if a user purchases the Add-on Clouditrace on the "Bronze" _Service Plan_, the Clouditrace RP will start receiving _subscription lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action. 
 
-Your RP will need to handle the following four _subscription lifecycle events_:
-
-- [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md). This happens when a user purchases your Add-on from the Windows Azure Store. This is a `PUT` on a Resource.
-- [Get Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-get.md). This happens when a user views details about a purchased Resource. This happens as a `GET` on the Resource's parent CloudService.
-- [Delete Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-delete.md). This happens when a user deletes a previously-purchased Resource. This happens as a `DELETE` on a Resource or its parent CloudService.
-- [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
+An RP will need to handle four _subscription lifecycle events_, identified by the 'EntityState' field in the Request from Windows Azure:
+- `Registered` The user intends to subscribe to the Add-on.
+- `Disabled` The user's Add-on subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
+- `Enabled` The user's Add-on subscription has been enabled, because it is current on payments. Your RP should restore access to data.
+- `Deleted` The user's Add-on subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
 
 ***NOTE:***The Resource Provider API uses the term _subscription_ to mean the recurring purchase of an Add-on's _Service Plan_, and should not be confused with Windows Azure subscriptions. 
 
 ####Request
 
-URL: `https://<base_uri>/subscriptions/<subscription_id>/Events`
+URL: `<provisioning_endpoint>/subscriptions/<subscription_id>/Events`
 
 Method: `POST`
 
@@ -99,20 +98,29 @@ Sample:
 
 - `EventId` is the ID of the subscription. **This field is deprecated and should not be used**.
 - `EntityType` will always be _Subscription_. **This field can be ignored**.
-- `EntityId/Id` is the ID of the subscription. It is a GUID, and should be stored by your service. Note that this is the Subscription ID and should be recorded by your service.
-- `EntityEvent/EntityState` is the actual event. It can take four values: `Registered`, `Disabled`, `Enabled`, `Deleted`.
-  - `Registered` This tells the RP that the user intends to create a resource under this subscription.
-  - `Disabled` The user's Windows Azure subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
-  - `Enabled` The user's Windows Azure subscription has been enabled, because it is current on payments. Your RP should restore access to data.
-  - `Deleted` The user's Windows Azure subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
+- `EntityId/Id` is the ID of the subscription, or _Subscription ID_. It is a GUID, and should be stored by your service. 
+- `EntityEvent/EntityState` is the _subscription lifecycle event_. It can take four values: `Registered`, `Disabled`, `Enabled`, `Deleted`.
+  - `Registered` The user intends to subscribe to the Add-on.
+  - `Disabled` The user's Add-on subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
+  - `Enabled` The user's Add-on subscription has been enabled, because it is current on payments. Your RP should restore access to data.
+  - `Deleted` The user's Add-on subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
 - `OperationId` is a unique identifier for this subscription lifecycle event. It is similar in spirit to the ETag, because a subscription lifecycle event that is not acknowledged with an HTTP status code `200` or `201` will be retried again with the same `OperationId`.
-- `Properties` is a property bag that Windows Azure passes to the RP. Only two properties are supported today:
+- `Properties` is a property collection that Windows Azure passes to the RP. Only two properties are supported today:
   - `EMail` is the e-mail address of the logged-in user.
   - `OptIn` indicates whether the user has agreed to give you additional permissions about sending them marketing material. Your RP can always send transactional e-mails e.g. about service or account issues to the e-mail address given in the `EMail` field.
 
 ####Response
 
 If the event is processed successfully, your RP should return a `200` or `201` HTTP status code.
+
+###Actions on Resources 
+
+An RP will need to handle four different Requests that correspond to basic actions that a user performs on an Add-on resource from within the Windows Azure Management Portal: 
+
+- [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md). This happens when a user purchases your Add-on from the Windows Azure Store. This is a `PUT` on a Resource.
+- [Get Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-get.md). This happens when a user views details about a purchased Resource. This happens as a `GET` on the Resource's parent CloudService.
+- [Delete Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-delete.md). This happens when a user deletes a previously-purchased Resource. This happens as a `DELETE` on a Resource or its parent CloudService.
+- [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
 
 
 ###Single Sign-on (SSO)
