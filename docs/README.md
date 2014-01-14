@@ -62,8 +62,6 @@ An RP will need to handle four _subscription lifecycle events_, identified by th
 - `Enabled` The user's Windows Azure subscription has been enabled, because it is current on payments. Your RP should restore access to data.
 - `Deleted` The user's Windows Azure subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
 
-***NOTE:*** the term _subscription_ refers a user's Windows Azure Subscription.
-
 ####Request
 
 URL: `<provisioning_endpoint>/subscriptions/<subscription_id>/Events`
@@ -104,10 +102,10 @@ Sample:
 - `EntityType` will always be _Subscription_. **This field can be ignored**.
 - `EntityId/Id` is the ID of the subscription, or _Subscription ID_. It is a GUID, and should be stored by your service. 
 - `EntityEvent/EntityState` is the _subscription lifecycle event_. It can take four values: `Registered`, `Disabled`, `Enabled`, `Deleted`.
-  - `Registered` The user intends to subscribe to the Add-on.
-  - `Disabled` The user's Add-on subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
-  - `Enabled` The user's Add-on subscription has been enabled, because it is current on payments. Your RP should restore access to data.
-  - `Deleted` The user's Add-on subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
+  - `Registered` The user intends to purchase a _Service Plan_ under this Windows Azure subscription.
+  - `Disabled` The user's Windows Azure subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
+  - `Enabled` The user's Windows Azure subscription has been enabled, because it is current on payments. Your RP should restore access to data.
+  - `Deleted` The user's Windows Azure subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
 - `OperationId` is a unique identifier for this subscription lifecycle event. It is similar in spirit to the ETag, because a subscription lifecycle event that is not acknowledged with an HTTP status code `200` or `201` will be retried again with the same `OperationId`.
 - `Properties` is a property collection that Windows Azure passes to the RP. Only two properties are supported today:
   - `EMail` is the e-mail address of the logged-in user.
