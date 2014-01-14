@@ -56,13 +56,11 @@ Below are the certificates used by Windows Azure to call your RP (.cer files).
 
 When a user purchases a specific _Service Plan_ with our Add-on, Windows Azure will start sending your RP _subscription lifecycle events_ for the resource created. For example, if a user purchases the Add-on Clouditrace on the "Bronze" _Service Plan_, the Clouditrace RP will start receiving _subscription lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action. 
 
-***NOTE:*** the term _subscription_ refers a user's Windows Azure Subscription.
-
 An RP will need to handle four _subscription lifecycle events_, identified by the 'EntityState' field in the Request from Windows Azure:
-- `Registered` The user intends to purchase a _Service Plan_ under this subscription.
-- `Disabled` The user's Add-on subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
-- `Enabled` The user's Add-on subscription has been enabled, because it is current on payments. Your RP should restore access to data.
-- `Deleted` The user's Add-on subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
+- `Registered` The user intends to purchase a _Service Plan_ under this Windows Azure subscription.
+- `Disabled` The user's Windows Azure subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
+- `Enabled` The user's Windows Azure subscription has been enabled, because it is current on payments. Your RP should restore access to data.
+- `Deleted` The user's Windows Azure subscription has been deleted. Windows Azure retains data for 90 days. We recommend a similar retention policy.
 
 ***NOTE:*** the term _subscription_ refers a user's Windows Azure Subscription.
 
