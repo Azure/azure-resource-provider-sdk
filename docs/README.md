@@ -48,16 +48,18 @@ Below are the certificates used by Windows Azure to call your RP (.cer files).
 - [Test environment](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreTest.cer)
 
 
-###Resource Lifecycle Events
+###Subscription Lifecycle Events
 
-When a user purchases a specific _Service Plan_ with our Add-on, Windows Azure will start sending your RP _resource lifecycle events_ for the resource created. For example, if a user purchases the Add-on Clouditrace on the "Bronze" _Service Plan_, the Clouditrace RP will start receiving _resource lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action. 
+When a user purchases a specific _Service Plan_ with our Add-on, Windows Azure will start sending your RP _subscription lifecycle events_ for the resource created. For example, if a user purchases the Add-on Clouditrace on the "Bronze" _Service Plan_, the Clouditrace RP will start receiving _subscription lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action. 
 
-Your RP will need to handle the following four _resource lifecycle events_:
+Your RP will need to handle the following four _subscription lifecycle events_:
 
 - [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md). This happens when a user purchases your Add-on from the Windows Azure Store. This is a `PUT` on a Resource.
 - [Get Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-get.md). This happens when a user views details about a purchased Resource. This happens as a `GET` on the Resource's parent CloudService.
 - [Delete Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-delete.md). This happens when a user deletes a previously-purchased Resource. This happens as a `DELETE` on a Resource or its parent CloudService.
 - [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
+
+***NOTE:***The Resource Provider API uses the term _subscription_ to mean the recurring purchase of an Add-on's _Service Plan_, and should not be confused with Windows Azure subscriptions. 
 
 ####Request
 
