@@ -4,6 +4,8 @@ This SDK is intended for a technical audience (developers or PMs) and provides a
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/azure-store1.png)  
 
+**[LOOKING FOR API DOCS?](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs)**
+
 This SDK includes:
 - [Technical Documentation and Samples](https://github.com/WindowsAzure/azure-resource-provider-sdk/blob/master/README.md#technical-documentation-and-samples) for building a Resource Provider (web service) for the Windows Azure Store.
 - An [Onboarding Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/blob/master/README.md#onboarding-guide) to walk you through all the steps required to get an Add-on into the Windows Azure Store; from creating your Seller Account with Microsoft, to releasing our Add-on into Production.
@@ -24,19 +26,17 @@ The following steps outline the entire cycle of developing, launching and mainta
 
 **Step 3: Build and Test Your Resource Provider.**  A Resource Provider is the web service that allows users to purchase your Add-on from the Windows Azure Store and manage it from within the Windows Azure Management Portal.  Read the [Resource Provider API Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/README.md) to get started building your Resource Provider.  This step can be done in parallel with Steps 1, 2 and 3.
 
-**Step 4: Build the SSO Experience.** Your Add-on will need to support SSO from inside the Azure Managemetn Portal out to a page on your website (usually a dashboard so the user can further customize their Add-on).  Read our SSO guide (coming soon) to learn more about implementing SSO as well as our guidelines. This step can be done in parallel with Steps 1, 2 and 3.
+**Step 4: Publish Your Add-on to Preview.**  In order to test how your Add-on will look and work in the Windows Azure Store, we have a preview/test enviroment that using accounts with test billing info in order to fully test your Add-on.
 
-**Step 5: Publish Your Add-on to Preview.**  In order to test how your Add-on will look and work in the Windows Azure Store, we have a preview/test enviroment that using accounts with test billing info in order to fully test your Add-on.
+**Step 5: Publish Your Add-on to Production.** Once your Add-on is tested and working in Preview, you will use the Publishing Portal to publish your Add-on to production.  This will initiate a final review process by Microsoft Store admins.  When your Add-on is approved it will be released to the live Windows Azure Store.
 
-**Step 6: Publish Your Add-on to Production.** Once your Add-on is tested and working in Preview, you will use the Publishing Portal to publish your Add-on to production.  This will initiate a final review process by Microsoft Store admins.  When your Add-on is approved it will be released to the live Windows Azure Store.
+**Step 6: Schedule Co-marketing for Your Add-on.** Use some Windows Azure marketing muscle to grow awareness of your Add-on.  Read here (coming soon) about co-marketing opportunities.  This step can be done at anytime.
 
-**Step 7: Schedule Co-marketing for Your Add-on.** Use some Windows Azure marketing muscle to grow awareness of your Add-on.  Read here (coming soon) about co-marketing opportunities.  This step can be done at anytime.
-
-**Step 8: Fine-tune Your Add-on.**  Unless you got it completely right the first time, you will want to use the Publisher Portal to adjust pricing and tiers, descriptions and make some promo codes.  Read here (coming soon) about how to make changes to your Add-on.  This step can be done at anytime.
+**Step 7: Fine-tune Your Add-on.**  Unless you got it completely right the first time, you will want to use the Publisher Portal to adjust pricing and tiers, descriptions and make some promo codes.  Read here (coming soon) about how to make changes to your Add-on.  This step can be done at anytime.
 
 ##Technical Documentation and Samples
 
-**Please note:** the Windows Azure Store is currently in Preview and we are currently working on a new .NET SDK that will make it easy to quickly standup a Resource Provider for your Add-on.  We expect to release this new SDK before our Build conference in April.
+**Please note:** the Windows Azure Store is currently in Preview and we are currently working on a new .NET SDK that will make it easy to quickly standup a Resource Provider for your Add-on.  We expect to release this new SDK by late February.
 
 - [API reference](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs)
 - Code samples by language:
