@@ -5,7 +5,7 @@ A _Resource Provider_ (RP) is the web service that allows users to purchase an A
 An RP needs to support the following workflows:
 - [Subscription Operations](#subscription-operations)
 - [Resource Operations](#resource-operations)
-- [Single Sign-On](#single-sign-on)
+- [Single Sign-On](#single-sign-on-operations)
 
 ***Please Note:*** the Windows Azure Store is currently in Preview and we are actively improving the Resource Provider API based on feedback. Please make sure you read these  [important tips and gotchas](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md) before you start implementing your own RP.
 
@@ -125,6 +125,6 @@ An RP will need to handle five different Requests that correspond to basic actio
 - [Delete Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-delete-resource.md). This happens when a user deletes a previously-purchased Resource. This happens as a `DELETE` on a Resource or its parent CloudService.
 - [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-upgrade-resource.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
 
-###Single Sign-On (SSO)
+###Single Sign-On Operations
 
-In addition to supporting _resource lifecycle events_, your Add-on will need to support [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-sso.md). The Windows Azure Management Portal allows a user to select a previously-purchased Resource, and click the _Manage_ button. This signs the user into a service management dashboard hosted by the Add-on provider, without requiring the user to enter a username and password.
+In addition to supporting Subscription and Resource Operations, your Add-on will need to support [SSO Operations](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-sso.md). The Windows Azure Management Portal allows a user to select a previously-purchased Resource, and click the _Manage_ button. This signs the user into a service management dashboard hosted by the Add-on provider, without requiring the user to enter a username and password.
