@@ -1,7 +1,15 @@
 # FAQ for Deploying Add-ons in the Azure Store
 
+- [What is the current status of my Seller Account application?](#why-does-my-publisher-account-still-say-needs-attention)
 - [How do I update my Add-on logos displayed on the Azure website?](#how-do-i-update-my-add-on-logos-displayed-on-the-azure-website)
 - [How do I upgrade to the new Publisher Portal?](#how-do-i-upgrade-to-the-new-publisher-portal)
+
+## Why does my Publisher account still say "Needs Attention"?
+
+In order to release your Add-on into the Azure Store you will need to be an approved Seller.  To apply for approval, you need to submit an application with the Seller Dashboard, which is the first step in setting up your Publisher Portal account.  Until you are approved as a Seller, the Publisher Portal will display the warning "Needs attention" next to your Publisher name.  To check the status of your account, click the "Update Status" button in the bottom toolbar.  If you have been approved, this warning will go away.  If you have not been approved, you will still see the warning, and should contact your Azure Store PM for status.
+
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-update-status.png)
+
 
 ## How do I update my Add-on logos displayed on the Azure website? 
 As of December 2013 we support higher resolution Add-on logos on Azure Store pages.  To update your Add-on logos you will need to log into the [Publisher Portal](http://publish.windowsazure.com).  If you are not using the new Publisher Portal you will need to upgrade by following the steps in "How do I upgrade to the new Publisher Portal?".
