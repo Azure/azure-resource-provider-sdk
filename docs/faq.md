@@ -26,6 +26,14 @@ As of December 2013 we support higher resolution Add-on logos on Azure Store pag
 ### How do I upgrade to the new Publisher Portal?
 If you launched your Add-on into the Azure Store before October 2013, you were on-boarded using an older version of the Azure Publisher Portal. Our new Publisher Portal supports additional options to configure your Add-on and associated Plans. We have automatically migrated all data from the old portal to the new portal. To get access to your existing data all you need to do is log-in with the same Live ID as the one that you used in the old portal.
 
-Currently all data regarding your Add-on has been migrated, however some data regarding the publisher has not yet been migrated. The new portal uses the centralized Microsoft seller registration dashboard to confirm who you are as a publisher. If you do not yet have a seller profile with Microsoft (shared across Windows, Windows Phone and Azure Store) you will need to visit http://sellerdashboard.microsoft.com as part of the publishing process in the new portal to set up your Tax information and Payout information.
+To complete migration to the new Publisher Portal, you will need to complete two steps:
+
+1. Update your company profile and tax status in the Seller Dashboard.
+
+The new portal uses the centralized Microsoft seller registration dashboard to confirm who you are as a publisher. If you do not yet have a seller profile with Microsoft (shared across Windows, Windows Phone and Azure Store) you will need to visit http://sellerdashboard.microsoft.com as part of the publishing process in the new portal to set up your Tax information and Payout information.
+
+2. Publish your Add-on to Preview and Production.
+
+All data regarding your Add-on has been migrated, however you will need to re-publish your Add-on to the Preview and Production environments.  This step will complete the connection between the new Publisher Portal and your Add-ons in Preview and Production.  To Publish to Preview and Production, go to your Add-on, select the "Publish" tab, then using the bottom toolbar, complete the "Preview" action and once it has completed, the "Publish" action.
 
 The new Publisher Portal is located at http://publish.windowsazure.com.  Follow the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to get started with the new Publisher Portal.
