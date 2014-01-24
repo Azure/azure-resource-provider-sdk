@@ -1,6 +1,6 @@
 # FAQ for Deploying Add-ons in the Azure Store
 
-- [What is the current status of my Seller Account application?](#why-does-my-publisher-account-still-say-needs-attention)
+- [Why does my Publisher account still say "Needs Attention"](#why-does-my-publisher-account-still-say-needs-attention)
 - [How do I update my Add-on logos displayed on the Azure website?](#how-do-i-update-my-add-on-logos-displayed-on-the-azure-website)
 - [How do I upgrade to the new Publisher Portal?](#how-do-i-upgrade-to-the-new-publisher-portal)
 
