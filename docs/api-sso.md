@@ -34,7 +34,7 @@ and returns the following XML:
 3) The [Management Portal](https://manage.windowsazure.com) redirects the user to a URL to the SSO URL with a few parameters:
 
 ```
-	<sso_url>?token=<token>&subid=<subscription_id>&cloudservicename=
+	<sso_endpoint>?token=<token>&subid=<subscription_id>&cloudservicename=
 		<cloud_service_name>&resourcetype=<resource_type>&resourcename=<resource_name>
 ```
 
