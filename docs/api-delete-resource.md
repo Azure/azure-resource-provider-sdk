@@ -2,7 +2,7 @@
 A user can delete a Resource from the [Management Portal](https://manage.microsoft.com). When this happens, Azure will severe the billing relationship and ask your RP to delete the resource.
 
 ##Request
-URL: `https://<base_uri>/subscriptions/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
+URL: `https://<base_uri>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
 
 Method: `DELETE`
 
