@@ -24,8 +24,8 @@ The Resource Provider (RP) API is:
 #### Endpoints
 You should expect Requests on two endpoints defined in the Publisher Portal:
 
-- _Provisioning Endpoint_ handles Requests from Azure in response to [Subscription Operations](#subscription-operations) and [Resource Operations](#resource-operations).  e.g. `https://<your_domain>/azurestore`.
-- _Single Sign On_ handles [Single Sign-On](#single-sign-on) workflow. e.g. `https://<your_domain>/azurestore/sso`.
+- <provisioning_endpoint> handles Requests from Azure in response to [Subscription Operations](#subscription-operations) and [Resource Operations](#resource-operations).  e.g. `https://<your_domain>/azurestore`.
+- <sso_endpoint> handles [Single Sign-On](#single-sign-on) workflow. e.g. `https://<your_domain>/azurestore/sso`.
 
 #### Headers
 You should expect two headers. The `content-type` header will be set to `application/xml`. The `x-ms-version` header will be set to `2012-03-01` or later.

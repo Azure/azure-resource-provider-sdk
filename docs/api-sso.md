@@ -6,7 +6,7 @@ This functionality comes from your RP's implementation of a simple SSO protocol:
 
 1) Azure does a `POST` on 
 ```
-	https://<base_url>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/
+	<sso_endpoint>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/
 		resources/<resource_type>/<resource_name>/SsoToken
 ```
 
@@ -31,10 +31,10 @@ and returns the following XML:
 * `TimeStamp` is the current server datetime in [ISO-8601](http://en.wikipedia.org/wiki/ISO_8601) format in the server's own timezone.
 * `Token` is the SHA-256 hash of the string `<subscription_id>:<cloud_service_name>:<resource_name>:<secret>`
 
-3) The [Management Portal](https://manage.windowsazure.com) redirects the user to a URL to the SSO URL defined in the [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md) with a few parameters:
+3) The [Management Portal](https://manage.windowsazure.com) redirects the user to a URL to the SSO URL with a few parameters:
 
 ```
-	https://<sso_url>?token=<token>&subid=<subscription_id>&cloudservicename=
+	<sso_url>?token=<token>&subid=<subscription_id>&cloudservicename=
 		<cloud_service_name>&resourcetype=<resource_type>&resourcename=<resource_name>
 ```
 
