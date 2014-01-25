@@ -7,7 +7,7 @@ In order to get details on a Resource, Azure will do a `GET` for that particular
 
 URL:
 
-`https://<base_uri>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resourceName>`
+`<provisioning_endpoint>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resourceName>`
 
 Method: `GET`
 

@@ -4,7 +4,7 @@ Once a Subscription has received a `Registered` event, any user with Service Adm
 >Your RP will receive a subscription `Registered` event for each Subscription before the first Resource is provisioned.
 
 ##Request
-URL: `https://<base_uri>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
+URL: `<provisioning_endpoint>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
 
 Method: `PUT`
 

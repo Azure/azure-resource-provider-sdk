@@ -20,12 +20,17 @@ The Resource Provider (RP) API is:
 - Authentication is through X.509 certificates.
 
 ###Handling Requests
-You should expect Requests on two endpoints defined in the Publisher Portal:
--_Provisioning Endpoint_ - handles Requests from Azure in response to [Subscription Operations](#subscription-operations) and [Resource Operations](#resource-operations) related to your Add-on.  e.g. `https://<your_domain>/azurestore`.
--_Single Sign On_ - handles [Single Sign-On](#single-sign-on) workflow. e.g. `https://<your_domain>/azurestore/sso`.
 
+#### Endpoints
+You should expect Requests on two endpoints defined in the Publisher Portal:
+
+- _Provisioning Endpoint_ handles Requests from Azure in response to [Subscription Operations](#subscription-operations) and [Resource Operations](#resource-operations).  e.g. `https://<your_domain>/azurestore`.
+- _Single Sign On_ handles [Single Sign-On](#single-sign-on) workflow. e.g. `https://<your_domain>/azurestore/sso`.
+
+#### Headers
 You should expect two headers. The `content-type` header will be set to `application/xml`. The `x-ms-version` header will be set to `2012-03-01` or later.
 
+#### ETags
 You are expected to keep track of ETags since Azure will retry failed operations with the same ETag.  ETags in Request and Response bodies allows Azure to cache your results. Read more about [Change Management using ETags](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/etags.md).
 
 ###Making Responses
