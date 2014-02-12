@@ -4,6 +4,8 @@
 - [Why does my Publisher account still say "Needs Attention"?](#why-does-my-publisher-account-still-say-needs-attention)
 - [How do I update my Add-on logos displayed on the Azure website?](#how-do-i-update-my-add-on-logos-displayed-on-the-azure-website)
 - [Do I have to publish updates to promo codes?](#do-i-have-to-publish-updates-to-promo-codes)
+- [What happens to existing customers if I change the price of a Plan?](#what-happens-to-existing-customers-if-i-change-the-price-of-a-plan)
+
 
 ### How do I upgrade to the new Publisher Portal?
 If you launched your Add-on into the Azure Store before October 2013, you were on-boarded using an older version of the Azure Publisher Portal. Our new Publisher Portal supports additional options to configure your Add-on and associated Plans. We have automatically migrated all data from the old portal to the new portal. To get access to your existing data all you need to do is log-in with the same Live ID as the one that you used in the old portal.
@@ -42,4 +44,5 @@ As of December 2013 we support higher resolution Add-on logos on Azure Store pag
 ### Do I have to publish updates to promo codes?
 If you want to make a change to an existing promo code, simply make the edits and save.  Those changes will take effect immediately without the need to re-publish to Preview or Production.
 
-
+### What happens to existing customers if I change the price of a Plan?
+If you change the price of an existing Plan, customers that are already subscribed to that Plan are not effected by the price change.  Those existing customers will continue on the Plan at the the price/rate they originally purchased.
