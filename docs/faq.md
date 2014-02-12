@@ -1,8 +1,9 @@
 # FAQ for Deploying Add-ons in the Azure Store
 
 - [How do I upgrade to the new Publisher Portal?](#how-do-i-upgrade-to-the-new-publisher-portal)
-- [Why does my Publisher account still say "Needs Attention"](#why-does-my-publisher-account-still-say-needs-attention)
+- [Why does my Publisher account still say "Needs Attention"?](#why-does-my-publisher-account-still-say-needs-attention)
 - [How do I update my Add-on logos displayed on the Azure website?](#how-do-i-update-my-add-on-logos-displayed-on-the-azure-website)
+- [Do I have to publish updates to promo codes?](#do-i-have-to-publish-updates-to-promo-codes)
 
 ### How do I upgrade to the new Publisher Portal?
 If you launched your Add-on into the Azure Store before October 2013, you were on-boarded using an older version of the Azure Publisher Portal. Our new Publisher Portal supports additional options to configure your Add-on and associated Plans. We have automatically migrated all data from the old portal to the new portal. To get access to your existing data all you need to do is log-in with the same Live ID as the one that you used in the old portal.
@@ -37,4 +38,8 @@ As of December 2013 we support higher resolution Add-on logos on Azure Store pag
 6. Upload your new logos
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-marketing-details.png)
+
+### Do I have to publish updates to promo codes?
+If you want to make a change to an existing promo code, simply make the edits and save.  Those changes will take effect immediately without the need to re-publish to Preview or Production.
+
 
