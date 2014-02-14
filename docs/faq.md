@@ -1,8 +1,8 @@
 # Azure Store Partner FAQ
 
 ## General questions about selling in the Azure Store
-- [What countries is the Azure Store available to Sell From?](what-countries-is-the-azure-store-available-to-sell-from)
-- [What countries is the Azure Store available to Sell To?](what-countries-is-the-azure-store-available-to-sell-to)
+- [What countries is the Azure Store available to Sell From?](#what-countries-is-the-azure-store-available-to-sell-from)
+- [What countries is the Azure Store available to Sell To?](#what-countries-is-the-azure-store-available-to-sell-to)
 
 ## Questions related to the Publisher Portal
 - [How do I upgrade to the new Publisher Portal?](#how-do-i-upgrade-to-the-new-publisher-portal)
