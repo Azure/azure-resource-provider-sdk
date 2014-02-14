@@ -20,83 +20,8 @@ During the preview, the Azure Store is available only in the United States.
 ### What countries is the Azure Store available to Sell To?
 Windows Azure Store is currently available to consumers in the following countries:
 
-Algeria - Argentina - Australia - Austria
-Bahrain
-Belarus
-Belgium
-Brazil
-Bulgaria
-Canada
-Chile
-Colombia
-Costa Rica
-Czech Republic
-Denmark
-Dominican Republic
-Ecuador
-Egypt
-El Salvador
-Estonia
-Finland
-France
-Germany
-Great Britain (United Kingdom)
-Greece
-Guatemala
-HongKong
-Hungary
-Indonesia
-Ireland
-Israel
-Italy
-Japan
-Jordan
-Kazakhstan
-Kenya
-Kuwait
-Latvia
-Lithuania
-Luxembourg
-Macedonia
-Malaysia
-Malta
-Mexico
-Montenegro
-Morocco
-Netherlands
-New Zealand
-Nigeria
-Oman
-Pakistan
-Panama
-Paraguay
-Peru
-Philippines
-Poland
-Portugal
-Qatar
-Romania
-Russia
-Saudi Arabia
-Serbia
-Singapore
-Slovakia
-Slovenia
-South Africa
-South Korea
-Spain
-Sri Lanka
-Sweden
-Switzerland
-Thailand
-Trinidad and Tobago
-Tunisia
-Turkey
-Ukraine
-United Arab Emirates
-United States
-Uruguay
-Venezuela
+Algeria - Argentina - Australia - Austria - Bahrain - Belarus - Belgium - Brazil - Bulgaria - Canada - Chile - Colombia - Costa Rica - Czech Republic - Denmark - Dominican Republic - Ecuador - Egypt - El Salvador - Estonia - Finland - France - Germany - Great Britain (United Kingdom) - Greece - Guatemala - HongKong - Hungary - Indonesia - Ireland - Israel - Italy - Japan - Jordan - Kazakhstan - Kenya - Kuwait - Latvia - Lithuania - Luxembourg - Macedonia - Malaysia - Malta - Mexico - 
+Montenegro - Morocco - Netherlands - New Zealand - Nigeria - Oman - Pakistan - Panama - Paraguay - Peru - Philippines - Poland - Portugal - Qatar - Romania - Russia - Saudi Arabia - Serbia - Singapore - Slovakia - Slovenia - South Africa - South Korea - Spain - Sri Lanka - Sweden - Switzerland - Thailand - Trinidad and Tobago - Tunisia - Turkey - Ukraine - United Arab Emirates - United States - Uruguay - Venezuela
 
 ### How do I upgrade to the new Publisher Portal?
 If you launched your Add-on into the Azure Store before October 2013, you were on-boarded using an older version of the Azure Publisher Portal. Our new Publisher Portal supports additional options to configure your Add-on and associated Plans. We have automatically migrated all data from the old portal to the new portal. To get access to your existing data all you need to do is log-in with the same Live ID as the one that you used in the old portal.
