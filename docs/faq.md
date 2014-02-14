@@ -20,10 +20,7 @@ During the preview, the Azure Store is available only in the United States.
 ### What countries is the Azure Store available to Sell To?
 Windows Azure Store is currently available to consumers in the following countries:
 
-Algeria
-Argentina
-Australia
-Austria
+Algeria - Argentina - Australia - Austria
 Bahrain
 Belarus
 Belgium
