@@ -1,10 +1,14 @@
-# FAQ for Deploying Add-ons in the Azure Store
+# Azure Store Partner FAQ
 
+## Questions related to the Publisher Portal
 - [How do I upgrade to the new Publisher Portal?](#how-do-i-upgrade-to-the-new-publisher-portal)
 - [Why does my Publisher account still say "Needs Attention"?](#why-does-my-publisher-account-still-say-needs-attention)
 - [How do I update my Add-on logos displayed on the Azure website?](#how-do-i-update-my-add-on-logos-displayed-on-the-azure-website)
 - [Do I have to publish updates to promo codes?](#do-i-have-to-publish-updates-to-promo-codes)
 - [What happens to existing customers if I change the price of a Plan?](#what-happens-to-existing-customers-if-i-change-the-price-of-a-plan)
+
+## Questions related to developing a Resource Provider
+- [Which characters need to be supported for resource names?](#which-characters-need-to-be-supported-for-resource-names)
 
 
 ### How do I upgrade to the new Publisher Portal?
@@ -46,3 +50,7 @@ If you want to make a change to an existing promo code, simply make the edits an
 
 ### What happens to existing customers if I change the price of a Plan?
 If you change the price of an existing Plan, customers that are already subscribed to that Plan are not effected by the price change.  Those existing customers will continue on the Plan at the the price/rate they originally purchased.
+
+### Which characters need to be supported for resource names?
+
+The Azure Store allows users to use letters, numbers, periods, hyphens and underscores when creating resource names.  Your service will need to accept these characters when provisioning resources.  If your service is not able to accept any of these allowed characters, then one option is to: reject the resource creation and return a user friendly error message that identifies the rejected character(s), and communicates allowed characters.
