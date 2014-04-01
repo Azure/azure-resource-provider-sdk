@@ -59,7 +59,10 @@ Below are the certificates used by Azure to call your RP (.cer files).
 
 ###Subscription Operations
 
-When a user purchases a specific _Service Plan_ with our Add-on, Azure will start sending your RP _subscription lifecycle events_ for the resource created. For example, if a user purchases the Add-on "Clouditrace" on the "Bronze" _Service Plan_, the Clouditrace RP will start receiving _subscription lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action. 
+When a user purchases a specific _Service Plan_ with our Add-on, Azure will start sending your RP _subscription lifecycle events_ for the resource created. For example, if a user purchases the Add-on "Contoso" using the "Bronze" _Service Plan_, the Contoso RP will start receiving _subscription lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action. 
+
+To state this another way, _subscription lifecycle events_ occur based on resource operations performed by your customer.  E.g. Your RP will receive a subscription `Registered` event for each Subscription before the first Resource is provisioned. This will be a "POST" Request. Once that is complete a provision Request will start.
+
 
 An RP will need to handle four _subscription lifecycle events_, identified by the 'EntityState' field in the Request from Azure:
 - `Registered` The user intends to purchase a _Service Plan_ under this Azure subscription.
@@ -71,7 +74,7 @@ An RP will need to handle four _subscription lifecycle events_, identified by th
 
 URL: `<provisioning_endpoint>/subscriptions/<subscription_id>/Events`
 
-Method: `POST`
+Method: `POST` (all four _subscription lifecycle events_ use POST)
 
 Sample:
 
