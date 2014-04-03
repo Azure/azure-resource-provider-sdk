@@ -63,6 +63,9 @@ If you want to make a change to an existing promo code, simply make the edits an
 ### What happens to existing customers if I change the price of a Plan?
 If you change the price of an existing Plan, customers that are already subscribed to that Plan are not effected by the price change.  Those existing customers will continue on the Plan at the the price/rate they originally purchased.
 
+### What happens if I delete a Plan that has customers?
+Deleting a Plan in the Publisher Portal will remove the Plan from the Azure Store.  The Azure Store backend will no longer support selling of this Plan, but existing customers won’t be effected.
+
 ### Which characters need to be supported for resource names?
 
 The Azure Store allows users to use letters, numbers, periods, hyphens and underscores when creating resource names.  Your service will need to accept these characters when provisioning resources.  If your service is not able to accept any of these allowed characters, then one option is to: reject the resource creation and return a user friendly error message that identifies the rejected character(s), and communicates allowed characters.
