@@ -17,6 +17,9 @@ You will use the Publisher Portal to perform each of following tasks below.  The
 
 Log into the [Publisher Portal](http://publish.windowsazure.com) with your Microsoft account.  If you do not have one you will be directed to create one [here](http://go.microsoft.com/fwlink/p/?LinkID=238657).
 
+    > **Note:** When creating your Publisher Portal login make sure to use an account that is shared among members of your team.  For example:  AzStore-Admin@contoso.com vs. joesmith@contoso.com .
+
+
 When you login for the first time, you will be required to set a _Publisher Namespace_.  This is a unique identifier for your company, and it is also used when [Azure Management API](http://msdn.microsoft.com/en-us/library/windowsazure/ee460799.aspx) users call your Resource Provider directly. You should use a concise string representing your company. For example, if your company is called Clouditrace and sells a monitoring service, you should enter "clouditrace" and not "monitoring" because the later is too specific.
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-namespace.PNG)
