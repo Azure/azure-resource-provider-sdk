@@ -95,8 +95,8 @@ If the Resource was successfully provisioned, return a `200` or `201` HTTP statu
 - `Error/HttpCode` should be used to further classify the error in the `4xx` range. This value may be displayed to client.
 - `Error/Message` should be used to describe the error in detail. This value may be displayed to client.
 - `OutputItems` is an **optional**  collection of properties used to send back key-value pairs that users can use to connect to the Resource. All of the below fields are **required**:
-  - `Key` is a unique key identifying the `OutputItem` e.g. `username`
-  - `Value` indicates the value associated with the key e.g. `john-doe`
+  - `Key` is a unique key identifying the `OutputItem` e.g. `PORT`
+  - `Value` indicates the value associated with the key e.g. `10301`
 
 Example output to user in Azure Management Portal:
 
