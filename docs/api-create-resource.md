@@ -51,13 +51,17 @@ If the Resource was successfully provisioned, return a `200` or `201` HTTP statu
 	</OperationStatus>
 	<OutputItems>
 		<OutputItem>
-			<Key>username</Key>
-			<Value>fake_user</Value>
+			<Key>HOST</Key>
+			<Value>u-cloud.12345.us-west-1.azure.contosocloud.net</Value>
 		</OutputItem>
 		<OutputItem>
-			<Key>password</Key>
-			<Value>fake_password</Value>
+			<Key>PASSWORD</Key>
+			<Value>GkdsofiEJK38909dKJNt</Value>
 		</OutputItem>
+		<OutputItem>
+			<Key>PORT</Key>
+			<Value>10301</Value>
+		</OutputItem>		
 	</OutputItems>
 	<Plan>free</Plan>
 	<State>Started</State>
@@ -90,9 +94,14 @@ If the Resource was successfully provisioned, return a `200` or `201` HTTP statu
 
 - `Error/HttpCode` should be used to further classify the error in the `4xx` range. This value may be displayed to client.
 - `Error/Message` should be used to describe the error in detail. This value may be displayed to client.
-- `OutputItems` is an **optional**  property bag used to send back key-value pairs users can use to connect to the Resource. You can only send back `OutputItems` that were registered in the [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md). All of the below fields are **required**:
+- `OutputItems` is an **optional**  collection of properties used to send back key-value pairs that users can use to connect to the Resource. All of the below fields are **required**:
   - `Key` is a unique key identifying the `OutputItem` e.g. `username`
   - `Value` indicates the value associated with the key e.g. `john-doe`
+
+Example output to user in Azure Management Portal:
+
+![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/api-output-items.png)  
+
 - `Plan` is **required**, and it is the ID of the plan associated with the Resource e.g. `free`
 - `State` is a **required** field, which takes one of these values:
   - `Started` indicates that the resource is working correctly 
