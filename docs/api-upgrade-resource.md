@@ -1,6 +1,6 @@
 #Resource Operation: Upgrade Resource
 
-If your service offers multiple plans or tiers (e.g. Free, Silver, Gold), users can freely move to higher tiers from the [Management Portal](https://manage.windowsazure.com). Your RP will receive a `POST` on a Resource when this happens.
+If your service offers multiple plans or tiers (e.g. Free, Silver, Gold), users can freely move to higher tiers from the [Management Portal](https://manage.windowsazure.com). Your RP will receive a `PUT` on a Resource when this happens.
 
 ##Request
 URL: `<provisioning_endpoint>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
