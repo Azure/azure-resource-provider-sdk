@@ -5,7 +5,7 @@ If your service offers multiple plans or tiers (e.g. Free, Silver, Gold), users 
 ##Request
 URL: `<provisioning_endpoint>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
 
-Method: `POST`
+Method: `PUT`
 
 Sample:
 
