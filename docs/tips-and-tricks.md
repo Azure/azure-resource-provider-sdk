@@ -36,9 +36,9 @@ Can you see why? It's because the `CloudServiceSettings` node is not in the corr
 Windows Azure uses ETags to cache responses. When a resource is created, the ETag must be roundripped back in the response. Keep in mind that if Azure receives an error, it will retry the operation with the same ETag several times.
 
 ##OutputItems only need to be returned when a Resource is first created
-Your RP may return `OutputItems`, which define information such as API keys and endpoints which can be used to connect to your service. If `OutputItems` are defined in your RP's [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/concepts.md), they must be returned when the Resource is created.
+Your RP may return `OutputItems`, which define information such as API keys and endpoints which can be used to connect to your service. If `OutputItems` are defined in your RP's [manifest](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/concepts.md), they must be returned when the Resource is created.
 
-However, they do not need to be returned on subsequent GETs on the Resource or CloudService, as Azure will cache `OutputItems`. If the user changes the value of the `OutputItem` e.g. changes a database password, you can return `OutputItems` with a new `ETag`. 
+However, they do not need to be returned on subsequent GETs on the Resource or CloudService, as Azure will cache `OutputItems`. If the user changes the value of the `OutputItem` e.g. changes a database password, you can return `OutputItems` with a new `ETag`.
 
 
 ##XML Response must contain a namespace

@@ -11,7 +11,7 @@ We need three logo sizes for your offering:
 * 100x100 pixels
 * 215x215 pixels
 
-These logos will be uploaded to the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md).
+These logos will be uploaded to the [Publisher Portal Guide](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md).
 
 
 ##Logo Look and Feel
@@ -19,7 +19,7 @@ These logos will be uploaded to the [Publisher Portal Guide](https://github.com/
 * The Azure design has a simple color palette. Keep the number of primary and secondary colors on your logo low.
 * Logos should not be placed on a white background. We recommend simple primary colors or transparent backgrounds.
 * **Do not use a gradient background** on the logo.
-* Avoid placing text, even your company or brand name, on the logo. 
+* Avoid placing text, even your company or brand name, on the logo.
 * The look and feel of your logo should be 'flat' and should avoid gradients.
 
 ##Use of the Azure logo
