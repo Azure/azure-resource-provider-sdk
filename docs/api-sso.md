@@ -36,6 +36,7 @@ and returns the following XML:
 ```
 	<sso_endpoint>?token=<token>&subid=<subscription_id>&cloudservicename=
 		<cloud_service_name>&resourcetype=<resource_type>&resourcename=<resource_name>
+		&timestamp=<timestamp>
 ```
 
 4) Your RP generates the token again. If the token matches, and if the timestamp is within a 10 minute period, the RP sets a cookie and logs the user in. Otherwise, the RP returns a `403` error.
