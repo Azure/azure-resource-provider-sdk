@@ -379,3 +379,10 @@ class Validator(object):
 
 		for warning in warnings:
 			Printer.warn("Manifest: %s" % warning)
+	def all(self):
+		self.manifest()
+		self.create()
+		self.get_cloud_service()
+		self.upgrade()
+		self.sso()
+		self.delete()
