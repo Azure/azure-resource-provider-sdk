@@ -101,11 +101,12 @@ def parse_arguments():
 	parser.add_argument("--resource-type", help="Type of Resource e.g. monitoring")
 	parser.add_argument("--resource-name", help="Name of Resource e.g. myresource")
 	parser.add_argument('--promo-code', help='Promotion code to use during Create Resource and Upgrade Resource')
-	parser.add_argument('--plan', help='Plan name used during upgrades and purchases')
+	parser.add_argument('--purchase-plan', help='Plan name used purchases')
+	parser.add_argument('--upgrade-plan', help='Plan name used in upgrade')
 	
 	parse_result = parser.parse_args()
 
-	optionals = ['command', 'env', 'manifest_path', 'resource_provider_namespace', 'subscription_id', 'cloud_service_name', 'resource_type', 'resource_name', 'promo_code', 'plan']
+	optionals = ['command', 'env', 'manifest_path', 'resource_provider_namespace', 'subscription_id', 'cloud_service_name', 'resource_type', 'resource_name', 'promo_code', 'purchase_plan', 'upgrade_plan']
 	for optional in optionals:
 		attribute_value = getattr(parse_result, optional)
 		if attribute_value is not None:
