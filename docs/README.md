@@ -51,7 +51,7 @@ The RP API is one-way, i.e. Azure can call your service, but your service cannot
 
 You are responsible for verifying the caller's certificate thumbprint. **Only accept calls from certificates that have the correct public key**.
 
-Below certificate is used by Azure to call your RP (.cer files). This certificate is used for both Staging as well as Production.
+Below certificate is used by Azure to call your RP (.cer file). This certificate is used for both Staging as well as Production.
 
 - [Production\Stage environment](https://github.com/Azure/azure-resource-provider-sdk/blob/master/docs/misc/AzureStoreLatest.cer)
 
