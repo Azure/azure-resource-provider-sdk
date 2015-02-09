@@ -35,7 +35,7 @@ The response to a `GET` on a CloudService should be like this:
 					<Name>Servers</Name>
 					<Unit>generic</Unit>
 					<Used>1</Used>
-				</UsageMeter>	
+				</UsageMeter>
 			</UsageMeters>
 		</Resource>
 		<Resource>
@@ -54,14 +54,14 @@ The response to a `GET` on a CloudService should be like this:
 					<Name>Servers</Name>
 					<Unit>generic</Unit>
 					<Used>2</Used>
-				</UsageMeter>	
+				</UsageMeter>
 			</UsageMeters>
 		</Resource>
 	</Resources>
 </CloudService>
 ```
 
-The data under the `<Resource>` node should be as it is described in [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md), with two important exceptions: 
+The data under the `<Resource>` node should be as it is described in [Create Resource](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md), with two important exceptions:
 
 - You don't need to include `CloudService` node under each `Resource`
 - **OutputItems should not be returned since Azure has already cached them.**

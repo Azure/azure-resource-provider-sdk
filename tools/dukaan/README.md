@@ -23,20 +23,20 @@ Dukaan stores frequently-used settings in a configuration file, which makes comm
 
 ```bash
 dukaan init
-``` 
+```
 
 Dukaan will now prompt you for several values:
 
-* **Resource Provider Namespace**: This is the value you entered in the Publisher Portal during initial registration. Typically, this is your company's name. E.g. 'contoso'. Please refer to the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) for more details.
-* **Resource Type**: This is the Resource Type you entered for your RP in the Publisher Portal. Please refer to the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) for more details.
+* **Resource Provider Namespace**: This is the value you entered in the Publisher Portal during initial registration. Typically, this is your company's name. E.g. 'contoso'. Please refer to the [Publisher Portal Guide](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) for more details.
+* **Resource Type**: This is the Resource Type you entered for your RP in the Publisher Portal. Please refer to the [Publisher Portal Guide](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) for more details.
 * **Subscription ID**: This is the Subscription under which Resources will be created, deleted, etc. A good default is _my_subscription_.
 * **Resource Name**: This is the name of the Resource to create, delete, etc. A good default is _my_resource_.
-* **Base Plan Name**: This is the ID of the plan that will be used for the Create Resource test. **Enter the ID as your code expects to see it, not the user-friendly name e.g. contoso_10_gb, not _Contoso Silver 10 GB** You entered this value in the _Plan_ section of the Publisher Portal. Please refer to the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) for more details.
-* **Upgrade Plan Name**: This is the ID of the plan that will be used for the Upgrade Resource test. **Enter the ID as your code expects to see it, not the user-friendly name e.g. contoso_10_gb, not _Contoso Silver 10 GB** You entered this value in the _Plan_ section of the Publisher Portal. Please refer to the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) for more details.
+* **Base Plan Name**: This is the ID of the plan that will be used for the Create Resource test. **Enter the ID as your code expects to see it, not the user-friendly name e.g. contoso_10_gb, not _Contoso Silver 10 GB** You entered this value in the _Plan_ section of the Publisher Portal. Please refer to the [Publisher Portal Guide](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) for more details.
+* **Upgrade Plan Name**: This is the ID of the plan that will be used for the Upgrade Resource test. **Enter the ID as your code expects to see it, not the user-friendly name e.g. contoso_10_gb, not _Contoso Silver 10 GB** You entered this value in the _Plan_ section of the Publisher Portal. Please refer to the [Publisher Portal Guide](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) for more details.
 
 The Manifest
 ---
-Dukaan uses the [manifest](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/manifest.md) to determine what endpoints to connect to. For local testing, a manifest like this will suffice (note that the `Test` environment points to the local development web server over HTTP):
+Dukaan uses the [manifest](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/manifest.md) to determine what endpoints to connect to. For local testing, a manifest like this will suffice (note that the `Test` environment points to the local development web server over HTTP):
 
 ```xml
 <ResourceManifest>
@@ -81,7 +81,7 @@ You may see some warnings, especially during development. Make sure you fix them
 
 Testing Create Resource
 ---
-To test [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md), run this command:
+To test [Create Resource](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-resource-create.md), run this command:
 
 ```bash
 dukaan create
@@ -111,7 +111,7 @@ If everything goes well, you should see this output with `INFO` and `PASS` line 
 
 Testing Show Resource
 ---
-To test [Show Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-get.md), run this command:
+To test [Show Resource](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-resource-get.md), run this command:
 
 ```bash
 dukaan show
@@ -128,7 +128,7 @@ If everything goes well, you should see this output with `INFO` and `PASS` line 
 
 Testing Upgrade Resource
 ---
-To test [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md), run this command:
+To test [Upgrade Resource](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-resource-upgrade.md), run this command:
 
 ```bash
 dukaan upgrade
@@ -155,7 +155,7 @@ If everything goes well, you should see this output with `INFO` and `PASS` line 
 
 Testing SSO
 ---
-To test [SSO](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/sso.md), run this command:
+To test [SSO](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/sso.md), run this command:
 
 ```bash
 dukaan sso

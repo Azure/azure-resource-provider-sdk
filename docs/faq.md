@@ -20,7 +20,7 @@ During the preview, the Azure Store is available only in the United States.
 ### What countries is the Azure Store available to Sell To?
 Windows Azure Store is currently available to consumers in the following countries:
 
-Algeria - Argentina - Australia - Austria - Bahrain - Belarus - Belgium - Brazil - Bulgaria - Canada - Chile - Colombia - Costa Rica - Czech Republic - Denmark - Dominican Republic - Ecuador - Egypt - El Salvador - Estonia - Finland - France - Germany - Great Britain (United Kingdom) - Greece - Guatemala - HongKong - Hungary - Indonesia - Ireland - Israel - Italy - Japan - Jordan - Kazakhstan - Kenya - Kuwait - Latvia - Lithuania - Luxembourg - Macedonia - Malaysia - Malta - Mexico - 
+Algeria - Argentina - Australia - Austria - Bahrain - Belarus - Belgium - Brazil - Bulgaria - Canada - Chile - Colombia - Costa Rica - Czech Republic - Denmark - Dominican Republic - Ecuador - Egypt - El Salvador - Estonia - Finland - France - Germany - Great Britain (United Kingdom) - Greece - Guatemala - HongKong - Hungary - Indonesia - Ireland - Israel - Italy - Japan - Jordan - Kazakhstan - Kenya - Kuwait - Latvia - Lithuania - Luxembourg - Macedonia - Malaysia - Malta - Mexico -
 Montenegro - Morocco - Netherlands - New Zealand - Nigeria - Oman - Pakistan - Panama - Paraguay - Peru - Philippines - Poland - Portugal - Qatar - Romania - Russia - Saudi Arabia - Serbia - Singapore - Slovakia - Slovenia - South Africa - South Korea - Spain - Sri Lanka - Sweden - Switzerland - Thailand - Trinidad and Tobago - Tunisia - Turkey - Ukraine - United Arab Emirates - United States - Uruguay - Venezuela
 
 ### How do I upgrade to the new Publisher Portal?
@@ -36,16 +36,16 @@ The new portal uses the centralized Microsoft seller registration dashboard to c
 
 All data regarding your Add-on has been migrated, however you will need to re-publish your Add-on to the Preview and Production environments.  This step will complete the connection between the new Publisher Portal and your Add-ons in Preview and Production.  To Publish to Preview and Production, go to your Add-on, select the "Publish" tab, then using the bottom toolbar, complete the "Preview" action and once it has completed, the "Publish" action.
 
-The new Publisher Portal is located at http://publish.windowsazure.com.  Follow the [Publisher Portal Guide](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to get started with the new Publisher Portal.
+The new Publisher Portal is located at http://publish.windowsazure.com.  Follow the [Publisher Portal Guide](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/publisher-portal.md) to get started with the new Publisher Portal.
 
 ### Why does my Publisher account still say "Needs Attention"?
 
 In order to release your Add-on into the Azure Store you will need to be an approved Seller.  To apply for approval, you need to submit an application with the Seller Dashboard, which is the first step in setting up your Publisher Portal account.  Until you are approved as a Seller, the Publisher Portal will display the warning "Needs attention" next to your Publisher name.  To check the status of your account, click the "Update Status" button in the bottom toolbar.  If you have been approved, this warning will go away.  If you have not been approved, you will still see the warning, and should contact your Azure Store PM for status.
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-update-status.png)
+![overview](https://raw.github.com/Azure/azure-resource-provider-sdk/master/docs/images/publisher-portal-update-status.png)
 
 
-### How do I update my Add-on logos displayed on the Azure website? 
+### How do I update my Add-on logos displayed on the Azure website?
 As of December 2013 we support higher resolution Add-on logos on Azure Store pages.  To update your Add-on logos you will need to log into the [Publisher Portal](http://publish.windowsazure.com).  If you are not using the new Publisher Portal you will need to upgrade by following the steps in "How do I upgrade to the new Publisher Portal?".
 
 1. Log into the [Publisher Portal](http://publish.windowsazure.com).
@@ -55,7 +55,7 @@ As of December 2013 we support higher resolution Add-on logos on Azure Store pag
 5. Select “English” or other language where relevant
 6. Upload your new logos
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/publisher-portal-marketing-details.png)
+![overview](https://raw.github.com/Azure/azure-resource-provider-sdk/master/docs/images/publisher-portal-marketing-details.png)
 
 ### Do I have to publish updates to promo codes?
 If you want to make a change to an existing promo code, simply make the edits and save.  Those changes will take effect immediately without the need to re-publish to Preview or Production.

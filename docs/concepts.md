@@ -4,10 +4,10 @@ A Resource Provider (RP, for short) is simply an HTTPS RESTful API contract that
 
 The figure below gives a simplified view of how a user interacts directly with Azure through the Azure Management Portal, PowerShell scripts or *NIX command-line tools. Azure, in turn, communicates with your RP to manage the user's service.
 
-![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-overview.png)
+![overview](https://raw.github.com/Azure/azure-resource-provider-sdk/master/docs/images/arch-overview.png)
 
 ##Azure Concepts
-Before we dive into RP concepts, it will be helpful to understand several Azure concepts first. 
+Before we dive into RP concepts, it will be helpful to understand several Azure concepts first.
 
 - Every user who signs up for Azure logs in with a Microsoft account (e.g. abby@live.com or bob@hotmail.com).
 
@@ -19,9 +19,9 @@ This is a conceptual view of a user's Resources:
 
 * There are two Subscriptions, _Subscription A_ and _Subscription B_.
 * Subscription A has two Resources, named _Resource 1_ and _Resource 2_.
-* Subscription B has one Resource, named _Resource 1_. 
+* Subscription B has one Resource, named _Resource 1_.
 
-![resources](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-resources.png)
+![resources](https://raw.github.com/Azure/azure-resource-provider-sdk/master/docs/images/arch-resources.png)
 
 ##Resource Provider Concepts
 - Each Resource's lifecycle is managed by a **ResourceProvider**. This is a common software design pattern, where a manager / orchestrator (Azure) relies on a provider (ResourceProvider) to provide specific functionality.
@@ -30,7 +30,7 @@ This is a conceptual view of a user's Resources:
 
 Tying it together, this is a conceptual view of the user's resources:
 
-![rp](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-cloud-services.png)
+![rp](https://raw.github.com/Azure/azure-resource-provider-sdk/master/docs/images/arch-cloud-services.png)
 
 * There are two Subscriptions, _Subscription A_ and _Subscription B_.
 * Subscription A has two CloudServices, named _CloudService X_ and _CloudService Y_.
@@ -38,4 +38,4 @@ Tying it together, this is a conceptual view of the user's resources:
    * _CloudService Y_ has a single Resource, named _Resource 2_. This Resource is provided by a Resource Provider named 'clouditrace' which exposes a single Resource of type 'monitoring'. Note that the combination of Subscription ID, Cloud Service ID and Resource Name must be unique.
 * Subscription B has a single CloudService, named _Cloud Service X_ with a single Resource, named _Resource 1_.
 
-![together](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-together.png)
+![together](https://raw.github.com/Azure/azure-resource-provider-sdk/master/docs/images/arch-together.png)

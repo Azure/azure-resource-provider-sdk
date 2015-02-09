@@ -7,9 +7,9 @@ An RP needs to support the following workflows:
 - [Resource Operations](#resource-operations)
 - [Single Sign-On](#single-sign-on-operations)
 
-***Please Note:*** the Azure Store is currently in Preview and we are actively improving the Resource Provider API based on feedback. Please make sure you read these  [important tips and gotchas](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md) before you start implementing your own RP.
+***Please Note:*** the Azure Store is currently in Preview and we are actively improving the Resource Provider API based on feedback. Please make sure you read these  [important tips and gotchas](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/tips-and-tricks.md) before you start implementing your own RP.
 
-To better understand this documentation, please read [Azure Platform Concepts](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/concepts.md) to understand the definitions and concept mappings for the Azure platform and Resource Provider API.
+To better understand this documentation, please read [Azure Platform Concepts](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/concepts.md) to understand the definitions and concept mappings for the Azure platform and Resource Provider API.
 
 ##Resource Provider API Documentation
 
@@ -31,7 +31,7 @@ You should expect Requests on two endpoints defined in the Publisher Portal:
 You should expect two headers. The `content-type` header will be set to `application/xml`. The `x-ms-version` header will be set to `2012-03-01` or later.
 
 #### ETags
-You are expected to keep track of ETags since Azure will retry failed operations with the same ETag.  ETags in Request and Response bodies allows Azure to cache your results. Read more about [Change Management using ETags](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/etags.md).
+You are expected to keep track of ETags since Azure will retry failed operations with the same ETag.  ETags in Request and Response bodies allows Azure to cache your results. Read more about [Change Management using ETags](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/etags.md).
 
 ###Making Responses
 Your RP should respond in less than 20 seconds to requests, otherwise Azure will consider the operation timed out.
@@ -53,13 +53,13 @@ You are responsible for verifying the caller's certificate thumbprint. **Only ac
 
 Below are the certificates used by Azure to call your RP (.cer files).
 
-- [Production environment](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreProduction.cer)
-- [Stage environment](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreStage.cer)
-- [Test environment](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/misc/AzureStoreTest.cer)
+- [Production environment](https://raw.github.com/Azure/azure-resource-provider-sdk/master/docs/misc/AzureStoreProduction.cer)
+- [Stage environment](https://raw.github.com/Azure/azure-resource-provider-sdk/master/docs/misc/AzureStoreStage.cer)
+- [Test environment](https://raw.github.com/Azure/azure-resource-provider-sdk/master/docs/misc/AzureStoreTest.cer)
 
 ###Subscription Operations
 
-When a user purchases a specific _Service Plan_ with our Add-on, Azure will start sending your RP _subscription lifecycle events_ for the resource created. For example, if a user purchases the Add-on "Contoso" using the "Bronze" _Service Plan_, the Contoso RP will start receiving _subscription lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action. 
+When a user purchases a specific _Service Plan_ with our Add-on, Azure will start sending your RP _subscription lifecycle events_ for the resource created. For example, if a user purchases the Add-on "Contoso" using the "Bronze" _Service Plan_, the Contoso RP will start receiving _subscription lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action.
 
 To state this another way, _subscription lifecycle events_ occur based on resource operations performed by your customer.  E.g. Your RP will receive a subscription `Registered` event for each Subscription before the first Resource is provisioned. This will be a "POST" Request. Once that is complete a provision Request will start.
 
@@ -108,7 +108,7 @@ Sample:
 
 - `EventId` is the ID of the subscription. **This field is deprecated and should not be used**.
 - `EntityType` will always be _Subscription_. **This field can be ignored**.
-- `EntityId/Id` is the ID of the subscription, or _Subscription ID_. It is a GUID, and should be stored by your service. 
+- `EntityId/Id` is the ID of the subscription, or _Subscription ID_. It is a GUID, and should be stored by your service.
 - `EntityEvent/EntityState` is the _subscription lifecycle event_. It can take four values: `Registered`, `Disabled`, `Enabled`, `Deleted`.
   - `Registered` The user intends to purchase a _Service Plan_ under this Azure subscription.
   - `Disabled` The user's Azure subscription has been disabled, due to fraud or non-payment. Your RP should make the resource inaccessible without deleting its data.
@@ -125,14 +125,14 @@ If the event is processed successfully, your RP should return a `200` or `201` H
 
 ###Resource Operations
 
-An RP will need to handle five different Requests that correspond to basic actions that a user performs on an Add-on resource from within the Azure Management Portal: 
+An RP will need to handle five different Requests that correspond to basic actions that a user performs on an Add-on resource from within the Azure Management Portal:
 
-- [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-create-resource.md). This happens when a user purchases your Add-on from the Azure Store. This is a `PUT` on a Resource.
-- [Get Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-get-resource.md). This happens when a user views details about a specific purchased Resource. This happens as a `GET` on the Resource.
-- [Get Resources](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-get-resources.md). This happens when a user views details about purchased Resources for a CloudService. This happens as a `GET` on the Resource's parent CloudService.
-- [Delete Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-delete-resource.md). This happens when a user deletes a previously-purchased Resource. This happens as a `DELETE` on a Resource or its parent CloudService.
-- [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-upgrade-resource.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
+- [Create Resource](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-create-resource.md). This happens when a user purchases your Add-on from the Azure Store. This is a `PUT` on a Resource.
+- [Get Resource](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-get-resource.md). This happens when a user views details about a specific purchased Resource. This happens as a `GET` on the Resource.
+- [Get Resources](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-get-resources.md). This happens when a user views details about purchased Resources for a CloudService. This happens as a `GET` on the Resource's parent CloudService.
+- [Delete Resource](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-delete-resource.md). This happens when a user deletes a previously-purchased Resource. This happens as a `DELETE` on a Resource or its parent CloudService.
+- [Upgrade Resource](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-upgrade-resource.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
 
 ###Single Sign-On Operations
 
-In addition to supporting Subscription and Resource Operations, your Add-on will need to support [SSO Operations](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-sso.md). The Azure Management Portal allows a user to select a previously-purchased Resource, and click the _Manage_ button. This signs the user into a service management dashboard hosted by the Add-on provider, without requiring the user to enter a username and password.
+In addition to supporting Subscription and Resource Operations, your Add-on will need to support [SSO Operations](https://github.com/Azure/azure-resource-provider-sdk/tree/master/docs/api-sso.md). The Azure Management Portal allows a user to select a previously-purchased Resource, and click the _Manage_ button. This signs the user into a service management dashboard hosted by the Add-on provider, without requiring the user to enter a username and password.
