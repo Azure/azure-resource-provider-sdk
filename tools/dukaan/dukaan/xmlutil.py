@@ -166,7 +166,7 @@ def xml_for_subscription_event(subscription_id, resource_provider, resource_type
 		etag = str(uuid.uuid1())
 
 	template = """
-<EntityEvent xmlns='http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement'>
+<EntityEvent xmlns='http://schemas.microsoft.com/windowsazure'>
 	<EventId>%(subscription_id)s</EventId>
 	<ListenerId>%(resource_provider)s</ListenerId>
 	<EntityType>Subscription</EntityType>
@@ -210,7 +210,7 @@ def xml_for_create_resource(plan, resource_type, region="West US", promotion_cod
 
 
 	template = """
-<Resource xmlns='http://schemas.datacontract.org/2004/07/Microsoft.Cis.DevExp.Services.Rdfe.ServiceManagement'>
+<Resource xmlns='http://schemas.microsoft.com/windowsazure'>
 	<CloudServiceSettings>
 		<GeoRegion>%(region)s</GeoRegion>
 	</CloudServiceSettings>
