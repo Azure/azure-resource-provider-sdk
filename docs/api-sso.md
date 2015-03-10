@@ -6,7 +6,7 @@ This functionality comes from your RP's implementation of a simple SSO protocol:
 
 1) Azure does a `POST` on 
 ```
-	<sso_endpoint>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/
+	 <provisioning_endpoint>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/
 		resources/<resource_type>/<resource_name>/SsoToken
 ```
 
