@@ -35,6 +35,7 @@ def validate_config():
 	required = {
 		'create': ['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name', 'purchase_plan'],
 		'show':	['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name'],
+		'get':	['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name'],
 		'delete': ['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name'],
 		'upgrade': ['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name', 'upgrade_plan'],
 		'sso': ['resource_provider_namespace', 'resource_type', 'subscription_id', 'resource_name'],
@@ -92,7 +93,7 @@ Parse optional arguments from command line. Optional arguments override values i
 """
 def parse_arguments():
 	parser = argparse.ArgumentParser()
-	parser.add_argument("command", help="Command to run", choices=["init", "create", "show", "upgrade", "delete", "sso", "manifest"])
+	parser.add_argument("command", help="Command to run", choices=["init", "create", "show", "get", "upgrade", "delete", "sso", "manifest"])
 	parser.add_argument('--env', help='Environment to run tests in.', choices=['test', 'prod'], default='test')
 	parser.add_argument('--manifest-path', help='Path to manifest.xml file. If not provided, dukaan will look in working directory for a file named manifest.xml')
 	parser.add_argument("--resource-provider-namespace", help="Namespace of Resource Provider e.g. contoso")
@@ -128,6 +129,7 @@ def run_checks():
 	dispatch = {
 		'create':	validator.create,
 		'show':		validator.get_cloud_service,
+		'get':		validator.get_resource,
 		'delete':	validator.delete,
 		'upgrade':	validator.upgrade,
 		'manifest':	validator.manifest,

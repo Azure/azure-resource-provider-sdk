@@ -185,6 +185,27 @@ class Validator(object):
 		
 		if self.config['resource_name'] not in resource_names:
 			Printer.error("Resource named '%s' not returned by endpoint" % self.config['resource_name'])
+	def get_resource(self):
+		Printer.start_test("Get Resource")
+		(status, response) = self.client.perform_request(
+				"subscriptions/%s/cloudservices/%s/resources/%s/%s" % (
+					self.config["subscription_id"],
+					self.config["cloud_service_name"],
+					self.config["resource_type"],
+					self.config["resource_name"]),
+				"GET",
+				None,
+				validate_xml=True
+			)
+		if status in [200, 201]:
+			Printer.success("Get Resource succeeded.")
+			Printer.info("Checking XML")
+		else:
+			Printer.error("Get Resource failed with HTTP status code %s" % status)
+			return
+		
+		t = xmlutil.get_subtree_from_xml_string(response)
+		self._validate_resource_response(None, t)
 
 	def upgrade(self):		
 		etag = generate_etag()
