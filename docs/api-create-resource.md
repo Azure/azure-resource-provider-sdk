@@ -66,6 +66,7 @@ If the Resource was successfully provisioned, return a `200` or `201` HTTP statu
 	<Plan>free</Plan>
 	<State>Started</State>
 	<SubState>Waiting for your API calls</SubState>
+	<Type>monitoring</Type>
 	<UsageMeters>
 		<UsageMeter>
 			<Name>Servers</Name>
@@ -108,6 +109,7 @@ Example output to user in Azure Management Portal:
   - `Stopped` indicates that the resource was stopped due to a user action
   - `Paused` indicates that the resource was temporarily put on hold
 - `SubState` is an **optional** field, which your RP can use to return extra state information to Azure.
+- `Type` is a **required** field that indicates the Resource Type. It will be the value of `Resource Type` you entered in the Publishing Portal for your offering.
 - `UsageMeters` is an **optional** field, which your RP can use to return information about the quota usage. For example, if your RP provides a database-as-a-service, you can return information about number of connections and storage amount included and used by the Resource. All of the below fields are **required**:
   - `Name` is the name of the `UsageMeter` as it should be displayed to the user e.g. `Storage` or `Connections`
   - `Used` is the amount of the resource used e.g. 20 or 5.25. **This value must be parseable as a double**.
