@@ -24,6 +24,6 @@ Sample:
 The payload of this file is identical to what is received in [Create Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-create-resource.md). However, the `Plan` node has the new plan's value.
 
 ##Response
-If the Resource was upraded provisioned, return a `200` or `201` HTTP status code with an XML body representing the Resource, as defined in [Get Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-get-resource.md).
+If the Resource was upraded provisioned, return a `200` or `201` HTTP status code with an XML body representing the Resource, as defined in [Create Resource](https://github.com/Azure/azure-resource-provider-sdk/blob/master/docs/api-create-resource.md).
 
 If the upgrade failed e.g. with an HTTP status code `500`, Azure will retry the upgrade.
