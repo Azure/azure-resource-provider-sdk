@@ -216,8 +216,8 @@ def xml_for_create_resource(plan, resource_type, region="West US", promotion_cod
 	</CloudServiceSettings>
 	<ETag>%(etag)s</ETag>
 	<IntrinsicSettings/>
-	<PromotionCode>%(promotion_code)s</PromotionCode>
 	<Plan>%(plan)s</Plan>
+	<PromotionCode>%(promotion_code)s</PromotionCode>
 	<SchemaVersion>1.0</SchemaVersion>
 	<Type>%(resource_type)s</Type>
 	<Version>1.0</Version>
