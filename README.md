@@ -1,4 +1,6 @@
 # Azure Store SDK
+##THIS DOCUMENTATION IS OUT OF DATE##
+Please go to (https://github.com/Azure/azure-marketplace/tree/master/DeveloperServices) for Azure RP documentation.  
 
 Looking for the [API Documentation](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs)?
 
