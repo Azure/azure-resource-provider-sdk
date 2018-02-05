@@ -1,9 +1,9 @@
-#Resource Operation: Create Resource
+# Resource Operation: Create Resource
 Once a Subscription has received a `Registered` event, any user with Service Administrator or Co-Administrator role for that Subscription may create and manage CloudServices containing Resources implemented by the RP.
 
 >Your RP will receive a subscription `Registered` event for each Subscription before the first Resource is provisioned.
 
-##Request
+## Request
 URL: `<provisioning_endpoint>/subscriptions/<subscription_id>/cloudservices/<cloud_service_name>/resources/<resource_type>/<resource_name>`
 
 Method: `PUT`
@@ -33,7 +33,7 @@ Sample:
 - `Type` is a **required** field that indicates the Resource Type. It will be the value of `Resource Type` you entered in the Publishing Portal for your offering.
 
 
-##Response
+## Response
 
 If the Resource was successfully provisioned, return a `200` or `201` HTTP status code with an XML body:
 
