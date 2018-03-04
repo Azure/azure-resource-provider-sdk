@@ -11,7 +11,7 @@ An RP needs to support the following workflows:
 
 To better understand this documentation, please read [Azure Platform Concepts](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/concepts.md) to understand the definitions and concept mappings for the Azure platform and Resource Provider API.
 
-##Resource Provider API Documentation
+## Resource Provider API Documentation
 
 The Resource Provider (RP) API is:
 
@@ -19,21 +19,21 @@ The Resource Provider (RP) API is:
 - XML-based. There is no support for JSON yet.
 - Authentication is through X.509 certificates.
 
-###Handling Requests
+### Handling Requests
 
 #### Endpoints
 You should expect Requests on two endpoints defined in the Publisher Portal:
 
 - <provisioning_endpoint> handles Requests from Azure in response to [Subscription Operations](#subscription-operations) and [Resource Operations](#resource-operations).  e.g. `https://<your_domain>/azurestore`.
 - <sso_endpoint> handles [Single Sign-On](#single-sign-on) workflow. e.g. `https://<your_domain>/azurestore/sso`.
-
+ 
 #### Headers
 You should expect two headers. The `content-type` header will be set to `application/xml`. The `x-ms-version` header will be set to `2012-03-01` or later.
 
 #### ETags
 You are expected to keep track of ETags since Azure will retry failed operations with the same ETag.  ETags in Request and Response bodies allows Azure to cache your results. Read more about [Change Management using ETags](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/etags.md).
 
-###Making Responses
+### Making Responses
 Your RP should respond in less than 20 seconds to requests, otherwise Azure will consider the operation timed out.
 
 Responses adhere to standard HTTP conventions. For simplicity, HTTP codes `200` and `201` are considered equivalent. `403` is used to indicated unauthorized access. `409`, codes in the `5xx` range and timeouts are considered errors, and Azure will retry with the same ETag.
@@ -46,7 +46,7 @@ If your response size is greater than 1 MB, you will receive an HTTP code `500`.
 
 Generally, case matters everywhere e.g. `started != Started`
 
-###Authentication
+### Authentication
 The RP API is one-way, i.e. Azure can call your service, but your service cannot call Azure. All calls are made over HTTPS.
 
 You are responsible for verifying the caller's certificate thumbprint. **Only accept calls from certificates that have the correct public key**.
@@ -55,7 +55,7 @@ Below certificate is used by Azure to call your RP (.cer file). This certificate
 
 - [Production\Stage environment](https://github.com/Azure/azure-resource-provider-sdk/blob/master/docs/misc/AzureStoreLatest.cer)
 
-###Subscription Operations
+### Subscription Operations
 
 When a user purchases a specific _Service Plan_ with our Add-on, Azure will start sending your RP _subscription lifecycle events_ for the resource created. For example, if a user purchases the Add-on "Contoso" using the "Bronze" _Service Plan_, the Contoso RP will start receiving _subscription lifecycle events_ for that _Service Plan_ so that your service can take the appropriate action. 
 
@@ -68,7 +68,7 @@ An RP will need to handle four _subscription lifecycle events_, identified by th
 - `Enabled` The user's Azure subscription has been enabled, because it is current on payments. Your RP should restore access to data.
 - `Deleted` The user's Azure subscription has been deleted. Azure retains data for 90 days. We recommend a similar retention policy.
 
-####Subscription Operation Request
+#### Subscription Operation Request
 
 URL: `<provisioning_endpoint>/subscriptions/<subscription_id>/Events`
 
@@ -117,11 +117,11 @@ Sample:
   - `EMail` is the e-mail address of the logged-in user.
   - `OptIn` indicates whether the user has agreed to give you additional permissions about sending them marketing material. Your RP can always send transactional e-mails e.g. about service or account issues to the e-mail address given in the `EMail` field.
 
-####Subscription Operation Response
+#### Subscription Operation Response
 
 If the event is processed successfully, your RP should return a `200` or `201` HTTP status code.
 
-###Resource Operations
+### Resource Operations
 
 An RP will need to handle five different Requests that correspond to basic actions that a user performs on an Add-on resource from within the Azure Management Portal: 
 
@@ -131,6 +131,6 @@ An RP will need to handle five different Requests that correspond to basic actio
 - [Delete Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-delete-resource.md). This happens when a user deletes a previously-purchased Resource. This happens as a `DELETE` on a Resource or its parent CloudService.
 - [Upgrade Resource](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-upgrade-resource.md). This happens when a user upgrades a _Service Plan_ for a previously-purchased Resource, from a lower tier (e.g. free) to a higher tier. This happens as a `PUT` on the Resource.
 
-###Single Sign-On Operations
+### Single Sign-On Operations
 
 In addition to supporting Subscription and Resource Operations, your Add-on will need to support [SSO Operations](https://github.com/WindowsAzure/azure-resource-provider-sdk/tree/master/docs/api-sso.md). The Azure Management Portal allows a user to select a previously-purchased Resource, and click the _Manage_ button. This signs the user into a service management dashboard hosted by the Add-on provider, without requiring the user to enter a username and password.
