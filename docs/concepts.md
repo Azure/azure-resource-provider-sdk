@@ -1,4 +1,4 @@
-#Azure Platform Concepts
+# Azure Platform Concepts
 
 A Resource Provider (RP, for short) is simply an HTTPS RESTful API contract that Add-on owners will implement so a trusted Azure endpoint can provision, delete, and manage services on a user's behalf. Azure uses the Response from an RP to render and show a set of simple management operations in the Azure Management Portal.
 
@@ -6,7 +6,7 @@ The figure below gives a simplified view of how a user interacts directly with A
 
 ![overview](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-overview.png)
 
-##Azure Concepts
+## Azure Concepts
 Before we dive into RP concepts, it will be helpful to understand several Azure concepts first. 
 
 - Every user who signs up for Azure logs in with a Microsoft account (e.g. abby@live.com or bob@hotmail.com).
@@ -23,7 +23,7 @@ This is a conceptual view of a user's Resources:
 
 ![resources](https://raw.github.com/WindowsAzure/azure-resource-provider-sdk/master/docs/images/arch-resources.png)
 
-##Resource Provider Concepts
+## Resource Provider Concepts
 - Each Resource's lifecycle is managed by a **ResourceProvider**. This is a common software design pattern, where a manager / orchestrator (Azure) relies on a provider (ResourceProvider) to provide specific functionality.
 
 - An RP introduces an additional concept, called a **CloudService**. Instead of nesting a Resource directly under a Subscription, Resources are nested under a named entity called a CloudService. Think of a CloudService as a container of resources, roughly analogous to an application.
