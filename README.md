@@ -34,7 +34,7 @@ The following steps outline the entire cycle of developing, launching and mainta
 
 **Step 7: Fine-tune Your Add-on.**  Unless you got it completely right the first time, you will want to use the Publisher Portal to adjust pricing and tiers, descriptions and make some promo codes.  Read here (coming soon) about how to make changes to your Add-on.  This step can be done at anytime.
 
-##Technical Documentation and Samples
+## Technical Documentation and Samples
 
 **Please note:** the Azure Store is currently in Preview and we are currently working on a new .NET SDK that will make it easy to quickly standup a Resource Provider for your Add-on.  We expect to release this new SDK by late February.
 
